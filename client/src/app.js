@@ -1,4 +1,6 @@
-import {sum} from './math'
+import {sum} from './math';
+import './app.css';
+// import './app.scss';
 
 window.addEventListener('DOMContentLoaded', () => { // DOM 생성 후 실행
   const el = document.querySelector('#app');
