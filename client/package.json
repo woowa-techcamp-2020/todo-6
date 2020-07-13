@@ -4,7 +4,7 @@
   "description": "todo-6조 양명우, 김영지",
   "main": "index.js",
   "scripts": {
-    "build": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
