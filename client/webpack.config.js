@@ -1,4 +1,6 @@
 const path = require('path'); // 노드모듈 중 절대경로를 정하기 위해 path 모듈을 가져옴
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development', // 개발 모드로 진행
@@ -20,10 +22,18 @@ module.exports = {
         use: [{
           loader: 'file-loader', // 설치한 file-loader 설정
           options: {
-            publicPath: '../dist' // 이미지 호출시 ./dist 경로 자동설정
+            name: '[name].[ext]?[hash]' // 결과물의 이름을 해시값이 아닌 파일명으로 생성하기
+                                        // [원본파일의 이름]과 [확장자명] 을 변수로 담음
+          //   publicPath: '../dist' // 이미지 호출시 ./dist 경로 자동설정
           }
         }]
       }
     ]
   },
+  plugins: [
+  new HtmlWebpackPlugin({
+    template: './src/index.html' // 인자로 템플릿 파일
+  }),
+  new CleanWebpackPlugin(),
+]
 };
