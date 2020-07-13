@@ -18,6 +18,7 @@
   "homepage": "https://github.com/woowa-techcamp-2020/todo-6#readme",
   "devDependencies": {
     "css-loader": "^3.6.0",
+    "file-loader": "^6.0.0",
     "scss-loader": "0.0.1",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",

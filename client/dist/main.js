@@ -140,7 +140,19 @@ eval("var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtim
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _math__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./math */ \"./src/math.js\");\n/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.css */ \"./src/app.css\");\n/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app_css__WEBPACK_IMPORTED_MODULE_1__);\n\n\n// import './app.scss';\n\nwindow.addEventListener('DOMContentLoaded', () => { // DOM 생성 후 실행\n  const el = document.querySelector('#app');\n  el.innerHTML = `<h1>1 + 2 = ${Object(_math__WEBPACK_IMPORTED_MODULE_0__[\"sum\"])(1,2)}</h1>`\n});\n\n//# sourceURL=webpack:///./src/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _math__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./math */ \"./src/math.js\");\n/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.css */ \"./src/app.css\");\n/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _baemin_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./baemin.png */ \"./src/baemin.png\");\n\n\n\n// import './app.scss';\n\nwindow.addEventListener('DOMContentLoaded', () => { // DOM 생성 후 실행\n  const el = document.querySelector('#app');\n  el.innerHTML = `<h1>1 + 2 = ${Object(_math__WEBPACK_IMPORTED_MODULE_0__[\"sum\"])(1, 2)}</h1>\n  <img src=\"${_baemin_png__WEBPACK_IMPORTED_MODULE_2__[\"default\"]}\" alt=\"woowa\" />`\n});\n\n//# sourceURL=webpack:///./src/app.js?");
+
+/***/ }),
+
+/***/ "./src/baemin.png":
+/*!************************!*\
+  !*** ./src/baemin.png ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"../dist/5905791cb991842f4647f958fa0d6234.png\");\n\n//# sourceURL=webpack:///./src/baemin.png?");
 
 /***/ }),
 

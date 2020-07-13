@@ -14,6 +14,15 @@ module.exports = {
       {
         test: /\.css$/, // css 파일에 대한 정규표현식
         use: ['style-loader', 'css-loader'] // 설치한 css-loader 설정
+      },
+      {
+        test: /\.png$/, // png 파일에 대한 정규표현식
+        use: [{
+          loader: 'file-loader', // 설치한 file-loader 설정
+          options: {
+            publicPath: '../dist' // 이미지 호출시 ./dist 경로 자동설정
+          }
+        }]
       }
     ]
   },
