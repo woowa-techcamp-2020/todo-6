@@ -14,8 +14,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/, // css 파일에 대한 정규표현식
-        use: ['style-loader', 'css-loader'] // 설치한 css-loader 설정
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.png$/, // png 파일에 대한 정규표현식

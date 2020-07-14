@@ -1,5 +1,5 @@
 import {sum} from './math';
-import './app.css';
+import './app.scss';
 import baeminImage from './baemin.png'
 // import './app.scss';
 
