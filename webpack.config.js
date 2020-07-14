@@ -6,11 +6,11 @@ module.exports = {
   mode: 'development',
   devtool: 'cheap-eval-source-map',
   entry: {
-    main: './src/app.js'
+    main: './public/script/app.js'
   },
-  output: { // 여러개의 모듈을 하나로 만들어서 저장시킬 위치 정하기
-    path: path.resolve('./dist'), // 절대 경로 설정(./폴더이름설정)
-    filename: '[name].js'// 파일명(name변수는 entry에서 설정한 키값(=main)이 들어오게된다.
+  output: {
+    path: path.resolve('./public/dist'),
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -23,13 +23,11 @@ module.exports = {
         ]
       },
       {
-        test: /\.png$/, // png 파일에 대한 정규표현식
+        test: /\.png$/,
         use: [{
-          loader: 'file-loader', // 설치한 file-loader 설정
+          loader: 'file-loader',
           options: {
-            name: '[name].[ext]?[hash]' // 결과물의 이름을 해시값이 아닌 파일명으로 생성하기
-                                        // [원본파일의 이름]과 [확장자명] 을 변수로 담음
-          //   publicPath: '../dist' // 이미지 호출시 ./dist 경로 자동설정
+            name: '[name].[ext]?[hash]'
           }
         }]
       },
@@ -47,7 +45,7 @@ module.exports = {
   },
   plugins: [
   new HtmlWebpackPlugin({
-    template: './src/index.html' // 인자로 템플릿 파일
+    template: './views/index.html'
   }),
   new CleanWebpackPlugin(),
 ]

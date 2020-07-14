@@ -1,6 +1,6 @@
 import {sum} from './math';
-import './app.scss';
-import baeminImage from './baemin.png'
+import '../scss/app.scss';
+import baeminImage from '../img/baemin.png'
 // import './app.scss';
 
 window.addEventListener('DOMContentLoaded', () => { // DOM 생성 후 실행
