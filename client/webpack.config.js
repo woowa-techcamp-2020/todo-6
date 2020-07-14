@@ -1,11 +1,12 @@
-const path = require('path'); // 노드모듈 중 절대경로를 정하기 위해 path 모듈을 가져옴
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development', // 개발 모드로 진행
+  mode: 'development',
+  devtool: 'cheap-eval-source-map',
   entry: {
-    main: './src/app.js' // 시작점 설정
+    main: './src/app.js'
   },
   output: { // 여러개의 모듈을 하나로 만들어서 저장시킬 위치 정하기
     path: path.resolve('./dist'), // 절대 경로 설정(./폴더이름설정)
@@ -31,6 +32,16 @@ module.exports = {
           //   publicPath: '../dist' // 이미지 호출시 ./dist 경로 자동설정
           }
         }]
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       }
     ]
   },
