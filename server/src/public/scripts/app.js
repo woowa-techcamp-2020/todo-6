@@ -1,7 +1,7 @@
 import { sum } from './math';
-import '../scss/app.scss';
+import '../scss/mainPage.scss';
 import baeminImage from '../img/baemin.png';
-// import './app.scss';
+// import './mainPage.scss';
 
 window.addEventListener('DOMContentLoaded', () => { // DOM 생성 후 실행
     const el = document.querySelector('#app');
