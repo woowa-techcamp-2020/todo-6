@@ -1,16 +1,9 @@
-import '../scss/app.scss';
-import sum from './math';
-import baeminImage from '../img/baemin.png';
-// import './app.scss';
-import card from './components/card';
+// JS import
+import { createElWithClass } from './utils/createElWithClass';
 
-window.addEventListener('DOMContentLoaded', () => { // DOM 생성 후 실행
-    const el = document.querySelector('#app');
-    el.innerHTML = `<h1>1 + 2 = ${sum()}</h1>
-    <img src="${baeminImage}" alt="woowa" />`;
+// SCSS import
+import '../scss/mainPage.scss';
+import '../scss/reset.scss';
 
-    const h1 = document.querySelector('h1');
-    console.log(card());
-    h1.appendChild(card());
-});
-
+const body = document.querySelector('.list-header-left-wrap');
+body.appendChild(createElWithClass('div', 'test', '안녕하세요'));
