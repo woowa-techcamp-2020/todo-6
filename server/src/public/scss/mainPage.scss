@@ -8,8 +8,10 @@
     font-size: 20px;
     background-color: black;
     color: white;
+
     .todo-logo {
     }
+
     .menu-btn {
     }
   }
@@ -21,43 +23,51 @@
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
+
       .list {
         background-color: lightgray;
         width: 400px;
         height: 100vw;
         margin-right: 10px;
         border-radius: 5px;
+
         .list-header-section {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           padding: 15px 15px 0px 15px;
+
           .list-header-left-wrap {
             display: flex;
             flex-direction: row;
             align-items: baseline;
+
             .cards-count {
               margin: 10px;
               font-weight: 600;
               font-size: 15px;
 
             }
+
             .list-title {
               font-weight: 600;
               font-size: 15px;
 
             }
           }
+
           .list-header-right-wrap {
             display: flex;
             flex-direction: row;
             align-items: baseline;
+
             .add-card-btn {
               margin: 10px;
               font-weight: 600;
               font-size: 20px;
 
             }
+
             .list-details-btn {
               font-weight: 600;
               font-size: 20px;
@@ -65,29 +75,36 @@
           }
 
         }
+
         .list-body-section {
           display: flex;
           flex-direction: column;
           padding: 15px;
+
           .new-card-area {
 
           }
+
           .cards-wrap {
             display: flex;
             flex-direction: column;
+
             .card {
               background-color: white;
               height: 150px;
               border-radius: 5px;
               margin-bottom: 15px;
+
               .card-header-section {
                 display: flex;
                 flex-direction: row;
                 padding: 15px;
                 justify-content: space-between;
+
                 .card-title {
 
                 }
+
                 .card-del-btn {
 
                 }
@@ -96,12 +113,14 @@
           }
         }
       }
+
       .add-list {
         border: dotted lightgray;
         width: 400px;
         height: 200px;
         border-radius: 10px;
         display: flex;
+
         .add-title {
           font-size: 20px;
           font-weight: 600;
