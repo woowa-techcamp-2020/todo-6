@@ -5,9 +5,10 @@ export interface IUser {
 }
 
 class User implements IUser {
-
     public id: number;
+
     public name: string;
+
     public email: string;
 
     constructor(nameOrUser: string | IUser, email?: string, id?: number) {
