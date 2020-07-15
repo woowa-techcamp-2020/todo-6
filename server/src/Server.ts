@@ -21,7 +21,8 @@ const app = express();
  ********************************************************************************** */
 
 // set scripts static file
-app.use('/public/scripts', express.static(`${__dirname}/public/scripts`));
+const scriptRequestUrl = '/public/build';
+app.use(scriptRequestUrl, express.static(`${__dirname}${scriptRequestUrl}`));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -61,7 +62,7 @@ app.set('views', viewsDir);
 const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
 app.get('*', (req: Request, res: Response) => {
-    res.sendFile('index.html', { root: viewsDir });
+    res.sendFile('build/index.html', { root: viewsDir });
 });
 
 // Export express instance
