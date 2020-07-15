@@ -20,6 +20,9 @@ const app = express();
  *                              Set basic express settings
  ***********************************************************************************/
 
+// set scripts static file
+app.use('/public/scripts', express.static(__dirname + '/public/scripts'));
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -33,6 +36,8 @@ if (process.env.NODE_ENV === 'development') {
 if (process.env.NODE_ENV === 'production') {
     app.use(helmet());
 }
+
+
 
 // Add APIs
 app.use('/api', BaseRouter);
