@@ -6,13 +6,13 @@ import '../scss/mainPage.scss';
 import '../scss/reset.scss';
 
 
-const getInitData = new Promise((resolve, reject) => {
+export const getInitData = new Promise((resolve, reject) => {
     fetch('/api/users/all').then((res) => {
         resolve(res.json());
     });
 });
 
-const initPage = () => {
+export const initPage = () => {
     console.log('g');
     getInitData.then((res) => {
     		res.userData.data.forEach((data) => {
@@ -22,5 +22,3 @@ const initPage = () => {
 };
 
 initPage();
-
-//

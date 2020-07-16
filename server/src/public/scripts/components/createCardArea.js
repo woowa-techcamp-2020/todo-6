@@ -1,5 +1,6 @@
 import '../../scss/createCardArea.scss';
 import { div, button, textarea } from '../utils/element';
+import { initPage } from '../app';
 
 export const clickAddCardBtn = (event) => {
     const inputCardContents = document.querySelector('.input-card-contents').value;
@@ -14,6 +15,7 @@ export const clickAddCardBtn = (event) => {
     })
         .then(() => {
             // todo: initPage 함수 실행
+            // initPage()
         })
         .catch((error) => console.error('Error:', error));
 
