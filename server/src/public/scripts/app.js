@@ -1,6 +1,4 @@
 // JS import
-// import newCardSectionEl from './components/createCardArea';
-import showCard from './components/card';
 import showList from './components/list';
 
 // SCSS import

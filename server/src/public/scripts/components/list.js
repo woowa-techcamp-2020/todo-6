@@ -1,6 +1,5 @@
 import { div, button } from '../utils/element';
 import '../../scss/list.scss';
-import showCard from './card';
 import { newCardSectionEl } from './createCardArea';
 import cardsNode from './cardsNode';
 
@@ -36,7 +35,8 @@ const showList = (cardCount, listTitle, cards) => {
     );
 
     const listsWrap = document.querySelector('.lists-wrap');
-    listsWrap.appendChild(list);
+    const addList = document.querySelector('.add-list');
+    listsWrap.insertBefore(list, addList);
 };
 
 
