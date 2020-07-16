@@ -5,8 +5,6 @@ import { IUserDao } from './UserDao';
 
 
 class UserDao extends MockDaoMock implements IUserDao {
-
-
     public async getOne(email: string): Promise<IUser | null> {
         try {
             const db = await super.openDb();
@@ -25,18 +23,18 @@ class UserDao extends MockDaoMock implements IUserDao {
     public async getAll(): Promise<IUser[]> {
         try {
             const db = await super.openDb();
-            return db.users;
+            return db.userData;
         } catch (err) {
             throw err;
         }
     }
 
 
-    public async add(user: IUser): Promise<void> {
+    public async add(user: any): Promise<void> {
         try {
             const db = await super.openDb();
-            user.id = getRandomInt();
-            db.users.push(user);
+            // user.id = getRandomInt();
+            db.userData.data[0].cards.push(user);
             await super.saveDb(db);
         } catch (err) {
             throw err;

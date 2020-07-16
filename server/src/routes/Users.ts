@@ -2,12 +2,12 @@ import { Request, Response, Router } from 'express';
 import { BAD_REQUEST, CREATED, OK } from 'http-status-codes';
 import { ParamsDictionary } from 'express-serve-static-core';
 
-import UserDao from '@daos/User/UserDao.mock';
+import UserDaoTest from '@daos/User/UserDao.mock';
 import { paramMissingError } from '@shared/constants';
 
 // Init shared
 const router = Router();
-const userDao = new UserDao();
+const userDao = new UserDaoTest();
 
 
 /** ****************************************************************************
@@ -15,8 +15,8 @@ const userDao = new UserDao();
  ***************************************************************************** */
 
 router.get('/all', async (req: Request, res: Response) => {
-    const users = await userDao.getAll();
-    return res.status(OK).json({ users });
+    const userData = await userDao.getAll();
+    return res.status(OK).json({ userData });
 });
 
 
@@ -25,13 +25,13 @@ router.get('/all', async (req: Request, res: Response) => {
  ***************************************************************************** */
 
 router.post('/add', async (req: Request, res: Response) => {
-    const { user } = req.body;
-    if (!user) {
-        return res.status(BAD_REQUEST).json({
-            error: paramMissingError,
-        });
-    }
-    await userDao.add(user);
+    const cardText = req.body;
+    // if (!user) {
+    //     return res.status(BAD_REQUEST).json({
+    //         error: paramMissingError,
+    //     });
+    // }
+    await userDao.add(cardText);
     return res.status(CREATED).end();
 });
 

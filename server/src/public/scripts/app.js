@@ -1,39 +1,28 @@
 // JS import
-import newCardSectionEl from './components/list/createCardArea';
+// import newCardSectionEl from './components/createCardArea';
+import showCard from './components/card';
+import showList from './components/list';
 
 // SCSS import
 import '../scss/mainPage.scss';
 import '../scss/reset.scss';
 
-const cardsWrap = document.querySelector('.cards-wrap');
-const listBodySection = document.querySelector('.list-body-section');
-listBodySection.insertBefore(newCardSectionEl, cardsWrap);
 
+const getInitData = new Promise((resolve, reject) => {
+    fetch('/api/users/all').then((res) => {
+        resolve(res.json());
+    });
+});
 
+const initPage = () => {
+    console.log('g');
+    getInitData.then((res) => {
+    		res.userData.data.forEach((data) => {
+            showList(data.cards.length, data.listName, data.cards);
+        });
+    });
+};
 
-// const initData = [
-//     {
-//         listId: 'number',
-//         listName: 'string',
-//         cardsCount: 'number',
-//         cards: [
-//             {
-//                 cardName: 'string',
-//                 cardText: 'string',
-//                 createTime: 'timeObj',
-//             },
-//         ],
-//     },
-//     {
-//         listId: 'number',
-//         listName: 'string',
-//         cardsCount: 'number',
-//         cards: [
-//             {
-//                 cardName: 'string',
-//                 cardText: 'string',
-//                 createTime: 'timeObj',
-//             },
-//         ],
-//     },
-// ];
+initPage();
+
+//
