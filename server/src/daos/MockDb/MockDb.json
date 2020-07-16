@@ -1,19 +1,54 @@
 {
-  "users": [
-    {
-      "name": "Sean Maxwell",
-      "email": "sean.maxwell@gmail.com",
-      "id": 159123164363
+  "userData": {
+    "info": {
+      "name": "김영지"
     },
-    {
-      "name": "Gordan Freeman",
-      "email": "gordan.freeman@halflife.com",
-      "id": 906524522143
-    },
-    {
-      "name": "John Smith",
-      "email": "jsmith@yahoo.com",
-      "id": 357437875835
-    }
-  ]
+    "data": [
+      {
+        "listID": 1,
+        "listName": "Todo",
+        "cards": [
+          {
+            "cardID": 1,
+            "cardText": "양명우",
+            "createTime": {}
+          },
+          {
+            "cardText": "asdf"
+          },
+          {
+            "cardText": "asdf"
+          },
+          {
+            "cardText": "sd"
+          },
+          {
+            "cardText": "sdf"
+          }
+        ]
+      },
+      {
+        "listID": 2,
+        "listName": "In Progress",
+        "cards": [
+          {
+            "cardID": 2,
+            "cardText": "김영지",
+            "createTime": {}
+          }
+        ]
+      },
+      {
+        "listID": 3,
+        "listName": "Done",
+        "cards": [
+          {
+            "cardID": 3,
+            "cardText": "우테캠",
+            "createTime": {}
+          }
+        ]
+      }
+    ]
+  }
 }
