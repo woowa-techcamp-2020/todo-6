@@ -20,10 +20,10 @@ class UserDao implements IUserDao {
 
     // create the connection to database
     connection = mysql.createConnection({
-        host: this.remoteHost,
-        user: this.userName,
-        database: this.databaseName,
-        password: this.password,
+        host: process.env.REMOTE_HOST,
+        user: process.env.USER_NAME,
+        database: process.env.DATABASE_NAME,
+        password: process.env.PASSWORD,
     });
 
     /**
@@ -38,7 +38,7 @@ class UserDao implements IUserDao {
      *
      */
     public async getAll(): Promise<IUser[]> {
-        // console.log(this.connection.query('insert into users(id, password, name) values(\'myID\', \'myPW\', \'명우\')'));
+        // console.log(this.connection.query('insert into user(id, password, name) values(\'myID\', \'myPW\', \'명우\')'));
         return [] as any;
     }
 
@@ -51,7 +51,6 @@ class UserDao implements IUserDao {
         // TODO
         return {} as any;
     }
-
 
     /**
      *
