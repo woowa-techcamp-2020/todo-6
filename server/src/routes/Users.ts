@@ -2,12 +2,21 @@ import { Request, Response, Router } from 'express';
 import { BAD_REQUEST, CREATED, OK } from 'http-status-codes';
 import { ParamsDictionary } from 'express-serve-static-core';
 
-import UserDao from '@daos/User/UserDao.mock';
+import UserDaoTest from '@daos/User/UserDao.mock';
+import UserDao from '@daos/User/UserDao';
 import { paramMissingError } from '@shared/constants';
+import envOptions from '../LoadEnv';
 
 // Init shared
 const router = Router();
-const userDao = new UserDao();
+
+let userDao:any = null;
+
+if(envOptions.db === 'real') {
+    userDao = new UserDao();
+}else{
+    userDao = new UserDaoTest();
+}
 
 
 /** ****************************************************************************

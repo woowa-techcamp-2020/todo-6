@@ -1,5 +1,5 @@
 import { IUser } from '@entities/User';
-
+import mysql from 'mysql2';
 
 export interface IUserDao {
     getOne: (email: string) => Promise<IUser | null>;
@@ -10,13 +10,26 @@ export interface IUserDao {
 }
 
 class UserDao implements IUserDao {
+    remoteHost = '15.165.167.135';
 
+    userName = 'todo';
+
+    databaseName = 'todoDB';
+
+    password = '1234';
+
+    // create the connection to database
+    connection = mysql.createConnection({
+        host: this.remoteHost,
+        user: this.userName,
+        database: this.databaseName,
+        password: this.password,
+    });
 
     /**
      * @param email
      */
     public async getOne(email: string): Promise<IUser | null> {
-        // TODO
         return [] as any;
     }
 
@@ -25,7 +38,7 @@ class UserDao implements IUserDao {
      *
      */
     public async getAll(): Promise<IUser[]> {
-        // TODO
+        // console.log(this.connection.query('insert into users(id, password, name) values(\'myID\', \'myPW\', \'명우\')'));
         return [] as any;
     }
 

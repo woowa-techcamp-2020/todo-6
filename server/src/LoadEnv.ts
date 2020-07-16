@@ -9,6 +9,12 @@ const options = commandLineArgs([
         defaultValue: 'development',
         type: String,
     },
+    {
+        name: 'db',
+        alias: 'd',
+        defaultValue: 'mock',
+        type: String,
+    },
 ]);
 
 // Set the env file
@@ -19,4 +25,6 @@ const result2 = dotenv.config({
 if (result2.error) {
     throw result2.error;
 }
+
+export default options;
 
