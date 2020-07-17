@@ -6,10 +6,10 @@ module.exports = {
     mode: 'development',
     devtool: 'cheap-eval-source-map',
     entry: {
-        main: './src/public/scripts/app.js',
+        main: './scripts/app.js',
     },
     output: {
-        path: path.resolve('./src/public/build'),
+        path: path.resolve('../server/src/public/scripts'),
         filename: '[name].js',
     },
     module: {
@@ -28,7 +28,7 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]?[hash]',
-                        publicPath: '../public/build',
+                        publicPath: '../image',
 
                     },
                 }],
@@ -47,8 +47,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/views/index.html',
-            filename: '../../views/build/index.html',
+            template: './index.html',
+            filename: '../../src/views/index.html',
         }),
         new CleanWebpackPlugin(),
     ],
