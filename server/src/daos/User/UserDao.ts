@@ -1,8 +1,8 @@
-import { IUser } from '@entities/User';
-import mysql from 'mysql2';
+import User, { IUser } from '@entities/User';
+import mysql from 'mysql2/promise';
 
 export interface IUserDao {
-    getOne: (email: string) => Promise<IUser | null>;
+    getOne: (id: string) => Promise<IUser | null>;
     getAll: () => Promise<IUser[]>;
     add: (user: IUser) => Promise<void>;
     update: (user: IUser) => Promise<void>;
@@ -10,16 +10,7 @@ export interface IUserDao {
 }
 
 class UserDao implements IUserDao {
-    remoteHost = '15.165.167.135';
-
-    userName = 'todo';
-
-    databaseName = 'todoDB';
-
-    password = '1234';
-
-    // create the connection to database
-    connection = mysql.createConnection({
+    pool: any = mysql.createPool({
         host: process.env.REMOTE_HOST,
         user: process.env.USER_NAME,
         database: process.env.DATABASE_NAME,
@@ -29,16 +20,22 @@ class UserDao implements IUserDao {
     /**
      * @param email
      */
-    public async getOne(email: string): Promise<IUser | null> {
-        return [] as any;
+    public async getOne(id: string): Promise<IUser | null> {
+        const [row] = await this.pool.query('select * from user '
+            + 'where id = ?',
+        [id]);
+        return new User(row.shift());
     }
-
 
     /**
      *
      */
     public async getAll(): Promise<IUser[]> {
-        // console.log(this.connection.query('insert into user(id, password, name) values(\'myID\', \'myPW\', \'명우\')'));
+        const [row] = await this.pool.query('select cardText, listName, from card '
+            + 'left join list on card.listID = list.listID '
+            + 'left join user on list.userID = user.userID '
+            + 'where id = ?', ['auddn6676']);
+        console.log(row);
         return [] as any;
     }
 
@@ -49,6 +46,7 @@ class UserDao implements IUserDao {
      */
     public async add(user: IUser): Promise<void> {
         // TODO
+
         return {} as any;
     }
 

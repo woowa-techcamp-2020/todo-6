@@ -11,16 +11,10 @@ class User implements IUser {
 
     public password: string;
 
-    constructor(nameOrUser: string | IUser, email?: string, id?: number) {
-        if (typeof nameOrUser === 'string') {
-            this.name = nameOrUser;
-            this.password = email || '';
-            this.id = id || -1;
-        } else {
-            this.name = nameOrUser.name;
-            this.password = nameOrUser.password;
-            this.id = nameOrUser.id;
-        }
+    constructor(newUser: IUser) {
+        this.name = newUser.name;
+        this.password = newUser.password;
+        this.id = newUser.id;
     }
 }
 

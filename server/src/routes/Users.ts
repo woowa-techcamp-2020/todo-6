@@ -61,6 +61,16 @@ router.put('/update', async (req: Request, res: Response) => {
     return res.status(OK).end();
 });
 
+/** ****************************************************************************
+ *                    Delete - "DELETE /api/users/delete/:id"
+ ***************************************************************************** */
+
+router.get('/:id', async (req: Request, res: Response) => {
+    const { id } = req.params as ParamsDictionary;
+    await userDao.getOne(id);
+    return res.status(OK).end();
+});
+
 
 /** ****************************************************************************
  *                    Delete - "DELETE /api/users/delete/:id"

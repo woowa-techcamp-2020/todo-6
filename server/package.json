@@ -7,7 +7,7 @@
     "start": "node -r module-alias/register ./dist --env=production",
     "start:dev": "nodemon",
     "start:db": "nodemon --db=real",
-    "test": "nodemon --config ./spec/nodemon.json",
+    "test": "nodemon --config ./spec/nodemon.json --db=real",
     "front-test": "node build.js &&  webpack && node -r module-alias/register ./dist --env=production",
     "build-webpack": "webpack --watch"
   },
