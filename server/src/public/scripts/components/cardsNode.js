@@ -4,10 +4,10 @@ import '../../scss/card.scss';
 
 const cardsNode = (cards) => {
     const cardArray = cards.map((card) => div(
-        { className: 'card' },
-        div({ className: 'card-header-section' },
-            div({ className: 'card-title' }, card.cardText),
-            div({ className: 'card-del-btn' }, '✖')),
+      { className: 'card' },
+      div({ className: 'card-header-section' },
+        div({ className: 'card-title' }, card.cardText),
+        div({ className: 'card-del-btn' }, '✖')),
     ));
 
     console.log(cardArray);

@@ -13,12 +13,12 @@ export const getInitData = new Promise((resolve, reject) => {
 });
 
 export const initPage = () => {
-    console.log('g');
     getInitData.then((res) => {
-    		res.userData.data.forEach((data) => {
+        res.userData.data.forEach((data) => {
             showList(data.cards.length, data.listName, data.cards);
         });
     });
 };
 
 initPage();
+
