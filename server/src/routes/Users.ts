@@ -24,8 +24,8 @@ if(envOptions.db === 'real') {
  ***************************************************************************** */
 
 router.get('/all', async (req: Request, res: Response) => {
-    const users = await userDao.getAll();
-    return res.status(OK).json({ users });
+    const userData = await userDao.getAll();
+    return res.status(OK).json({ userData });
 });
 
 
@@ -34,13 +34,13 @@ router.get('/all', async (req: Request, res: Response) => {
  ***************************************************************************** */
 
 router.post('/add', async (req: Request, res: Response) => {
-    const { user } = req.body;
-    if (!user) {
-        return res.status(BAD_REQUEST).json({
-            error: paramMissingError,
-        });
-    }
-    await userDao.add(user);
+    const cardText = req.body;
+    // if (!user) {
+    //     return res.status(BAD_REQUEST).json({
+    //         error: paramMissingError,
+    //     });
+    // }
+    await userDao.add(cardText);
     return res.status(CREATED).end();
 });
 

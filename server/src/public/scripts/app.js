@@ -1,8 +1,24 @@
-// JS import
-import { createElWithClass } from './utils/createElWithClass';
+// eslint-disable-next-line import/no-cycle
+import showList from './components/list';
+
 // SCSS import
 import '../scss/mainPage.scss';
 import '../scss/reset.scss';
 
-const body = document.querySelector('.list-header-left-wrap');
-body.appendChild(createElWithClass('div', 'test', '안녕하세요'));
+
+export const getInitData = new Promise((resolve, reject) => {
+    fetch('/api/users/all').then((res) => {
+        resolve(res.json());
+    });
+});
+
+export const initPage = () => {
+    getInitData.then((res) => {
+        res.userData.data.forEach((data) => {
+            showList(data.cards.length, data.listName, data.cards);
+        });
+    });
+};
+
+initPage();
+

@@ -1,0 +1,40 @@
+.create-card-area {
+  display: flex;
+  flex-direction: column;
+  .input-card-contents {
+    border-radius: 3px;
+    margin-bottom: 5px;
+    background-color: white;
+    resize: vertical;
+    height: 80px;
+
+  }
+  .btn-wrap {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+
+    .add-btn {
+      flex-grow: 1;
+      margin-right: 5px;
+      background-color: #68b568;
+      color: white;
+      border-radius: 3px;
+      padding: 5px;
+      cursor: pointer;
+      &:disabled{
+        //border: 1px solid #999999;
+        //background-color: #cccccc;
+        opacity: 0.5;
+      }
+    }
+    .cancel-btn {
+      flex-grow: 1;
+      background-color: white;
+      color: black;
+      border-radius: 3px;
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
+}
