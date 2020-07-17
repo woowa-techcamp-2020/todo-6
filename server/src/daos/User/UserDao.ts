@@ -1,8 +1,8 @@
-import { IUser } from '@entities/User';
-
+import User, { IUser } from '@entities/User';
+import mysql from 'mysql2/promise';
 
 export interface IUserDao {
-    getOne: (email: string) => Promise<IUser | null>;
+    getOne: (id: string) => Promise<IUser | null>;
     getAll: () => Promise<IUser[]>;
     add: (user: IUser) => Promise<void>;
     update: (user: IUser) => Promise<void>;
@@ -10,22 +10,32 @@ export interface IUserDao {
 }
 
 class UserDao implements IUserDao {
-
+    pool: any = mysql.createPool({
+        host: process.env.REMOTE_HOST,
+        user: process.env.USER_NAME,
+        database: process.env.DATABASE_NAME,
+        password: process.env.PASSWORD,
+    });
 
     /**
      * @param email
      */
-    public async getOne(email: string): Promise<IUser | null> {
-        // TODO
-        return [] as any;
+    public async getOne(id: string): Promise<IUser | null> {
+        const [row] = await this.pool.query('select * from user '
+            + 'where id = ?',
+        [id]);
+        return new User(row.shift());
     }
-
 
     /**
      *
      */
     public async getAll(): Promise<IUser[]> {
-        // TODO
+        const [row] = await this.pool.query('select cardText, listName, from card '
+            + 'left join list on card.listID = list.listID '
+            + 'left join user on list.userID = user.userID '
+            + 'where id = ?', ['auddn6676']);
+        console.log(row);
         return [] as any;
     }
 
@@ -36,9 +46,9 @@ class UserDao implements IUserDao {
      */
     public async add(user: IUser): Promise<void> {
         // TODO
+
         return {} as any;
     }
-
 
     /**
      *

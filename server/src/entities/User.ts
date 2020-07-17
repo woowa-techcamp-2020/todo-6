@@ -1,7 +1,7 @@
 export interface IUser {
     id: number;
     name: string;
-    email: string;
+    password: string;
 }
 
 class User implements IUser {
@@ -9,18 +9,12 @@ class User implements IUser {
 
     public name: string;
 
-    public email: string;
+    public password: string;
 
-    constructor(nameOrUser: string | IUser, email?: string, id?: number) {
-        if (typeof nameOrUser === 'string') {
-            this.name = nameOrUser;
-            this.email = email || '';
-            this.id = id || -1;
-        } else {
-            this.name = nameOrUser.name;
-            this.email = nameOrUser.email;
-            this.id = nameOrUser.id;
-        }
+    constructor(newUser: IUser) {
+        this.name = newUser.name;
+        this.password = newUser.password;
+        this.id = newUser.id;
     }
 }
 
