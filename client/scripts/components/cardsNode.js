@@ -9,9 +9,7 @@ const cardsNode = (cards) => {
         div({ className: 'card-title' }, card.cardText),
         div({ className: 'card-del-btn' }, '✖')),
     ));
-
-    console.log(cardArray);
-
+    // console.log(cardArray);
     return cardArray;
 };
 
