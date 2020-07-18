@@ -20,15 +20,3 @@ export const clickAddCardBtn = (event) => {
         .catch((error) => console.error('Error:', error));
 };
 
-
-export const writeTextArea = () => {
-    const addBtn = document.querySelector('.add-btn');
-    const inputCardContents = document.querySelector('.input-card-contents').value;
-    if (inputCardContents.length > 0 && inputCardContents.length < 500) {
-        addBtn.removeAttribute('disabled');
-    } else {
-        addBtn.setAttribute('disabled', 'true');
-    }
-};
-
-
