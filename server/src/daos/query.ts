@@ -1,10 +1,10 @@
 export const userQuery: {
-    getUserData: (id:string) => string
+    getUserData: (id:number) => string
 } = {
     getUserData: (id) => 'select * from card '
             + 'left join list on card.listID = list.listID '
             + 'left join user on list.userID = user.userID '
-            + `where id = '${id}'`,
+            + `where user.userID = '${id}'`,
 };
 
 export const listQuery = {

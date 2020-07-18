@@ -28,7 +28,7 @@ const userController:IUserController = {
     get: async (req: Request, res: Response) => {
         logger.info('Request: apis/users/:id');
         const { id } = req.params as ParamsDictionary;
-        const userData = await userDao.get(id);
+        const userData = await userDao.get(parseInt(id));
         return res.status(OK).json({ userData });
     },
 };

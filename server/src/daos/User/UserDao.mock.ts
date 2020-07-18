@@ -6,7 +6,7 @@ import { IUserDao } from './UserDao';
 
 
 class UserDao extends MockDaoMock implements IUserDao {
-    public async get(id: string): Promise<IInitData> {
+    public async get(id: number): Promise<IInitData> {
         try {
             const db = await super.openDb();
             return db.userData;

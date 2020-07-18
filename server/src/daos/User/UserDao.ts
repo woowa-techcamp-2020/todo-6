@@ -6,7 +6,7 @@ import pool from '../db';
 import { userQuery } from '../query';
 
 export interface IUserDao {
-    get: (id: string) => Promise<IInitData>;
+    get: (id: number) => Promise<IInitData>;
     getAll: () => Promise<IUser[]>;
     add: (user: IUser) => Promise<void>;
     update: (user: IUser) => Promise<void>;
@@ -60,7 +60,7 @@ class UserDao implements IUserDao {
         return initData;
     }
 
-    public async get(id: string): Promise<IInitData> {
+    public async get(id: number): Promise<IInitData> {
         const [rowPacket] = await pool.query(userQuery.getUserData(id));
         const res = packetToJson(rowPacket);
 
