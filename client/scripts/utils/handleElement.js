@@ -55,7 +55,7 @@ export function setDataAttributes(element, dataAttributes) {
 
 /**
  * @description create element and append child
- * @param{string} type
+ * @pxfaram{string} type
  * @param{Object | Array | HTMLElement} firstChild
  * @param otherChildren
  * @returns {*}
