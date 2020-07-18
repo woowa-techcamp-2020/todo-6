@@ -47,8 +47,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './index.html',
-            filename: '../../src/views/index.html',
+            template: './index.html', // entry
+            filename: '../../views/index.html', // output(main.js 기준)
         }),
         new CleanWebpackPlugin(),
     ],

@@ -1,24 +1,21 @@
-// eslint-disable-next-line import/no-cycle
+import '../scss/index.scss';
+import '../scss/reset.scss';
 import showList from './components/list';
 
-// SCSS import
-import '../scss/mainPage.scss';
-import '../scss/reset.scss';
+import {showCardModal} from './components/cardModal';
 
 
-export const getInitData = new Promise((resolve, reject) => {
-    fetch('/api/users/all').then((res) => {
-        resolve(res.json());
-    });
-});
-
+// 에러처리도 해주
 export const initPage = () => {
-    getInitData.then((res) => {
-        res.userData.data.forEach((data) => {
-            showList(data.cards.length, data.listName, data.cards);
-        });
+  return fetch('/api/users/all')
+    .then((res) => res.json())
+    .then((res) => {
+      res.userData.data.forEach((data) => {
+        showList(data.cards.length, data.listName, data.listID, data.cards);
+      });
     });
 };
 
 initPage();
 
+// showCardModal()
