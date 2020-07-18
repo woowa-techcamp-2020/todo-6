@@ -24,14 +24,14 @@
       flex-direction: row;
       justify-content: flex-start;
 
-      .add-list {
+      .add-list-btn {
         border: dotted lightgray;
         width: 400px;
         height: 200px;
         border-radius: 10px;
         display: flex;
 
-        .add-title {
+        .add-list-title {
           font-size: 20px;
           font-weight: 600;
           color: grey;

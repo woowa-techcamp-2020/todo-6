@@ -1,7 +1,7 @@
 import { div, button, textarea } from '../utils/element';
 import '../../scss/list.scss';
 import '../../scss/createCardArea.scss';
-import { clickAddCardBtn, newCardSectionEl, writeTextArea } from './createCardArea';
+import { newCardSectionEl, writeTextArea } from './createCardArea';
 import cardsNode from './cardsNode';
 
 // 카드 목록에 카드 추가
@@ -59,7 +59,7 @@ const showList = (cardCount, listTitle, cards) => {
 
 
     const listsWrap = document.querySelector('.lists-wrap');
-    const addList = document.querySelector('.add-list');
+    const addList = document.querySelector('.add-list-btn');
     listsWrap.insertBefore(list, addList);
 };
 
