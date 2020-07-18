@@ -1,19 +1,15 @@
 import { IUser } from '@entities/User';
 import { getRandomInt } from '@shared/functions';
+import { IInitData } from '@daos/daoUtil/util';
 import { MockDaoMock } from '../MockDb/MockDao.mock';
 import { IUserDao } from './UserDao';
 
 
 class UserDao extends MockDaoMock implements IUserDao {
-    public async getOne(email: string): Promise<IUser | null> {
+    public async get(id: string): Promise<IInitData> {
         try {
             const db = await super.openDb();
-            for (const user of db.users) {
-                if (user.email === email) {
-                    return user;
-                }
-            }
-            return null;
+            return db.userData;
         } catch (err) {
             throw err;
         }
