@@ -1,0 +1,16 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "commonjs": true
+    },
+    "extends": "airbnb-base",
+    "plugins": [ "import", "html" ],
+    "rules": {
+        "semi": "error",
+        "indent": ["error", 4]
+    }
+}
