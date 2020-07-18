@@ -19,7 +19,7 @@ const showList = (cardCount, listTitle, listID, cards) => {
         button({className: 'list-details-btn'}, '='))),
     div({className: 'list-body-section'},
       div(
-        {className: 'cards-wrap'}, showCard(cards),
+        {className: 'cards-wrap'}, showCard(cards)
       )));
 
   const listsWrap = document.querySelector('.lists-wrap');
