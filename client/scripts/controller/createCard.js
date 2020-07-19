@@ -37,7 +37,8 @@ const cardAddBtnClickHandler = (e) => {
 
   // todo : DB에 입력값 저장요청 post api쏘기
   // 1. DB에 저장되야할 데이터들-1.카드내용 2.시간저장하기 카드아이디?는 서버에서 정해지는 것 같다.명우님과 얘기해보기
-  postAddCard(newCard.cardText);
+  postAddCard(newCard.cardText) // 얘안테온 응답값으로 돔 그리기(카드 추가)
+  // 전체 리랜더링 하지말것 추가된 부분만 그리기
 };
 
 // cancel 버튼 클릭시 카드생성 취소

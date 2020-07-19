@@ -18,4 +18,4 @@ export const initPage = () => {
 
 initPage();
 
-// showCardModal()
+showCardModal()
