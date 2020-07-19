@@ -1,7 +1,6 @@
 import User, { IUser } from '@entities/User';
-import {
-    packetToJson, IInitData, IList, ICard, 
-} from '@daos/daoUtil/util';
+import { packetToJson } from '@daos/util';
+import { IInitData, IList, ICard } from '@type';
 import pool from '../db';
 import { userQuery } from '../query';
 
@@ -64,7 +63,6 @@ class UserDao implements IUserDao {
         const [rowPacket] = await pool.query(userQuery.getUserData(id));
         const res = packetToJson(rowPacket);
 
-        console.log(res);
         return this.resToInit(res);
     }
 
