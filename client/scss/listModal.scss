@@ -37,7 +37,11 @@
       }
 
       .list-modal-close-btn {
-
+        font-size: 20px;
+        &:hover {
+          color: gray;
+          cursor: pointer;
+        }
       }
     }
 
@@ -72,6 +76,10 @@
         background-color: #17b523;
         color: white;
         font-size: 15px;
+        &:hover {
+          color: #dfdfdf;
+          cursor: pointer;
+        }
       }
     }
   }

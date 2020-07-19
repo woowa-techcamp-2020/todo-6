@@ -26,9 +26,9 @@
 
       .list-title {
         font-weight: 600;
-        font-size: 15px;
+        font-size: 18px;
         &:hover {
-          color: white;
+          color: gray;
           cursor: pointer;
         }
 
@@ -45,11 +45,19 @@
         font-weight: 600;
         font-size: 20px;
         cursor: pointer;
+        &:hover {
+          color: gray;
+          cursor: pointer;
+        }
       }
 
       .list-details-btn {
         font-weight: 600;
         font-size: 20px;
+        &:hover {
+          color: gray;
+          cursor: pointer;
+        }
       }
     }
 

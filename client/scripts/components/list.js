@@ -1,7 +1,7 @@
 import {div, button} from '../utils/element';
 import {createCardBtnHandler} from '../controller/createCard'
 import '../../scss/list.scss';
-import '../../scss/createCardArea.scss';
+import '../../scss/cardInput.scss';
 import {showCard} from './card';
 import {showListModal} from "../controller/listModal";
 
@@ -16,8 +16,8 @@ const showList = (cardCount, listTitle, listID, cards) => {
                 div({className: 'cards-count'}, cardCount),
                 div({className: 'list-title', ondblclick: showListModal}, listTitle)),
             div({className: 'list-header-right-wrap'},
-                button({className: 'add-card-btn', onclick: createCardBtnHandler}, '+'),
-                button({className: 'list-details-btn'}, '='))),
+                button({className: 'add-card-btn', onclick: createCardBtnHandler}, '✎'),
+                button({className: 'list-details-btn'}, '⋯'))),
         div({className: 'list-body-section'},
             div(
                 {className: 'cards-wrap'}, showCard(cards)

@@ -37,7 +37,10 @@
       }
 
       .card-modal-close-btn {
-
+        font-size: 20px;
+        &:hover {
+          color:grey;
+        }
       }
     }
 
@@ -72,6 +75,10 @@
         background-color: #17b523;
         color: white;
         font-size: 15px;
+        &:hover {
+          color: #dfdfdf;
+          cursor: pointer;
+        }
 
       }
     }

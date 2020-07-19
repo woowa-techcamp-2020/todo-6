@@ -14,9 +14,17 @@
       font-size: 30px;
     }
 
+    .baemin-img {
+
+    }
+
     .menu-btn {
       font-weight: 600;
       font-size: 30px;
+      &:hover {
+        color: gray;
+        cursor: pointer;
+      }
     }
   }
 
@@ -34,13 +42,19 @@
         height: 200px;
         border-radius: 10px;
         display: flex;
+        &:hover {
+          border: dotted gray;
+          cursor: pointer;
+        }
 
         .add-list-title {
           font-size: 20px;
           font-weight: 600;
           color: grey;
           margin: auto;
-
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
