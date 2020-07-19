@@ -6,17 +6,25 @@ import UserDaoTest from '@daos/User/UserDao.mock';
 import UserDao from '@daos/User/UserDao';
 import { paramMissingError } from '@shared/constants';
 import envOptions from '../LoadEnv';
+import userController from '../controller/userController';
 
 // Init shared
 const router = Router();
 
-let userDao:any = null;
+let userDao:UserDao | UserDaoTest;
 
-if(envOptions.db === 'real') {
-    userDao = new UserDao();
-}else{
+if(envOptions.db === 'mock') {
     userDao = new UserDaoTest();
+}else{
+    userDao = new UserDao();
 }
+
+
+
+/** ****************************************************************************
+ *                    Get - "GET /api/users/:id"
+ ***************************************************************************** */
+router.get('/:id', userController.get);
 
 
 /** ****************************************************************************
@@ -61,15 +69,7 @@ router.put('/update', async (req: Request, res: Response) => {
     return res.status(OK).end();
 });
 
-/** ****************************************************************************
- *                    Delete - "DELETE /api/users/delete/:id"
- ***************************************************************************** */
 
-router.get('/:id', async (req: Request, res: Response) => {
-    const { id } = req.params as ParamsDictionary;
-    await userDao.getOne(id);
-    return res.status(OK).end();
-});
 
 
 /** ****************************************************************************
