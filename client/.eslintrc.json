@@ -12,5 +12,6 @@
     "rules": {
         "semi": "error",
         "indent": ["error", 4]
-    }
+    },
+    "parser": "babel-eslint"
 }
