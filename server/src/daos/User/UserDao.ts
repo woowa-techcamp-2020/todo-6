@@ -1,8 +1,12 @@
 import User, { IUser } from '@entities/User';
-import mysql from 'mysql2/promise';
+import {
+    packetToJson, IInitData, IList, ICard, 
+} from '@daos/daoUtil/util';
+import pool from '../db';
+import { userQuery } from '../query';
 
 export interface IUserDao {
-    getOne: (id: string) => Promise<IUser | null>;
+    get: (id: number) => Promise<IInitData>;
     getAll: () => Promise<IUser[]>;
     add: (user: IUser) => Promise<void>;
     update: (user: IUser) => Promise<void>;
@@ -10,31 +14,68 @@ export interface IUserDao {
 }
 
 class UserDao implements IUserDao {
-    pool: any = mysql.createPool({
-        host: process.env.REMOTE_HOST,
-        user: process.env.USER_NAME,
-        database: process.env.DATABASE_NAME,
-        password: process.env.PASSWORD,
-    });
-
     /**
-     * @param email
+     * @description make response object to IInitData type object
+     * @param {any[]} res
+     * @returns {IInitData}
      */
-    public async getOne(id: string): Promise<IUser | null> {
-        const [row] = await this.pool.query('select * from user '
-            + 'where id = ?',
-        [id]);
-        return new User(row.shift());
+    private resToInit(res: any[]): IInitData {
+        const initData: IInitData = {
+            data: [],
+        };
+
+        const lists: {[key:number]: IList} = {};
+
+        res.forEach((data) => {
+            console.log(data);
+            const {
+                listID, listName, cardID, cardText, created, 
+            } = data;
+            if(lists[listID]) {
+                lists[listID].cards.push({
+                    cardID,
+                    cardText,
+                    created,
+                });
+            }else {
+                lists[listID] = {
+                    listID,
+                    listName,
+                    cards: [
+                        {
+                            cardID,
+                            cardText,
+                            created,
+                        },
+                    ],
+                };
+            }
+        });
+
+        Object.keys(lists).forEach((listID) => {
+            initData.data.push(lists[parseInt(listID)]);
+        });
+
+
+        return initData;
+    }
+
+    public async get(id: number): Promise<IInitData> {
+        const [rowPacket] = await pool.query(userQuery.getUserData(id));
+        const res = packetToJson(rowPacket);
+
+        console.log(res);
+        return this.resToInit(res);
     }
 
     /**
      *
      */
     public async getAll(): Promise<IUser[]> {
-        const [row] = await this.pool.query('select cardText, listName, from card '
+        const [row] = await pool.query('select user.id cardText, from card '
             + 'left join list on card.listID = list.listID '
             + 'left join user on list.userID = user.userID '
-            + 'where id = ?', ['auddn6676']);
+            + 'where user.id = ?', ['auddn6676']);
         console.log(row);
         return [] as any;
     }
