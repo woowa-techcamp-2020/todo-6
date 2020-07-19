@@ -2,7 +2,6 @@ import '../scss/index.scss';
 import '../scss/reset.scss';
 import showList from './components/list';
 
-import {showCardModal} from './components/cardModal';
 
 
 // 에러처리도 해주
@@ -17,5 +16,3 @@ export const initPage = () => {
 };
 
 initPage();
-
-showCardModal()
