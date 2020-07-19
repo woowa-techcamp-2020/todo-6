@@ -1,8 +1,8 @@
 import {div} from '../utils/element';
 import '../../scss/card.scss';
-import {showCardModal} from './cardModal'
+import {showCardModal} from '../controller/cardModal';
 
-const showCard = (cards) => {
+export const showCard = (cards) => {
   const cardArray = cards.map((card) => div(
     {className: `card ${card.cardID}`, ondblclick: showCardModal },
     div({className: 'card-header-section'},
@@ -14,4 +14,3 @@ const showCard = (cards) => {
 };
 
 
-export default showCard;

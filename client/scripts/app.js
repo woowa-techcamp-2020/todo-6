@@ -1,5 +1,7 @@
 import '../scss/index.scss';
 import '../scss/reset.scss';
+import '../scss/cardModal.scss';
+import '../scss/listModal.scss';
 import showList from './components/list';
 
 

@@ -1,5 +1,5 @@
-.card-modal-section {
-  //display: none;
+#card-modal-section {
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -59,7 +59,8 @@
         border-radius: 5px;
         height: 75%;
         margin-bottom: 10px;
-
+        padding: 10px;
+        font-size: 15px;
       }
 
       .card-modal-save-btn {
@@ -70,7 +71,7 @@
         font-weight: 600;
         background-color: #17b523;
         color: white;
-
+        font-size: 15px;
 
       }
     }

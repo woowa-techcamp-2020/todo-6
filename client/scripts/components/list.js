@@ -2,7 +2,8 @@ import {div, button} from '../utils/element';
 import {createCardBtnHandler} from '../controller/createCard'
 import '../../scss/list.scss';
 import '../../scss/createCardArea.scss';
-import showCard from './card';
+import { showCard } from './card';
+import {showListModal} from "../controller/listModal";
 
 
 // 서버에서 받은 데이터로 리스트 그리기
@@ -13,7 +14,7 @@ const showList = (cardCount, listTitle, listID, cards) => {
     div({className: 'list-header-section'},
       div({className: 'list-header-left-wrap'},
         div({className: 'cards-count'}, cardCount),
-        div({className: 'list-title' }, listTitle)),
+        div({className: 'list-title', ondblclick: showListModal }, listTitle)),
       div({className: 'list-header-right-wrap'},
         button({className: 'add-card-btn', onclick: createCardBtnHandler}, '+'),
         button({className: 'list-details-btn'}, '='))),
