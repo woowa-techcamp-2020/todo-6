@@ -15,7 +15,7 @@ const options = commandLineArgs([
 
 // Set the env file
 const result2 = dotenv.config({
-    path: `./env/test.env`,
+    path: './env/test.env',
 });
 if (result2.error) {
     throw result2.error;
@@ -45,8 +45,8 @@ jasmine.onComplete((passed: boolean) => {
 
 // Run all or a single unit-test
 if (options.testFile) {
-    const testFile = options.testFile;
-    find.file(testFile + '.spec.ts', './spec', (files) => {
+    const { testFile } = options;
+    find.file(`${testFile}.spec.ts`, './spec', (files) => {
         if (files.length === 1) {
             jasmine.specFiles = [files[0]];
             jasmine.execute();

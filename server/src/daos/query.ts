@@ -1,3 +1,6 @@
+import { ICard } from '@type';
+import { getSqlTIme, valueToString } from './util';
+
 export const userQuery: {
     getUserData: (id:number) => string
 } = {
@@ -11,7 +14,15 @@ export const listQuery = {
 
 };
 
-export const cardQuery = {
-
+export const cardQuery: {
+    updateCard: (listID: number, card: ICard) => string
+    add: (card: ICard) => string
+} = {
+    updateCard: (listID, card) => 'update card '
+        + `set  cardText="${card.cardText}", updated="${getSqlTIme()}"`
+        + `where (list.listID=${listID}, cardID=${card.cardID})`,
+    add: (card) => 'insert into '
+        + `card(${Object.keys(card)}) `
+        + `values (${valueToString(Object.values(card))})`,
 };
 
