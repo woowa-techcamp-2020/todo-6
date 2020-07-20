@@ -105,3 +105,32 @@ export const setElementSize = (element, width, height) => {
     element.style.width = `${width}px`;
     element.style.height = `${height}px`;
 };
+
+/**
+ *
+ * @param{HTMLElement} left
+ * @param{HTMLElement} right
+ */
+export const isSameId = (left, right) => left?.dataset?.id === right?.dataset?.id;
+
+/**
+ *
+ * @param{HTMLElement} left
+ * @param{HTMLElement} right
+ */
+export const changeOrder = (left, right) => {
+    const leftOrder = left.style.order;
+    const rightOrder = right.style.order;
+    left.style.order = rightOrder;
+    right.style.order = leftOrder;
+};
+
+/**
+ *
+ * @param{HTMLElement} left
+ * @param{HTMLElement} right
+ */
+export const moveElement = (beUpElement, beDownElement) => {
+    const cardsWrap = beUpElement.closest('.cards-wrap');
+    cardsWrap.insertBefore(beUpElement, beDownElement);
+};

@@ -3,12 +3,16 @@ import { setElementPos, setElementSize } from '../utils/handleElement';
 import { elements } from '../utils/createdElements';
 
 export const listOnMouseDownHandler = (event) => {
+    const setHoverStyle = (element) => {
+        element.style.position = 'absolute';
+        element.style.pointerEvents = 'none';
+    };
+
     const { target } = event;
-    console.log('mouse down');
     if (target?.dataset?.type === 'card') {
         const hovcerCard = target.cloneNode(true);
-        hovcerCard.className = 'hover-card';
-        hovcerCard.onmouseover = null;
+        elements.hoverCard = hovcerCard;
+        setHoverStyle(hovcerCard);
         const cardSizeAndPos = target.getBoundingClientRect();
         setElementPos(hovcerCard, cardSizeAndPos.top, cardSizeAndPos.left);
         setElementSize(hovcerCard, cardSizeAndPos.width, cardSizeAndPos.height);
@@ -17,5 +21,4 @@ export const listOnMouseDownHandler = (event) => {
 
         elementToDraggable(hovcerCard, event.clientX, event.clientY);
     }
-    console.log(target?.dataset?.type);
 };

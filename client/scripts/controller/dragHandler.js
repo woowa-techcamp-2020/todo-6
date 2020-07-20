@@ -1,4 +1,5 @@
 import { setElementPos } from '../utils/handleElement';
+import { elements } from '../utils/createdElements';
 
 export function elementToDraggable(element, x, y) {
     let differX = 0; let differY = 0; let curX = 0; let
@@ -26,5 +27,6 @@ export function elementToDraggable(element, x, y) {
         document.onmouseup = null;
         document.onmousemove = null;
         element.remove();
+        elements.hoverCard = null;
     }
 }
