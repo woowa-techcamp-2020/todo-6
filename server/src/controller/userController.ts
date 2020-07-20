@@ -23,12 +23,12 @@ if(envOptions.db === 'mock') {
     userDao = new UserDao();
 }
 
-// Empty object
+
 const userController:IUserController = {
     get: async (req: Request, res: Response) => {
         logger.info('Request: apis/users/:id');
-        const { id } = req.params as ParamsDictionary;
-        const userData = await userDao.get(parseInt(id));
+        const { userID } = req.params as ParamsDictionary;
+        const userData = await userDao.get(parseInt(userID));
         return res.status(OK).json({ userData });
     },
 };

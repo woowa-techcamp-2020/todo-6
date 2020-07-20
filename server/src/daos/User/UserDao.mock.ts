@@ -1,6 +1,6 @@
 import { IUser } from '@entities/User';
 import { getRandomInt } from '@shared/functions';
-import { IInitData } from '@daos/daoUtil/util';
+import { IInitData } from '@type';
 import { MockDaoMock } from '../MockDb/MockDao.mock';
 import { IUserDao } from './UserDao';
 
