@@ -7,7 +7,6 @@
         "browser": true,
         "commonjs": true
     },
-    "parser": "babel-eslint",
     "extends": "airbnb-base",
     "plugins": [ "import", "html" ],
     "rules": {
