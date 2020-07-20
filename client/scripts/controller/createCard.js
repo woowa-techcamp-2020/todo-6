@@ -13,31 +13,30 @@ export const writeTextArea = (e) => {
     }
 };
 
-const getTimeHandler = () => {
-    const currentTime = new Date();
-    const year = currentTime.getFullYear();
-    const month = currentTime.getMonth();
-    const date = currentTime.getDate();
-
-    const hours = currentTime.getHours();
-    const minutes = currentTime.getMinutes();
-    const seconds = currentTime.getSeconds();
-
-    return `${year}.${month}.${date} ${hours}:${minutes}:${seconds}`;
+// 카드 입력 레이어에 인렵 후 Add버튼 클릭시 서버로 데이터 보내기
+const listHandler = function (e) {
+    const cur = e.target.className;
+    if (curTarget === 'list') {
+        const cardsWrap = getCardWarp(this); // this 사용해서 현재 리스트의 cards-wrap 잡음
+        const canAreaAdd = cardsWrap.firstChild.className === 'card';
+        if (canAreaAdd) {
+            cardsWrap.insertBefore(newArea(), cardsWrap.firstChild);
+        }
+    }
 };
 
-// 카드 입력 레이어에 인렵 후 Add버튼 클릭시 서버로 데이터 보내기
 export const cardAddBtnClickHandler = (e) => {
-    const inputCardContentsEl = e.target.parentNode.previousSibling;
-    const registerTime = getTimeHandler();
+    listHandler();
 
-    // 서버에서 보낼내용들을 객체에 담음
-    const newCard = { cardText: inputCardContentsEl.value, createTime: registerTime };
-
-    // todo : DB에 입력값 저장요청 post api쏘기
-    // 1. DB에 저장되야할 데이터들-1.카드내용 2.시간저장하기 카드아이디?는 서버에서 정해지는 것 같다.명우님과 얘기해보기
-    postAddCard(newCard.cardText); // 얘안테온 응답값으로 돔 그리기(카드 추가)
-    // 전체 리랜더링 하지말것 추가된 부분만 그리기
+    // const inputCardContentsEl = e.target.parentNode.previousSibling;
+    // console.log(e.target.parentNode.previousSibling);
+    // // 이벤트 전파로 list돔 잡아서 그 list의 ID잡아오기
+    // // 서버에서 보낼내용들을 객체에 담음
+    // const newCard = { listID, cardText: inputCardContentsEl.value };
+    //
+    // // todo : DB에 입력값 저장요청 post api쏘기
+    // postAddCard(newCard.cardText); // 얘안테온 응답값으로 돔 그리기(카드 추가)
+    // // 전체 리랜더링 하지말것 추가된 부분만 그리기
 };
 
 // cancel 버튼 클릭시 카드생성 취소
@@ -52,7 +51,6 @@ export const createCardBtnHandler = function (e) {
 
         if (cardsWrap.firstChild.classList[0] === 'card') {
             cardsWrap.insertBefore(newCardArea(), cardsWrap.firstChild);
-            console.log(cardsWrap.firstChild);
         } else {
             cardsWrap.removeChild(cardsWrap.firstChild);
         }

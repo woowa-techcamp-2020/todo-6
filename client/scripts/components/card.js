@@ -3,11 +3,11 @@ import '../../scss/card.scss';
 import { showCardModal } from '../controller/cardModal';
 import { cardOnMouseOverHandler } from '../controller/cardHandler';
 
-export const showCard = (cards) => {
+export const showCard = (listId, cards) => {
     const cardArray = cards.map((card) => div(
         {
-            className: `card ${card.cardID}`,
-            dataset: { id: card.cardID, type: 'card' },
+            className: 'card',
+            dataset: { listId, id: card.cardID, type: 'card' },
             onmouseover: cardOnMouseOverHandler,
         },
         div({ className: 'card-header-section' },
@@ -16,6 +16,5 @@ export const showCard = (cards) => {
                 div({ className: 'card-title', ondblclick: showCardModal }, `${card.cardText}`)),
             div({ className: 'card-del-btn' }, '✘')),
     ));
-    // console.log(cardArray);
     return cardArray;
 };

@@ -3,8 +3,5 @@ export const elements = {
 };
 
 export const assignElements = () => {
-    const assignBody = () => {
-        elements.body = document.querySelector('body');
-    };
-    assignBody();
+    elements.body = document.querySelector('body');
 };
