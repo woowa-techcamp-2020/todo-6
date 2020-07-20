@@ -1,28 +1,26 @@
 import { elements } from '../utils/createdElements';
-import { changeOrder, isSameId, moveElement } from '../utils/handleElement';
+import { isSameId, moveElement } from '../utils/handleElement';
+import Handler from './handler';
 
-export const cardOnMouseOverHandler = (event) => {
-};
+class CardHandler extends Handler {
+    onMouseMove(event) {
+        const { hoverCard } = elements;
+        const fixCard = event.currentTarget;
 
-export const cardOnMouseMoveHandler = function (event) {
-    const { hoverCard } = elements;
-    const fixCard = event.currentTarget;
-
-    const cardSizeAndPos = fixCard.getBoundingClientRect();
-    const limitTop = cardSizeAndPos.top + 15;
-    const limitBottom = cardSizeAndPos.bottom;
-    if (elements.hoverCard && !isSameId(fixCard, hoverCard)) {
-        const eventY = event.clientY;
-        if (limitTop < eventY && eventY < limitBottom) {
-            if (Math.abs(limitTop - eventY) < Math.abs(limitBottom - eventY)) {
-                moveElement(fixCard, fixCard.previousElementSibling);
-            } else {
-                moveElement(fixCard.nextElementSibling, fixCard);
+        const cardSizeAndPos = fixCard.getBoundingClientRect();
+        const limitTop = cardSizeAndPos.top + 15;
+        const limitBottom = cardSizeAndPos.bottom;
+        if (elements.hoverCard && !isSameId(fixCard, hoverCard)) {
+            const eventY = event.clientY;
+            if (limitTop < eventY && eventY < limitBottom) {
+                if (Math.abs(limitTop - eventY) < Math.abs(limitBottom - eventY)) {
+                    moveElement(fixCard, elements.hoverParentCard);
+                } else {
+                    moveElement(elements.hoverParentCard, fixCard);
+                }
             }
         }
     }
-};
+}
 
-export const cardHeaderOnMouseOverHandler = (event) => {
-    event.stopPropagation();
-};
+export default CardHandler;
