@@ -94,4 +94,7 @@ Thumbs.db
 dist
 
 # build file
-build
+server/src/public/scripts
+
+# build views
+server/src/views/index.html
