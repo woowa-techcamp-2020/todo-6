@@ -1,4 +1,4 @@
-export const showListModal = (e) => {
+export const showListModalHandler = (e) => {
     const listTitle = e.target.textContent;
     const listModalSection = document.getElementById('list-modal-section');
     const listModalTitle = document.querySelector('.list-modal-header-title');
@@ -11,5 +11,5 @@ export const showListModal = (e) => {
 
     listModalCloseBtn.addEventListener('click', () => {
         listModalSection.style.display = 'none';
-    })
+    });
 };
