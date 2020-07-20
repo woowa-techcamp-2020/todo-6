@@ -23,7 +23,7 @@ const getTimeHandler = () => {
     const minutes = currentTime.getMinutes();
     const seconds = currentTime.getSeconds();
 
-    return `${year}.${month}.${date} ${hours}:${minutes}:${seconds}`
+    return `${year}.${month}.${date} ${hours}:${minutes}:${seconds}`;
 };
 
 // 카드 입력 레이어에 인렵 후 Add버튼 클릭시 서버로 데이터 보내기
@@ -32,7 +32,7 @@ export const cardAddBtnClickHandler = (e) => {
     const registerTime = getTimeHandler();
 
     // 서버에서 보낼내용들을 객체에 담음
-    const newCard = {cardText: inputCardContentsEl.value, createTime: registerTime};
+    const newCard = { cardText: inputCardContentsEl.value, createTime: registerTime };
 
     // todo : DB에 입력값 저장요청 post api쏘기
     // 1. DB에 저장되야할 데이터들-1.카드내용 2.시간저장하기 카드아이디?는 서버에서 정해지는 것 같다.명우님과 얘기해보기
@@ -43,17 +43,18 @@ export const cardAddBtnClickHandler = (e) => {
 // cancel 버튼 클릭시 카드생성 취소
 export const cancelAddCardHandler = (e) => {
     const createCardArea = e.target.parentNode.parentNode;
-    createCardArea.parentNode.removeChild(createCardArea)
+    createCardArea.parentNode.removeChild(createCardArea);
 };
 
 export const createCardBtnHandler = function (e) {
     if (e.target.className === 'add-card-btn') {
-        let cardsWrap = this.parentNode.parentNode.nextSibling.firstChild;
+        const cardsWrap = this.parentNode.parentNode.nextSibling.firstChild;
+
         if (cardsWrap.firstChild.classList[0] === 'card') {
             cardsWrap.insertBefore(newCardArea(), cardsWrap.firstChild);
             console.log(cardsWrap.firstChild);
         } else {
-            cardsWrap.removeChild(cardsWrap.firstChild)
+            cardsWrap.removeChild(cardsWrap.firstChild);
         }
     }
 };

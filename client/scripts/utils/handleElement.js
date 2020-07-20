@@ -71,23 +71,22 @@ export function makeElement(type, firstChild, ...otherChildren) {
         appendText(element, firstChild);
     } else if (typeof firstChild === 'object') {
     // set element property
-        Object.keys(firstChild).forEach((propName) => {
-            if (propName in element) {
+        Object.keys(firstChild).forEach((propertyName) => {
+            if (propertyName in element) {
                 /**
                  * key : property name
                  * value : property value
                  */
-                const value = firstChild[propName];
-
-                if (propName === 'style') {
+                const value = firstChild[propertyName];
+                if (propertyName === 'style') {
                     setStyles(element, value);
-                } else if (propName === 'dataset') {
+                } else if (propertyName === 'dataset') {
                     setDataAttributes(element, value);
-                } else if (typeof value === 'function' || propName === 'className') {
-                    element[propName] = value;
+                } else if (typeof value === 'function' || propertyName === 'className' || propertyName === 'draggable') {
+                    element[propertyName] = value;
                 }
             } else {
-                console.warn(`${propName} is not a valid property of a <${type}>`);
+                console.warn(`${propertyName} is not a valid property of a <${type}>`);
             }
         });
     }
@@ -96,3 +95,13 @@ export function makeElement(type, firstChild, ...otherChildren) {
 
     return element;
 }
+
+export const setElementPos = (element, top, left) => {
+    element.style.top = `${top}px`;
+    element.style.left = `${left}px`;
+};
+
+export const setElementSize = (element, width, height) => {
+    element.style.width = `${width}px`;
+    element.style.height = `${height}px`;
+};
