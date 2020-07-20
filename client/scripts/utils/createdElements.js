@@ -1,5 +1,6 @@
 export const elements = {
     body: null,
+    hoverCard: null,
 };
 
 export const assignElements = () => {
