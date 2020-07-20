@@ -13,3 +13,14 @@ export interface IList {
 export interface IInitData{
     data: [IList?]
 }
+
+
+
+export interface IResultHeader{
+    fieldCount: number,
+    affectedRows: number,
+    insertId: number,
+    info: string,
+    serverStatus: number,
+    warningStatus: number
+}

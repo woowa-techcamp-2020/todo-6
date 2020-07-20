@@ -61,7 +61,7 @@ class UserDao implements IUserDao {
 
     public async get(id: number): Promise<IInitData> {
         const [rowPacket] = await pool.query(userQuery.getUserData(id));
-        const res = packetToJson(rowPacket);
+        const res = packetToJson(rowPacket) as any[];
 
         return this.resToInit(res);
     }
