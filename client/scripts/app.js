@@ -7,7 +7,7 @@ import './controller/menu';
 import showList from './components/list';
 import { assignElements } from './utils/createdElements';
 
-// 에러처리도 해주
+// 에러처리도 해줌
 export const initPage = () => fetch('/api/users/1')
     .then((res) => res.json())
     .then((res) => {

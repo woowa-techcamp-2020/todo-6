@@ -1,17 +1,17 @@
 import { div } from '../utils/element';
 import '../../scss/card.scss';
 import { showCardModal } from '../controller/cardModal';
-import { cardHeaderOnMouseOverHandler, cardOnMouseOverHandler, cardOnMouseMoveHandler } from '../controller/cardHandler';
+import CardHandler from '../controller/cardHandler';
 
 export const showCard = (cards) => {
+    const cardHandler = new CardHandler();
     const cardArray = cards.map((card, index) => div(
         {
             className: `card ${card.cardID}`,
             dataset: { id: card.cardID, type: 'card' },
-            onmouseover: cardOnMouseOverHandler,
-            onmousemove: cardOnMouseMoveHandler,
+            onmousemove: cardHandler.onMouseMove,
         },
-        div({ className: 'card-header-section', onmouseover: cardHeaderOnMouseOverHandler },
+        div({ className: 'card-header-section', onmouseover: cardHandler.blockPropagation },
             div({ className: 'card-header-left' },
                 div({ className: 'card-icon' }, '📄'),
                 div({ className: 'card-title', ondblclick: showCardModal }, `${card.cardText}`)),

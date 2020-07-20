@@ -23,10 +23,15 @@ export function elementToDraggable(element, x, y) {
         setElementPos(element, newTop, newLeft);
     }
 
+    function removeHoverInfoInElements() {
+        elements.hoverCard = null;
+        elements.constructor = null;
+    }
+
     function closeDragElement() {
         document.onmouseup = null;
         document.onmousemove = null;
         element.remove();
-        elements.hoverCard = null;
+        removeHoverInfoInElements();
     }
 }
