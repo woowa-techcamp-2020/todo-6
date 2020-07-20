@@ -1,4 +1,4 @@
-#card-modal-section {
+#list-modal-section {
   display: none;
   position: fixed;
   z-index: 1;
@@ -10,17 +10,17 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   //overflow: auto; /* Enable scroll if needed */
 
-  .card-modal-layer {
+  .list-modal-layer {
     display: flex;
     flex-direction: column;
     width: 500px;
-    height: 350px;
+    height: 200px;
     margin: 10% auto;
     //padding: 20px;
     border: 1px solid gray;
     border-radius: 5px;
 
-    .card-modal-header-section {
+    .list-modal-header-section {
       display: flex;
       flex-direction: row;
       height: 10%;
@@ -31,32 +31,33 @@
       line-height: 2;
       background-color: lightgray;
 
-      .card-modal-header-title {
+      .list-modal-header-title {
         font-weight: 600;
 
       }
 
-      .card-modal-close-btn {
+      .list-modal-close-btn {
         font-size: 20px;
         &:hover {
-          color:grey;
+          color: gray;
+          cursor: pointer;
         }
       }
     }
 
-    .card-modal-body-section {
+    .list-modal-body-section {
       background-color: white;
       display: flex;
       flex-direction: column;
       height: 90%;
       padding: 15px;
-      .card-modal-body-title {
+      .list-modal-body-title {
         font-weight: 600;
         margin-bottom: 10px;
 
       }
 
-      .card-modal-input {
+      .list-modal-input {
         resize: vertical;
         border: 1px solid grey;
         border-radius: 5px;
@@ -66,8 +67,8 @@
         font-size: 15px;
       }
 
-      .card-modal-save-btn {
-        width: 100px;
+      .list-modal-update-btn {
+        width: 150px;
         padding: 7px;
         border: 1px solid #17b523;
         border-radius: 5px;
@@ -79,7 +80,6 @@
           color: #dfdfdf;
           cursor: pointer;
         }
-
       }
     }
   }

@@ -1,29 +1,92 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 <body>
 <div class="main-page">
-    <div class="header-section">
-        <div class="todo-logo">TODO 서비스</div>
-        <div class="baemin-img">
-            <img src="./img/baemin.png" alt="배민캐릭터">
-        </div>
-        <div class="menu-btn">menu</div>
-    </div>
+  <div class="header-section">
+    <div class="todo-logo">TODO 서비스</div>
+    <div class="baemin-img"></div>
+    <div class="menu-btn">menu</div>
+  </div>
 
-    <div class="body-section">
-        <div class="lists-wrap">
-            <div class="add-list-btn">
-                <div class="add-list-title">+ Add Card</div>
-            </div>
-        </div>
+  <div class="body-section">
+    <div class="lists-wrap">
+      <div class="add-list-btn">
+        <div class="add-list-title">﹢ Add Card</div>
+      </div>
     </div>
+  </div>
+
+  <div id="card-modal-section">
+    <div class="card-modal-layer">
+      <div class="card-modal-header-section">
+        <div class="card-modal-header-title">Edit note</div>
+        <button class="card-modal-close-btn">✘</button>
+      </div>
+      <div class="card-modal-body-section">
+        <div class="card-modal-body-title">Note</div>
+        <textarea class="card-modal-input" maxlength="500"></textarea>
+        <button class="card-modal-save-btn">Save note</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="list-modal-section" data-columns="3" data-index-number="12314" data-parent="cars">
+    <div class="list-modal-layer">
+      <div class="list-modal-header-section">
+        <div class="list-modal-header-title">Edit</div>
+        <button class="list-modal-close-btn">✘</button>
+      </div>
+      <div class="list-modal-body-section">
+        <div class="list-modal-body-title">Column name</div>
+        <textarea class="list-modal-input" maxlength="50"></textarea>
+        <button class="list-modal-update-btn">Update column</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="menu-section">
+    <div class="menu-layer">
+      <div class="menu-header">
+        <div class="menu-header-upper">
+          <div class="menu-title">☰ Menu</div>
+          <button class="menu-close-btn">✘</button>
+        </div>
+        <div class="menu-activity">🕓 Activity</div>
+      </div>
+      <div class="menu-body">
+        <div class="user-record-wrap">
+          <div class="user-action">
+            <div class="user-action-contents">@blair moved the column 하는중</div>
+            <div class="user-action-time">6 hours ago</div>
+          </div>
+          <div class="user-action">
+            <div class="user-action-contents">@blair moved the column 하는중</div>
+            <div class="user-action-time">6 hours ago</div>
+          </div>
+          <div class="user-action">
+            <div class="user-action-contents">@blair moved the column 하는중</div>
+            <div class="user-action-time">6 hours ago</div>
+          </div>
+          <div class="user-action">
+            <div class="user-action-contents">@blair moved the column 하는중</div>
+            <div class="user-action-time">6 hours ago</div>
+          </div>
+          <div class="user-action">
+            <div class="user-action-contents">@blair moved the column 하는중</div>
+            <div class="user-action-time">6 hours ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <script src="../public/scripts/main.js"></script></body>
 </html>
