@@ -1,6 +1,6 @@
-import { postAddCard } from '../apis';
+// import { postAddCard } from '../apis';
 import { newCardArea } from '../components/newCardArea';
-
+import { showNewCard } from '../components/card';
 // 카드 인풋레이어에 입력시 Add 버튼 활성화
 export const writeTextArea = (e) => {
     const inputCardContents = e.target.value;
@@ -13,30 +13,34 @@ export const writeTextArea = (e) => {
     }
 };
 
-// 카드 입력 레이어에 인렵 후 Add버튼 클릭시 서버로 데이터 보내기
-const listHandler = function (e) {
-    const cur = e.target.className;
-    if (curTarget === 'list') {
-        const cardsWrap = getCardWarp(this); // this 사용해서 현재 리스트의 cards-wrap 잡음
-        const canAreaAdd = cardsWrap.firstChild.className === 'card';
-        if (canAreaAdd) {
-            cardsWrap.insertBefore(newArea(), cardsWrap.firstChild);
-        }
-    }
-};
-
 export const cardAddBtnClickHandler = (e) => {
-    listHandler();
+    const listID = e.path.filter((node) => node.className === 'list')[0].getAttribute('data-id');
+    const inputCardContentsEl = e.target.parentNode.previousSibling;
+    const newCard = { listID, cardText: inputCardContentsEl.value };
 
-    // const inputCardContentsEl = e.target.parentNode.previousSibling;
-    // console.log(e.target.parentNode.previousSibling);
-    // // 이벤트 전파로 list돔 잡아서 그 list의 ID잡아오기
-    // // 서버에서 보낼내용들을 객체에 담음
-    // const newCard = { listID, cardText: inputCardContentsEl.value };
-    //
-    // // todo : DB에 입력값 저장요청 post api쏘기
-    // postAddCard(newCard.cardText); // 얘안테온 응답값으로 돔 그리기(카드 추가)
-    // // 전체 리랜더링 하지말것 추가된 부분만 그리기
+    const card = showNewCard({
+        listID,
+        cardID: 46,
+        cardText: inputCardContentsEl.value,
+        created: 'Date',
+    });
+    const cardsWrap = document.querySelectorAll('.cards-wrap');
+    cardsWrap.forEach((cardswrap) => {
+        if (cardswrap.getAttribute('data-listid') === listID) {
+            const firstCard = cardswrap.firstChild.nextSibling;
+            cardswrap.insertBefore(card, firstCard);
+        }
+    });
+    // todo : DB에 새 카드 post api
+    // todo : res를 잘 받아오면 새로운 카드 만들어서 현재 리스트 맨앞에 추가해줌
+    // postAddCard(newCard).then((res) => {
+    //     const card = showNewCard(res);
+    //     const cardsWrap = document.querySelectorAll('.cards-wrap');
+    //     cardsWrap.forEach((cardswrap) => {
+    //         if (cardswrap.getAttribute('data-listid') === res.listID) {
+    //             const firstCard = cardswrap.firstChild.nextSibling;
+    //             cardswrap.insertBefore(card, firstCard);
+    //         }})});
 };
 
 // cancel 버튼 클릭시 카드생성 취소

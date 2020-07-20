@@ -21,7 +21,7 @@ export const showList = (data) => {
                 button({ className: 'list-details-btn' }, '⋯'))),
         div({ className: 'list-body-section' },
             div(
-                { className: 'cards-wrap' }, showCard(userData.listID, userData.cards),
+                { className: 'cards-wrap', dataset: { listid: userData.listID } }, showCard(userData.listID, userData.cards),
             )));
 
     const listsWrap = document.querySelector('.lists-wrap');
