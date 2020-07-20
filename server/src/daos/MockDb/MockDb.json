@@ -10,12 +10,16 @@
         "cards": [
           {
             "cardID": 1,
-            "cardText": "python",
+            "cardText": "For the first time ever",
             "createTime": {}
           },
           {
             "cardID": 2,
-            "cardText": "spring"
+            "cardText": "currentTime.getFullYear"
+          },
+          {
+            "cardID": 3,
+            "cardText": "target.nextSibling.chil"
           },
           {
             "cardID": 3,
@@ -56,8 +60,20 @@
         "cards": [
           {
             "cardID": 2,
-            "cardText": "javascript",
+            "cardText": "config-airbnb-typescript",
             "createTime": {}
+          },
+          {
+            "cardText": "requires a peer of eslint3.0.0 ",
+            "createTime": "2020.6.18 22:14:28"
+          },
+          {
+            "cardText": "pescript-eslint/eslint-plugin",
+            "createTime": "2020.6.18 22:24:0"
+          },
+          {
+            "cardText": "config-airbnb-typescript",
+            "createTime": "2020.6.18 22:25:44"
           }
         ]
       },
@@ -67,7 +83,12 @@
         "cards": [
           {
             "cardID": 3,
-            "cardText": "java",
+            "cardText": "peer dependencies yourself",
+            "createTime": {}
+          },
+          {
+            "cardID": 4,
+            "cardText": "peer dependencies yourself",
             "createTime": {}
           }
         ]

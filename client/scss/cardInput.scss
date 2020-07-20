@@ -22,7 +22,10 @@
       color: white;
       border-radius: 3px;
       padding: 5px;
-      cursor: pointer;
+      &:hover {
+        color: gray;
+        cursor: pointer;
+      }
       &:disabled{
         //border: 1px solid #999999;
         //background-color: #cccccc;
@@ -35,7 +38,10 @@
       color: black;
       border-radius: 3px;
       padding: 5px;
-      cursor: pointer;
+      &:hover {
+        color: gray;
+        cursor: pointer;
+      }
     }
   }
 }

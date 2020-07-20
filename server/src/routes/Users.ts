@@ -48,6 +48,7 @@ userRouter.post('', async (req: Request, res: Response) => {
     //         error: paramMissingError,
     //     });
     // }
+
     await userDao.add(cardText);
     return res.status(CREATED).end();
 });

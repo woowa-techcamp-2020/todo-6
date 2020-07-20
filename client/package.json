@@ -23,6 +23,7 @@
   "dependencies": {
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
+    "bootstrap-icons": "^1.0.0-alpha5",
     "html-webpack-plugin": "^4.3.0"
   },
   "devDependencies": {

@@ -10,10 +10,28 @@
     padding: 15px;
     justify-content: space-between;
 
-    .card-title {
+    .card-header-left {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      .card-icon {
+        margin-right: 10px;
+
+      }
+      .card-title {
+        font-size: 20px;
+
+      }
+      &:hover {
+        color: gray;
+      }
     }
 
     .card-del-btn {
+      &:hover {
+        color: gray;
+        cursor: pointer;
+      }
     }
   }
 }
