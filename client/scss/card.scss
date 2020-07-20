@@ -35,24 +35,3 @@
     }
   }
 }
-
-.hover-card {
-  background-color: white;
-  height: 150px;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  position: absolute;
-
-  .card-header-section {
-    display: flex;
-    flex-direction: row;
-    padding: 15px;
-    justify-content: space-between;
-
-    .card-title {
-    }
-
-    .card-del-btn {
-    }
-  }
-}
