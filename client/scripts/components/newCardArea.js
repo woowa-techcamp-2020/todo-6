@@ -1,5 +1,5 @@
 import '../../scss/cardInput.scss';
-import { cardAddBtnClickHandler, cancelAddCardHandler, writeTextArea } from '../controller/createCard';
+import { cardAddBtnClickHandler, cancelAddCardHandler, writeTextArea } from '../controller/createCardHandler';
 import { button, div, textarea } from '../utils/element';
 
 export const newCardArea = () => div(

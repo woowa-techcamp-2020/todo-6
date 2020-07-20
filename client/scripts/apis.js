@@ -1,10 +1,10 @@
-import { showList } from './components/list';
+import { initList } from './components/list';
 
 export const initPage = () => fetch('/api/users/1')
     .then((res) => res.json())
     .then((res) => {
         res.userData.data.forEach((data) => {
-            showList(data);
+            initList(data);
         });
     });
 

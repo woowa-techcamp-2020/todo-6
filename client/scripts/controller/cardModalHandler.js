@@ -1,5 +1,4 @@
-export const showCardModal = (e) => {
-
+export const showCardModalHandler = (e) => {
     const cardModalSection = document.getElementById('card-modal-section');
     cardModalSection.style.display = 'block';
 

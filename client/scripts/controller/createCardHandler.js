@@ -1,6 +1,6 @@
 // import { postAddCard } from '../apis';
 import { newCardArea } from '../components/newCardArea';
-import { showNewCard } from '../components/card';
+import { newCard } from '../components/card';
 // 카드 인풋레이어에 입력시 Add 버튼 활성화
 export const writeTextArea = (e) => {
     const inputCardContents = e.target.value;
@@ -16,9 +16,9 @@ export const writeTextArea = (e) => {
 export const cardAddBtnClickHandler = (e) => {
     const listID = e.path.filter((node) => node.className === 'list')[0].getAttribute('data-id');
     const inputCardContentsEl = e.target.parentNode.previousSibling;
-    const newCard = { listID, cardText: inputCardContentsEl.value };
+    const newCardInfo = { listID, cardText: inputCardContentsEl.value };
 
-    const card = showNewCard({
+    const card = newCard({
         listID,
         cardID: 46,
         cardText: inputCardContentsEl.value,
@@ -31,16 +31,19 @@ export const cardAddBtnClickHandler = (e) => {
             cardswrap.insertBefore(card, firstCard);
         }
     });
+
     // todo : DB에 새 카드 post api
     // todo : res를 잘 받아오면 새로운 카드 만들어서 현재 리스트 맨앞에 추가해줌
-    // postAddCard(newCard).then((res) => {
-    //     const card = showNewCard(res);
+    // postAddCard(newCardInfo).then((res) => {
+    //     const card = newCard(res);
     //     const cardsWrap = document.querySelectorAll('.cards-wrap');
-    //     cardsWrap.forEach((cardswrap) => {
+    //     cardsWrap.forEach((cardsWrapper) => {
     //         if (cardswrap.getAttribute('data-listid') === res.listID) {
     //             const firstCard = cardswrap.firstChild.nextSibling;
     //             cardswrap.insertBefore(card, firstCard);
-    //         }})});
+    //         }
+    //     });
+    // });
 };
 
 // cancel 버튼 클릭시 카드생성 취소
