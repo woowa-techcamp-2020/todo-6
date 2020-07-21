@@ -9,11 +9,12 @@ import cardController from '../controller/cardController';
 const cardRouter = Router();
 
 
-// POST /apis/users/:userID/lists/:listID/cards
+// BasicURL:  /apis/users/:userID/lists/:listID/cards
+
 cardRouter.post('', cardController.add);
+cardRouter.put('/:cardID', cardController.update);
+cardRouter.delete('/:cardID', cardController.delete);
 
-
-cardRouter.put('/update', async (req: Request, res: Response) => res.status(OK).end());
 
 
 
