@@ -9,11 +9,11 @@ export const initPage = () => fetch('/api/users/1')
     });
 
 export const postAddCard = (newCard) => {
-    fetch(`/apis/users/1/lists/${newCard.listID}/cards`, {
+    fetch(`/api/users/1/lists/${newCard.listID}/cards`, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(newCard), // data can be `string` or {object}!
         headers: { 'Content-Type': 'application/json' },
     })
-        .then((res) => res.json())
+        .then((res) => console.log(res.body))
         .catch((error) => console.error('Error:', error));
 };
