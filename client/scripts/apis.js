@@ -8,12 +8,11 @@ export const initPage = () => fetch('/api/users/1')
         });
     });
 
-export const postAddCard = (newCard) => {
-    fetch(`/api/users/1/lists/${newCard.listID}/cards`, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(newCard), // data can be `string` or {object}!
-        headers: { 'Content-Type': 'application/json' },
-    })
-        .then((res) => console.log(res.body))
-        .catch((error) => console.error('Error:', error));
-};
+export const postAddCard = (newCard) => fetch(`/api/users/1/lists/${newCard.listID}/cards`, {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(newCard), // data can be `string` or {object}!
+    headers: { 'Content-Type': 'application/json' },
+})
+    .then((response) => response.json())
+    // .then((json) => json)
+    .catch((error) => console.error('Error:', error));

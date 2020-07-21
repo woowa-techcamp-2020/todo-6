@@ -82,7 +82,7 @@ export function makeElement(type, firstChild, ...otherChildren) {
                     setStyles(element, value);
                 } else if (propertyName === 'dataset') {
                     setDataAttributes(element, value);
-                } else if (typeof value === 'function' || propertyName === 'className' || propertyName === 'draggable') {
+                } else if (typeof value === 'function' || propertyName === 'className' || propertyName === 'draggable' || propertyName === 'disabled') {
                     element[propertyName] = value;
                 }
             } else {

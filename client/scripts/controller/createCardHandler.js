@@ -18,33 +18,13 @@ export const cardAddBtnClickHandler = (e) => {
     const inputCardContentsEl = e.target.parentNode.previousSibling;
     const newCardInfo = { listID, cardText: inputCardContentsEl.value };
 
-    // const card = newCard({
-    //     listID,
-    //     cardID: 46,
-    //     cardText: inputCardContentsEl.value,
-    //     created: 'Date',
-    // });
-    // const cardsWrap = document.querySelectorAll('.cards-wrap');
-    // cardsWrap.forEach((cardswrap) => {
-    //     if (cardswrap.getAttribute('data-listid') === listID) {
-    //         const firstCard = cardswrap.firstChild.nextSibling;
-    //         cardswrap.insertBefore(card, firstCard);
-    //     }
-    // });
-
-    // todo : DB에 새 카드 post api
-    // todo : res를 잘 받아오면 새로운 카드 만들어서 현재 리스트 맨앞에 추가해줌
-    postAddCard(newCardInfo);
-    // postAddCard(newCardInfo).then((res) => {
-    //     const card = newCard(res);
-    //     const cardsWrap = document.querySelectorAll('.cards-wrap');
-    //     cardsWrap.forEach((cardsWrapper) => {
-    //         if (cardsWrapper.getAttribute('data-listid') === res.listID) {
-    //             const firstCard = cardsWrapper.firstChild.nextSibling;
-    //             cardsWrapper.insertBefore(card, firstCard);
-    //         }
-    //     });
-    // });
+    // post api 후 ui 에도 새 카드 추가
+    postAddCard(newCardInfo).then((res) => {
+        const card = newCard(res);
+        const cardsWrap = e.target.closest('.cards-wrap');
+        cardsWrap.insertBefore(card, cardsWrap.firstCard);
+        cardsWrap.firstChild.firstChild.value = '';
+    });
 };
 
 // cancel 버튼 클릭시 카드생성 취소
