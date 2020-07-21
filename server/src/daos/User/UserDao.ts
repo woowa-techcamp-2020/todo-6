@@ -12,13 +12,48 @@ export interface IUserDao {
     delete: (id: number) => Promise<void>;
 }
 
+interface IData {
+    listID:number,
+    listName:string,
+    cardID:number,
+    cardText:string,
+    created:Date
+}
+
 class UserDao implements IUserDao {
+    private addDataToLists = (lists: {[key:number]: IList}, {
+        listID, listName, cardID, cardText, created,
+    }: IData) => {
+        if(lists[listID]) {
+            lists[listID]?.cards?.push({
+                cardID,
+                cardText,
+                created,
+            });
+        }else {
+            lists[listID] = {
+                listID,
+                listName,
+                cards: [],
+            };
+
+            if(cardID) {
+                lists[listID].cards?.push({
+                    cardID,
+                    cardText,
+                    created,
+                });
+            }
+        }
+    }
+
+
     /**
      * @description make response object to IInitData type object
      * @param {any[]} res
      * @returns {IInitData}
      */
-    private resToInit(res: any[]): IInitData {
+    private toInitDataFormat(res: any[]): IInitData {
         const initData: IInitData = {
             data: [],
         };
@@ -26,29 +61,10 @@ class UserDao implements IUserDao {
         const lists: {[key:number]: IList} = {};
 
         res.forEach((data) => {
-            console.log(data);
             const {
                 listID, listName, cardID, cardText, created, 
             } = data;
-            if(lists[listID]) {
-                lists[listID].cards.push({
-                    cardID,
-                    cardText,
-                    created,
-                });
-            }else {
-                lists[listID] = {
-                    listID,
-                    listName,
-                    cards: [
-                        {
-                            cardID,
-                            cardText,
-                            created,
-                        },
-                    ],
-                };
-            }
+            this.addDataToLists(lists, data);
         });
 
         Object.keys(lists).forEach((listID) => {
@@ -61,20 +77,16 @@ class UserDao implements IUserDao {
 
     public async get(id: number): Promise<IInitData> {
         const [rowPacket] = await pool.query(userQuery.getUserData(id));
+        console.log(rowPacket);
         const res = packetToJson(rowPacket) as any[];
 
-        return this.resToInit(res);
+        return this.toInitDataFormat(res);
     }
 
     /**
      *
      */
     public async getAll(): Promise<IUser[]> {
-        const [row] = await pool.query('select user.id cardText, from card '
-            + 'left join list on card.listID = list.listID '
-            + 'left join user on list.userID = user.userID '
-            + 'where user.id = ?', ['auddn6676']);
-        console.log(row);
         return [] as any;
     }
 

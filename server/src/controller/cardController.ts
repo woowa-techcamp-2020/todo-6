@@ -18,7 +18,7 @@ const cardDao:ICardDao = new CardDao();
 
 const cardController:ICardController = {
     add: async (req: Request, res: Response) => {
-        logger.info('GET: apis/users/:userID/lists/:listID/cards');
+        logger.info('POST: apis/users/:userID/lists/:listID/cards');
         const { listID, cardText } = req.body;
         const card:ICard = {
             listID,
