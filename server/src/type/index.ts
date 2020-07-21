@@ -6,9 +6,10 @@ export interface ICard {
 }
 
 export interface IList {
+    userID?: number,
     listID?: number,
     listName?: string,
-    cards: [ICard?]
+    cards?: [ICard?]
 }
 export interface IInitData{
     data: [IList?]
