@@ -1,6 +1,7 @@
 import { elements } from '../utils/createdElements';
 import { isSameId, moveElement } from '../utils/handleElement';
 import Handler from './handler';
+import { deleteCard } from '../apis';
 
 class CardHandler extends Handler {
     onMouseMove(event) {
@@ -19,6 +20,19 @@ class CardHandler extends Handler {
                     moveElement(elements.hoverParentCard, fixCard);
                 }
             }
+        }
+    }
+
+    clickCardDelBtn(event) {
+        let cardId;
+        let listId;
+        if (event.target.className === 'card-del-btn') {
+            const curCard = event.target.closest('.card');
+            cardId = curCard.getAttribute('data-id');
+            listId = curCard.getAttribute('data-listid');
+            deleteCard(listId, cardId).then(() => {
+                curCard.parentNode.removeChild(curCard);
+            });
         }
     }
 }
