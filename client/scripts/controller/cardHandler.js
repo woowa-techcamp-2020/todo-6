@@ -35,6 +35,17 @@ class CardHandler extends Handler {
             });
         }
     }
+
+    clickCardSaveBtn(listId, cardId, cardText) {
+        // const updatedCardText = document.querySelector('.card-modal-input');
+        // console.log(updatedCardText.value);
+        const updatedCardInfo = {
+            listID: listId,
+            cardID: cardId,
+            cardText,
+        };
+        console.log(updatedCardInfo);
+    }
 }
 
 export default CardHandler;
