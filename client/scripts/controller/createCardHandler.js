@@ -18,12 +18,12 @@ export const cardAddBtnClickHandler = (e) => {
     const inputCardContentsEl = e.target.parentNode.previousSibling;
     const newCardInfo = { listID, cardText: inputCardContentsEl.value };
 
-    // post api 후 ui 에도 새 카드 추가
     postAddCard(newCardInfo).then((res) => {
         const card = newCard(res);
         const cardsWrap = e.target.closest('.cards-wrap');
-        cardsWrap.insertBefore(card, cardsWrap.firstCard);
+        cardsWrap.insertBefore(card, cardsWrap.firstChild.nextSibling);
         cardsWrap.firstChild.firstChild.value = '';
+        e.target.setAttribute('disabled', 'true');
     });
 };
 
