@@ -7,5 +7,5 @@ import './controller/menuEvents';
 import { initPage } from './apis';
 import { assignElements } from './utils/createdElements';
 
-assignElements();
 initPage();
+assignElements();

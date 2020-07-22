@@ -1,6 +1,24 @@
 import { elements } from '../utils/createdElements';
-import { isSameId, moveElement } from '../utils/handleElement';
+import { isSameCardId } from '../utils/handleElement';
 import Handler from './handler';
+
+const isNearTop = (top, bottom, eventY) => Math.abs(top - eventY) < Math.abs(bottom - eventY);
+
+/**
+ *
+ * @param{HTMLElement} left
+ * @param{HTMLElement} right
+ */
+const moveElement = (beUpElement, beDownElement) => {
+    try {
+        const cardsWrap = beUpElement.closest('.cards-wrap');
+        cardsWrap.insertBefore(beUpElement, beDownElement);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const isLastElement = (element) => element.nextSibling === null;
 
 class CardHandler extends Handler {
     onMouseMove(event) {
@@ -10,13 +28,15 @@ class CardHandler extends Handler {
         const cardSizeAndPos = fixCard.getBoundingClientRect();
         const limitTop = cardSizeAndPos.top + 15;
         const limitBottom = cardSizeAndPos.bottom;
-        if (elements.hoverCard && !isSameId(fixCard, hoverCard)) {
+        if (elements.hoverCard && !isSameCardId(fixCard, hoverCard)) {
             const eventY = event.clientY;
+            const { hoverParentCard } = elements;
             if (limitTop < eventY && eventY < limitBottom) {
-                if (Math.abs(limitTop - eventY) < Math.abs(limitBottom - eventY)) {
-                    moveElement(fixCard, elements.hoverParentCard);
+                if (isNearTop(limitTop, limitBottom, eventY) && !isLastElement(hoverParentCard)) {
+                    console.log(isLastElement(hoverParentCard));
+                    moveElement(fixCard, hoverParentCard);
                 } else {
-                    moveElement(elements.hoverParentCard, fixCard);
+                    moveElement(hoverParentCard, fixCard);
                 }
             }
         }
