@@ -15,6 +15,16 @@ export interface IList {
     created?: Date,
     updated?: Date
 }
+
+export interface IEvent {
+    logID?: number,
+    userID?: number,
+    eventTypeID?: number,
+    card?: string,
+    list?: string,
+    beforeList?: string,
+    created?: Date,
+}
 export interface IInitData{
     data: [IList?]
 }
