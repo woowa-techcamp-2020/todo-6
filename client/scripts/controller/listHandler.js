@@ -36,6 +36,10 @@ class ListHandler extends Handler {
             }
         }
     }
+
+    clickDeleteList(e) {
+        alert('카드를 삭제하시겠습니까 ?');
+    }
 }
 
 export default ListHandler;

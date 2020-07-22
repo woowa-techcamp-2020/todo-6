@@ -14,14 +14,18 @@ export const writeTextArea = (e) => {
 };
 
 export const cardAddBtnClickHandler = (e) => {
-    const listID = e.path.filter((node) => node.className === 'list')[0].getAttribute('data-id');
+    const listID = e.target.closest('.list').getAttribute('data-listid');
     const inputCardContentsEl = e.target.parentNode.previousSibling;
     const newCardInfo = { listID, cardText: inputCardContentsEl.value };
 
     postAddCard(newCardInfo).then((res) => {
         const card = newCard(res);
         const cardsWrap = e.target.closest('.cards-wrap');
-        cardsWrap.insertBefore(card, cardsWrap.firstChild.nextSibling);
+        if (!cardsWrap.childNodes) {
+            cardsWrap.appendChild(card);
+        } else {
+            cardsWrap.insertBefore(card, cardsWrap.firstChild.nextSibling);
+        }
         cardsWrap.firstChild.firstChild.value = '';
         e.target.setAttribute('disabled', 'true');
     });
@@ -36,8 +40,9 @@ export const cancelAddCardHandler = (e) => {
 export const createCardBtnHandler = function (e) {
     if (e.target.className === 'add-card-btn') {
         const cardsWrap = this.parentNode.parentNode.nextSibling.firstChild;
-
-        if (cardsWrap.firstChild.classList[0] === 'card') {
+        if (cardsWrap.firstChild === null) {
+            cardsWrap.appendChild(newCardArea());
+        } else if ((cardsWrap.firstChild.className === 'card')) {
             cardsWrap.insertBefore(newCardArea(), cardsWrap.firstChild);
         } else {
             cardsWrap.removeChild(cardsWrap.firstChild);

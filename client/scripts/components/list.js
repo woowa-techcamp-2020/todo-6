@@ -13,7 +13,7 @@ export const initList = (data) => {
     const cardHandler = new CardHandler();
     const list = div({
         className: 'list',
-        dataset: { id: userData.listID, type: 'list' },
+        dataset: { listid: userData.listID, type: 'list' },
         onmousedown: listHandler.onMouseDown,
         onmouseover: listHandler.onMouseOver,
         onclick: cardHandler.clickCardDelBtn,
@@ -24,10 +24,10 @@ export const initList = (data) => {
             div({ className: 'list-title', ondblclick: showListModalHandler }, userData.listName)),
         div({ className: 'list-header-right-wrap' },
             button({ className: 'add-card-btn', onclick: createCardBtnHandler }, '✎'),
-            button({ className: 'list-details-btn' }, '⋯'))),
+            button({ className: 'list-delete-btn', onclick: listHandler.clickDeleteList }, '✘'))),
     div({ className: 'list-body-section' },
         div(
-            { className: 'cards-wrap', dataset: { listid: userData.listID } }, initCard(userData.listID, userData.cards),
+            { className: 'cards-wrap', dataset: { wrapid: userData.listID } }, initCard(userData.listID, userData.cards),
         )));
 
     const listsWrap = document.querySelector('.lists-wrap');
