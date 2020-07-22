@@ -110,6 +110,7 @@ export const getListOrdersObj = (listID) => {
     const orders = [];
     const wrap = document.querySelector(`[data-wrapid='${listID}']`);
     const cards = wrap.querySelectorAll('.card');
+    console.log(cards);
     cards.forEach((card) => {
         orders.push(card.dataset.cardid);
     });
