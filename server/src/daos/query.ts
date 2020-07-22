@@ -5,7 +5,7 @@ export const userQuery: {
     getUserData: (id:number) => string
 } = {
     getUserData: (id) => 'select '
-        + 'list.listID, listName, user.userID, card.created, card.updated, cardID, cardText '
+        + 'list.listID, listName, user.userID, card.created, card.updated, cardID, cardText, orders '
         + 'from list '
             + 'left join user on list.userID = user.userID '
             + 'left join card on card.listID = list.listID '
@@ -16,6 +16,7 @@ export const listQuery: {
     update: (list: IList) => string
     add: (list: IList) => string,
     delete: (listID: number) => string,
+    updateOrder: (list: IList) => string
 } = {
     update: (list) => 'update list '
         + `set  listName="${list.listName}", updated="${getSqlTime()}"`
@@ -24,6 +25,10 @@ export const listQuery: {
         + `list (${Object.keys(list)}, created, updated) `
         + `values (${`${valueToString(Object.values(list))},'${getSqlTime()}','${getSqlTime()}'`})`,
     delete: (listID) => `delete from list where listID = ${listID};`,
+    updateOrder: (list: IList) => 'update list '
+        + `set orders = '${list.orders}' `
+        + `where listID=${list.listID}`,
+
 };
 
 export const cardQuery: {
