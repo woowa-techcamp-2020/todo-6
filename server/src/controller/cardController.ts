@@ -39,7 +39,7 @@ const cardController:ICardController = {
             cardText,
             cardID,
         };
-        card.cardID = await cardDao.update(card);
+        card.updated = await cardDao.update(card);
         return res.status(CREATED).json({ ...card });
     },
     delete: async (req:Request, res: Response) => {

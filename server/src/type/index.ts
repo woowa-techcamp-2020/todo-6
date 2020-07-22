@@ -3,13 +3,17 @@ export interface ICard {
     cardText?: string,
     listID?: number,
     created?: Date,
+    updated?: Date
 }
 
 export interface IList {
     userID?: number,
     listID?: number,
     listName?: string,
+    orders?: string
     cards?: [ICard?]
+    created?: Date,
+    updated?: Date
 }
 export interface IInitData{
     data: [IList?]

@@ -17,12 +17,13 @@ interface IData {
     listName:string,
     cardID:number,
     cardText:string,
+    orders: string,
     created:Date
 }
 
 class UserDao implements IUserDao {
     private addDataToLists = (lists: {[key:number]: IList}, {
-        listID, listName, cardID, cardText, created,
+        listID, listName, cardID, cardText, created, orders,
     }: IData) => {
         if(lists[listID]) {
             lists[listID]?.cards?.push({
@@ -34,6 +35,7 @@ class UserDao implements IUserDao {
             lists[listID] = {
                 listID,
                 listName,
+                orders,
                 cards: [],
             };
 
@@ -61,9 +63,6 @@ class UserDao implements IUserDao {
         const lists: {[key:number]: IList} = {};
 
         res.forEach((data) => {
-            const {
-                listID, listName, cardID, cardText, created, 
-            } = data;
             this.addDataToLists(lists, data);
         });
 

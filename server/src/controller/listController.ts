@@ -11,6 +11,8 @@ export interface IListController {
     add: (req: Request, res: Response) => Promise<Response<any>>;
     update: (req: Request, res: Response) => Promise<any>;
     delete: (req: Request, res: Response) => Promise<void>;
+    updateOrder: (req: Request, res: Response) => Promise<any>;
+
 }
 
 const listDao:IListDao = new ListDao();
@@ -38,8 +40,19 @@ const listController:IListController = {
             listName,
         };
 
-        list.listID = await listDao.update(list);
-        return res.status(CREATED).json({ ...list });
+        list.updated = await listDao.update(list);
+        return res.status(OK).json({ ...list });
+    },
+
+    updateOrder: async (req:Request, res: Response) => {
+        logger.info('PUT: apis/users/:userID/lists/:listID/order');
+        const { listID, orders } = req.body;
+        const list:IList = {
+            listID,
+            orders,
+        };
+        await listDao.updateOrder(list);
+        return res.status(OK).json({ ...list });
     },
 
     delete: async (req:Request, res: Response) => {
