@@ -3,7 +3,7 @@ import '../../scss/card.scss';
 import { showCardModalHandler } from '../controller/cardModalHandler';
 import CardHandler from '../controller/cardHandler';
 
-const cardHandler = new CardHandler();
+export const cardHandler = new CardHandler();
 
 export const initCard = (listID, cards) => {
     const cardArray = cards.map((card) => div(

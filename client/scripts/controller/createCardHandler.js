@@ -1,4 +1,4 @@
-// import { postAddCard } from '../apis';
+import { postAddCard } from '../apis';
 import { newCardArea } from '../components/newCardArea';
 import { newCard } from '../components/card';
 // 카드 인풋레이어에 입력시 Add 버튼 활성화
@@ -18,32 +18,13 @@ export const cardAddBtnClickHandler = (e) => {
     const inputCardContentsEl = e.target.parentNode.previousSibling;
     const newCardInfo = { listID, cardText: inputCardContentsEl.value };
 
-    const card = newCard({
-        listID,
-        cardID: 46,
-        cardText: inputCardContentsEl.value,
-        created: 'Date',
+    postAddCard(newCardInfo).then((res) => {
+        const card = newCard(res);
+        const cardsWrap = e.target.closest('.cards-wrap');
+        cardsWrap.insertBefore(card, cardsWrap.firstChild.nextSibling);
+        cardsWrap.firstChild.firstChild.value = '';
+        e.target.setAttribute('disabled', 'true');
     });
-    const cardsWrap = document.querySelectorAll('.cards-wrap');
-    cardsWrap.forEach((cardswrap) => {
-        if (cardswrap.getAttribute('data-listid') === listID) {
-            const firstCard = cardswrap.firstChild.nextSibling;
-            cardswrap.insertBefore(card, firstCard);
-        }
-    });
-
-    // todo : DB에 새 카드 post api
-    // todo : res를 잘 받아오면 새로운 카드 만들어서 현재 리스트 맨앞에 추가해줌
-    // postAddCard(newCardInfo).then((res) => {
-    //     const card = newCard(res);
-    //     const cardsWrap = document.querySelectorAll('.cards-wrap');
-    //     cardsWrap.forEach((cardsWrapper) => {
-    //         if (cardswrap.getAttribute('data-listid') === res.listID) {
-    //             const firstCard = cardswrap.firstChild.nextSibling;
-    //             cardswrap.insertBefore(card, firstCard);
-    //         }
-    //     });
-    // });
 };
 
 // cancel 버튼 클릭시 카드생성 취소
