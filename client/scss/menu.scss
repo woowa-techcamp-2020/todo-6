@@ -1,4 +1,10 @@
 #menu-section {
+  animation-name: move;
+  animation-duration: 1.5s;
+  @keyframes move {
+    from { right: -600px;
+    }
+  }
   display: none;
   position: fixed;
   z-index: 1;
@@ -18,7 +24,7 @@
     .menu-header {
       display: flex;
       flex-direction: column;
-      background-color: lightgray;
+      background-color: #2AC1BC;
 
       .menu-header-upper {
         display: flex;

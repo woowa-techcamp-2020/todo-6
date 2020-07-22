@@ -3,7 +3,7 @@
   height: 150px;
   border-radius: 5px;
   margin-bottom: 15px;
-  animation-duration: 4s;
+  box-shadow: 5px 5px 5px 0px rgba(171,171,171,1);
 
   .card-header-section {
     display: flex;
@@ -35,4 +35,14 @@
       }
     }
   }
+}
+
+.under-hover-card{
+  opacity: 0.5;
+  filter: blur(3px);
+}
+
+.hover-card{
+  opacity: 0.8;
+  border: 4px dashed #77D2E5;
 }

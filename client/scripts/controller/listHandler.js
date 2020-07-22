@@ -20,6 +20,8 @@ class ListHandler extends Handler {
         const { target } = event;
         if (target?.dataset?.type === 'card') {
             const hovcerCard = target.cloneNode(true);
+            hovcerCard.classList.add('hover-card');
+            console.log(hovcerCard.classList);
             elements.hoverParentCard = target;
             elements.hoverCard = hovcerCard;
             setHoverStyle(hovcerCard);

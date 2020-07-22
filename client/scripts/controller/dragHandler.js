@@ -11,6 +11,8 @@ export function elementToDraggable(element, x, y) {
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
 
+    elements.hoverParentCard.classList.add('under-hover-card');
+
     function elementDrag(event) {
         event.preventDefault();
 
@@ -27,6 +29,7 @@ export function elementToDraggable(element, x, y) {
     function removeHoverInfoInElements() {
         elements.hoverCard = null;
         elements.constructor = null;
+        elements.hoverParentCard.classList.remove('under-hover-card');
     }
 
     function closeDragElement() {

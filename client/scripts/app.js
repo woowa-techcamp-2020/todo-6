@@ -56,5 +56,10 @@ listModalUpdateBtn.addEventListener('click', () => {
         });
 });
 
+const addList = document.querySelector('.add-list-btn');
+addList.addEventListener('click', () => {
+
+});
+
 initPage();
 assignElements();
