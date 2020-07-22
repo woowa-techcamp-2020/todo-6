@@ -7,6 +7,21 @@ const query: {
     getUpdated: (name, id) => `select updated from ${name} where ${name}ID = ${id} limit 1;`,
 };
 
+const textCheck = (text:string | undefined): string => {
+    if(text) {
+        return `,cardText="${text}"`;
+    }
+    return '';
+};
+
+const idCheck = (name: string, id:number | undefined): string => {
+    if(id) {
+        return `,${name}ID=${id}`;
+    }
+    return '';
+};
+
+
 export const userQuery: {
     getUserData: (id:number) => string
 } = {
@@ -38,17 +53,18 @@ export const listQuery: {
 
 };
 
+
 export const cardQuery: {
     update: (card: ICard) => string
     add: (card: ICard) => string,
     delete: (cardID: number) => string,
 } = {
     update: (card) => `${'update card '
-        + `set cardText="${card.cardText}", updated="${getSqlTime()}" `
+        + `set updated="${getSqlTime()}", cardID=${card.cardID} ${idCheck('list', card.listID)} ${textCheck(card.cardText)} `
         + `where (cardID=${card.cardID});`}${
         query.getUpdated('card', card.cardID as number)}`,
-
     add: (card) => 'insert into '
+
         + `card(${Object.keys(card)}, created, updated) `
         + `values (${`${valueToString(Object.values(card))},'${getSqlTime()}','${getSqlTime()}'`})`,
     delete: (cardID) => `delete from card where cardID = ${cardID};`,

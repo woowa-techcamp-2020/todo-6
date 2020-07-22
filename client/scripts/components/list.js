@@ -8,13 +8,12 @@ import { showListModalHandler } from '../controller/listModalHandler';
 import CardHandler from '../controller/cardHandler';
 
 export const initList = (data) => {
-    console.log(data);
     const userData = data;
     const listHandler = new ListHandler();
     const cardHandler = new CardHandler();
     const list = div({
         className: 'list',
-        dataset: { id: userData.listID, type: 'list' },
+        dataset: { listid: userData.listID, type: 'list' },
         onmousedown: listHandler.onMouseDown,
         onmouseover: listHandler.onMouseOver,
         onclick: cardHandler.clickCardDelBtn,
@@ -28,7 +27,7 @@ export const initList = (data) => {
             button({ className: 'list-details-btn' }, '⋯'))),
     div({ className: 'list-body-section' },
         div(
-            { className: 'cards-wrap', dataset: { listid: userData.listID } }, initCard(userData.listID, userData.cards),
+            { className: 'cards-wrap', dataset: { wrapid: userData.listID } }, initCard(userData),
         )));
 
     const listsWrap = document.querySelector('.lists-wrap');

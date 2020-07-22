@@ -31,13 +31,12 @@ const cardController:ICardController = {
     update: async (req:Request, res: Response) => {
         logger.info('PUT: api/users/:userID/lists/:listID/cards/:cardID');
         const params = req.params as ParamsDictionary;
-        console.log(params);
         const { listID, cardText, cardID } = req.body;
-        console.log(req.body);
+
         const card:ICard = {
-            listID,
-            cardText,
-            cardID,
+            ...(listID === undefined ? null : { listID }),
+            ...(cardText === undefined ? null : { cardText }),
+            ...(cardID === undefined ? null : { cardID }),
         };
         card.updated = await cardDao.update(card);
         return res.status(CREATED).json({ ...card });

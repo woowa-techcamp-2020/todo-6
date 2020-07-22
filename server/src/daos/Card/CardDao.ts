@@ -27,6 +27,7 @@ class CardDao implements ICardDao {
     }
 
     public async update(card: ICard): Promise<any> {
+        console.log(cardQuery.update(card));
         const [resultHeader] = await pool.query(cardQuery.update(card));
         const res = packetToJson(resultHeader) as any[];
         return getUpdatedInResonse(res);
