@@ -20,9 +20,7 @@ const sortCards = (cards, orders) => {
 
 export const initCard = (userData) => {
     const { cards, listID, orders } = userData;
-
     const sortedCards = sortCards(cards, orders);
-
     const cardArray = sortedCards.map((card) => div(
         {
             className: 'card',

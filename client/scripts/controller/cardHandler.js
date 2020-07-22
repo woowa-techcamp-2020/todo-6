@@ -49,6 +49,7 @@ class CardHandler extends Handler {
             const curCard = event.target.closest('.card');
             cardId = curCard.getAttribute('data-cardid');
             listId = curCard.getAttribute('data-listid');
+            // console.log(cardId, listId);
             deleteCard(listId, cardId).then(() => {
                 curCard.parentNode.removeChild(curCard);
             });

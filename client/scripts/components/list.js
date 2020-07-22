@@ -27,11 +27,7 @@ export const initList = (data) => {
             button({ className: 'list-delete-btn', onclick: listHandler.clickDeleteList }, '✘'))),
     div({ className: 'list-body-section' },
         div(
-<<<<<<< HEAD
-            { className: 'cards-wrap', dataset: { wrapid: userData.listID } }, initCard(userData.listID, userData.cards),
-=======
             { className: 'cards-wrap', dataset: { wrapid: userData.listID } }, initCard(userData),
->>>>>>> 0187b3b6505910ef032bfbb109556c8f5aa20178
         )));
 
     const listsWrap = document.querySelector('.lists-wrap');

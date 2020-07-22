@@ -47,7 +47,7 @@ listModalCloseBtn.addEventListener('click', () => {
 listModalUpdateBtn.addEventListener('click', () => {
     const listID = elements.list.getAttribute('data-listid');
     const listName = listModalInput.value;
-    console.log(listName);
+    // console.log(listName);
     putUpdateList({ listID, listName })
         .then(() => {
             elements.list.querySelector('.list-title').value = listName;
