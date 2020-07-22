@@ -1,7 +1,7 @@
 import { elements } from '../utils/createdElements';
-import { isSameCardId } from '../utils/handleElement';
+import { getListOrdersObj, isSameCardId } from '../utils/handleElement';
 import Handler from './handler';
-import { deleteCard, putUpdateCard } from '../apis';
+import { deleteCard, putUpdateCard, putUpdateOrder } from '../apis';
 
 const isNearTop = (top, bottom, eventY) => Math.abs(top - eventY) < Math.abs(bottom - eventY);
 
@@ -52,6 +52,7 @@ class CardHandler extends Handler {
             // console.log(cardId, listId);
             deleteCard(listId, cardId).then(() => {
                 curCard.parentNode.removeChild(curCard);
+                putUpdateOrder(getListOrdersObj(listId));
             });
         }
     }
