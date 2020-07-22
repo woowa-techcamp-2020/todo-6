@@ -40,7 +40,7 @@ const listController:IListController = {
             listName,
         };
 
-        list.listID = await listDao.update(list);
+        list.updated = await listDao.update(list);
         return res.status(OK).json({ ...list });
     },
 

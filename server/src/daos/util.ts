@@ -1,6 +1,8 @@
 import { RowDataPacket, OkPacket } from 'mysql2';
 
-export const packetToJson = (packet: RowDataPacket[] | RowDataPacket[][] | OkPacket | OkPacket[]):Array<any> | object => {
+type packetType = RowDataPacket[] | RowDataPacket[][] | OkPacket | OkPacket[];
+
+export const packetToJson = (packet: packetType):Array<any> | object => {
     const string = JSON.stringify(packet);
     return JSON.parse(string);
 };
@@ -38,4 +40,10 @@ export const valueToString = (keys: any []) => {
     });
     resultString = resultString.substring(1, resultString.length);
     return resultString;
+};
+
+export const getUpdatedInResonse = (res: any []):any => {
+    const dataIndex = 1;
+    const firstDataIndex = 0;
+    return res[dataIndex][firstDataIndex].updated;
 };

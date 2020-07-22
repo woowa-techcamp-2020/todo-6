@@ -1,4 +1,5 @@
 import {
+    getUpdatedInResonse,
     packetToJson,
 } from '@daos/util';
 import {
@@ -28,9 +29,8 @@ class ListDao implements IListDao {
 
     public async update(list: IList): Promise<any> {
         const [resultHeader] = await pool.query(listQuery.update(list));
-        const res = packetToJson(resultHeader) as IResultHeader;
-        console.log(res);
-        return res.insertId;
+        const res = packetToJson(resultHeader) as any [];
+        return getUpdatedInResonse(res);
     }
 
     public async delete(listID: number): Promise<any> {

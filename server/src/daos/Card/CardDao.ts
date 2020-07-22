@@ -1,5 +1,5 @@
 import {
-    getSqlTime,
+    getSqlTime, getUpdatedInResonse,
     packetToJson,
 } from '@daos/util';
 import {
@@ -29,9 +29,7 @@ class CardDao implements ICardDao {
     public async update(card: ICard): Promise<any> {
         const [resultHeader] = await pool.query(cardQuery.update(card));
         const res = packetToJson(resultHeader) as any[];
-        const dataIndex = 1;
-        const firstDataIndex = 0;
-        return res[dataIndex][firstDataIndex].updated;
+        return getUpdatedInResonse(res);
     }
 
     public async delete(cardID: number): Promise<any> {
