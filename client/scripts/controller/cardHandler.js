@@ -14,7 +14,6 @@ const moveElement = (beUpElement, beDownElement) => {
         const cardsWrap = beUpElement.closest('.cards-wrap');
         cardsWrap.insertBefore(beUpElement, beDownElement);
     } catch (err) {
-        console.log(err);
     }
 };
 
@@ -33,7 +32,6 @@ class CardHandler extends Handler {
             const { hoverParentCard } = elements;
             if (limitTop < eventY && eventY < limitBottom) {
                 if (isNearTop(limitTop, limitBottom, eventY) && !isLastElement(hoverParentCard)) {
-                    console.log(isLastElement(hoverParentCard));
                     moveElement(fixCard, hoverParentCard);
                 } else {
                     moveElement(hoverParentCard, fixCard);

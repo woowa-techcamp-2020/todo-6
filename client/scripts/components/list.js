@@ -9,6 +9,7 @@ import { showListModalHandler } from '../controller/listModalHandler';
 // 서버에서 받은 데이터로 리스트 그리기
 // user.ts파일참고
 export const initList = (data) => {
+    console.log(data);
     const userData = data;
     const listHandler = new ListHandler();
     const list = div({
