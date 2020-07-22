@@ -5,8 +5,25 @@ import CardHandler from '../controller/cardHandler';
 
 export const cardHandler = new CardHandler();
 
-export const initCard = (listID, cards) => {
-    const cardArray = cards.map((card) => div(
+const sortCards = (cards, orders) => {
+    const sortedCards = [];
+    const cardsObject = {};
+    cards.forEach((card) => {
+        const key = card.cardID;
+        cardsObject[key] = card;
+    });
+    orders.forEach((order) => {
+        sortedCards.push(cardsObject[order]);
+    });
+    return sortedCards;
+};
+
+export const initCard = (userData) => {
+    const { cards, listID, orders } = userData;
+
+    const sortedCards = sortCards(cards, orders);
+
+    const cardArray = sortedCards.map((card) => div(
         {
             className: 'card',
             dataset: { listid: listID, cardid: card.cardID, type: 'card' },

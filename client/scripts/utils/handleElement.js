@@ -106,6 +106,19 @@ export const setElementSize = (element, width, height) => {
     element.style.height = `${height}px`;
 };
 
+export const getListOrdersObj = (listID) => {
+    const orders = [];
+    const wrap = document.querySelector(`[data-wrapid='${listID}']`);
+    const cards = wrap.querySelectorAll('.card');
+    cards.forEach((card) => {
+        orders.push(card.dataset.cardid);
+    });
+    return {
+        listID,
+        orders: `[${orders}]`,
+    };
+};
+
 /**
  *
  * @param{HTMLElement} left

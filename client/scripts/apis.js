@@ -8,7 +8,19 @@ export const initPage = () => fetch('/api/users/1')
         });
     });
 
+<<<<<<< HEAD
 // card apis
+=======
+export const putUpdateOrder = (list) => fetch(`/api/users/:userID/lists/${list.listID}/orders`,
+    {
+        method: 'PUT',
+        body: JSON.stringify(list),
+        headers: { 'Content-Type': 'application/json' },
+    })
+    .then((response) => response.json())
+    .catch((error) => console.error('Error:', error));
+
+>>>>>>> 0187b3b6505910ef032bfbb109556c8f5aa20178
 export const postAddCard = (newCard) => fetch(`/api/users/1/lists/${newCard.listID}/cards`, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(newCard), // data can be `string` or {object}!

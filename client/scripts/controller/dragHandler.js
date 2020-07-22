@@ -1,5 +1,6 @@
-import { setElementPos } from '../utils/handleElement';
+import { getListOrdersObj, setElementPos } from '../utils/handleElement';
 import { elements } from '../utils/createdElements';
+import { putUpdateOrder } from '../apis';
 
 export function elementToDraggable(element, x, y) {
     let differX = 0; let differY = 0; let curX = 0; let
@@ -32,6 +33,13 @@ export function elementToDraggable(element, x, y) {
         document.onmouseup = null;
         document.onmousemove = null;
         element.remove();
+
+        try {
+            const listID = elements.hoverParentCard.dataset.listid;
+            putUpdateOrder(getListOrdersObj(listID));
+        } catch (e) {
+            console.log(e);
+        }
         removeHoverInfoInElements();
     }
 }

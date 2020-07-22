@@ -1,8 +1,18 @@
 import { elementToDraggable } from './dragHandler';
-import { setElementPos, setElementSize } from '../utils/handleElement';
+import { getListOrdersObj, setElementPos, setElementSize } from '../utils/handleElement';
 import { elements } from '../utils/createdElements';
 import Handler from './handler';
+<<<<<<< HEAD
 import { deleteList } from '../apis';
+=======
+import { putUpdateCard, putUpdateOrder } from '../apis';
+
+const updateCardsOrder = (...lists) => {
+    lists.forEach((list) => {
+        putUpdateOrder(getListOrdersObj(list.dataset.listid));
+    });
+};
+>>>>>>> 0187b3b6505910ef032bfbb109556c8f5aa20178
 
 class ListHandler extends Handler {
     onMouseDown(event) {
@@ -34,6 +44,13 @@ class ListHandler extends Handler {
             if (!list.isEqualNode(listWithHover)) {
                 const cardWrap = list.querySelector('.cards-wrap');
                 cardWrap.appendChild(elements.hoverParentCard);
+                updateCardsOrder(list, listWithHover);
+                const newCard = {
+                    listID: list.dataset.listid,
+                    cardID: elements.hoverParentCard.dataset.cardid,
+                };
+                console.log(newCard);
+                putUpdateCard(newCard);
             }
         }
     }
