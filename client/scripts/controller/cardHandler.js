@@ -1,7 +1,25 @@
 import { elements } from '../utils/createdElements';
-import { isSameId, moveElement } from '../utils/handleElement';
+import { isSameCardId } from '../utils/handleElement';
 import Handler from './handler';
-import { deleteCard } from '../apis';
+import { deleteCard, putUpdateCard } from '../apis';
+
+const isNearTop = (top, bottom, eventY) => Math.abs(top - eventY) < Math.abs(bottom - eventY);
+
+/**
+ *
+ * @param{HTMLElement} left
+ * @param{HTMLElement} right
+ */
+const moveElement = (beUpElement, beDownElement) => {
+    try {
+        const cardsWrap = beUpElement.closest('.cards-wrap');
+        cardsWrap.insertBefore(beUpElement, beDownElement);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const isLastElement = (element) => element.nextSibling === null;
 
 class CardHandler extends Handler {
     onMouseMove(event) {
@@ -11,13 +29,15 @@ class CardHandler extends Handler {
         const cardSizeAndPos = fixCard.getBoundingClientRect();
         const limitTop = cardSizeAndPos.top + 15;
         const limitBottom = cardSizeAndPos.bottom;
-        if (elements.hoverCard && !isSameId(fixCard, hoverCard)) {
+        if (elements.hoverCard && !isSameCardId(fixCard, hoverCard)) {
             const eventY = event.clientY;
+            const { hoverParentCard } = elements;
             if (limitTop < eventY && eventY < limitBottom) {
-                if (Math.abs(limitTop - eventY) < Math.abs(limitBottom - eventY)) {
-                    moveElement(fixCard, elements.hoverParentCard);
+                if (isNearTop(limitTop, limitBottom, eventY) && !isLastElement(hoverParentCard)) {
+                    console.log(isLastElement(hoverParentCard));
+                    moveElement(fixCard, hoverParentCard);
                 } else {
-                    moveElement(elements.hoverParentCard, fixCard);
+                    moveElement(hoverParentCard, fixCard);
                 }
             }
         }
@@ -28,7 +48,7 @@ class CardHandler extends Handler {
         let listId;
         if (event.target.className === 'card-del-btn') {
             const curCard = event.target.closest('.card');
-            cardId = curCard.getAttribute('data-id');
+            cardId = curCard.getAttribute('data-cardid');
             listId = curCard.getAttribute('data-listid');
             deleteCard(listId, cardId).then(() => {
                 curCard.parentNode.removeChild(curCard);
@@ -36,15 +56,13 @@ class CardHandler extends Handler {
         }
     }
 
-    clickCardSaveBtn(listId, cardId, cardText) {
-        // const updatedCardText = document.querySelector('.card-modal-input');
-        // console.log(updatedCardText.value);
-        const updatedCardInfo = {
-            listID: listId,
-            cardID: cardId,
-            cardText,
-        };
-        console.log(updatedCardInfo);
+    // update api 날리고 받은 res로 돔작
+    clickCardSaveBtn(updatedCardObj) {
+        // put api요청 후
+        putUpdateCard(updatedCardObj).then((res) => {
+            const cardNode = document.querySelector(`[data-cardid='${updatedCardObj.cardID}']`);
+            cardNode.querySelector('.card-title').textContent = res.cardText;
+        });
     }
 }
 

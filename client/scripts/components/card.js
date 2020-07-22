@@ -9,7 +9,7 @@ export const initCard = (listID, cards) => {
     const cardArray = cards.map((card) => div(
         {
             className: 'card',
-            dataset: { listid: listID, id: card.cardID, type: 'card' },
+            dataset: { listid: listID, cardid: card.cardID, type: 'card' },
             onmousemove: cardHandler.onMouseMove,
         },
         div({ className: 'card-header-section', onmouseover: cardHandler.blockPropagation },
