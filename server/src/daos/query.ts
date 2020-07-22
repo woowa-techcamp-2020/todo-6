@@ -1,6 +1,12 @@
 import { ICard, IList } from '@type';
 import { getSqlTime, valueToString } from './util';
 
+const query: {
+    getUpdated: (name: string, id: number) => string
+} = {
+    getUpdated: (name, id) => `select updated from ${name} where ${name}ID = ${id} limit 1;`,
+};
+
 export const userQuery: {
     getUserData: (id:number) => string
 } = {
@@ -18,9 +24,10 @@ export const listQuery: {
     delete: (listID: number) => string,
     updateOrder: (list: IList) => string
 } = {
-    update: (list) => 'update list '
+    update: (list) => `${'update list '
         + `set  listName="${list.listName}", updated="${getSqlTime()}"`
-        + `where (listID=${list.listID})`,
+        + `where (listID=${list.listID});`}${
+        query.getUpdated('list', list.listID as number)}`,
     add: (list) => 'insert into '
         + `list (${Object.keys(list)}, created, updated) `
         + `values (${`${valueToString(Object.values(list))},'${getSqlTime()}','${getSqlTime()}'`})`,
@@ -36,9 +43,11 @@ export const cardQuery: {
     add: (card: ICard) => string,
     delete: (cardID: number) => string,
 } = {
-    update: (card) => 'update card '
-        + `set  cardText="${card.cardText}", updated="${getSqlTime()}"`
-        + `where (cardID=${card.cardID})`,
+    update: (card) => `${'update card '
+        + `set cardText="${card.cardText}", updated="${getSqlTime()}" `
+        + `where (cardID=${card.cardID});`}${
+        query.getUpdated('card', card.cardID as number)}`,
+
     add: (card) => 'insert into '
         + `card(${Object.keys(card)}, created, updated) `
         + `values (${`${valueToString(Object.values(card))},'${getSqlTime()}','${getSqlTime()}'`})`,
