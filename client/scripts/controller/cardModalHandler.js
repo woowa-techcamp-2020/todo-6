@@ -3,15 +3,15 @@ import CardHandler from './cardHandler';
 const cardHandler = new CardHandler();
 
 export const showCardModalHandler = (e) => {
+    console.log(e.target);
     const cardModalSection = document.getElementById('card-modal-section');
-    cardModalSection.style.display = 'block';
-
     const cardModalInput = document.querySelector('.card-modal-input');
-    cardModalInput.innerText = e.target.textContent;
-
     const cardModalCloseBtn = document.querySelector('.card-modal-close-btn');
+
+    cardModalSection.style.display = 'block';
+    cardModalInput.value = e.target.textContent;
     cardModalCloseBtn.addEventListener('click', () => {
-        cardModalInput.innerText = '';
+        // cardModalInput.value = '';
         cardModalSection.style.display = 'none';
     });
 
@@ -21,6 +21,9 @@ export const showCardModalHandler = (e) => {
     const cardId = card.getAttribute('data-id');
 
     cardModalSaveBtn.addEventListener('click', () => {
-        cardHandler.clickCardSaveBtn(listId, cardId);
+        // cardHandler.clickCardSaveBtn(listId, cardId);
+        cardModalInput.value = '';
+
+        cardModalSection.style.display = 'none';
     });
 };
