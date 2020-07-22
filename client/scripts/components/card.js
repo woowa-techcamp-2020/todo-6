@@ -40,7 +40,7 @@ export const initCard = (userData) => {
 export const newCard = (res) => div(
     {
         className: 'card',
-        dataset: { listid: res.listID, id: res.cardID, type: 'card' },
+        dataset: { listid: res.listID, cardid: res.cardID, type: 'card' },
         onmousemove: cardHandler.onMouseMove,
     },
     div({ className: 'card-header-section', onmouseover: cardHandler.blockPropagation },

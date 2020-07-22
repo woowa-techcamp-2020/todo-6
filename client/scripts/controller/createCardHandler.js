@@ -1,6 +1,7 @@
-import { postAddCard } from '../apis';
+import { postAddCard, putUpdateOrder } from '../apis';
 import { newCardArea } from '../components/newCardArea';
 import { newCard } from '../components/card';
+import { getListOrdersObj } from '../utils/handleElement';
 // 카드 인풋레이어에 입력시 Add 버튼 활성화
 export const writeTextArea = (e) => {
     const inputCardContents = e.target.value;
@@ -28,6 +29,8 @@ export const cardAddBtnClickHandler = (e) => {
         }
         cardsWrap.firstChild.firstChild.value = '';
         e.target.setAttribute('disabled', 'true');
+        console.log(listID);
+        putUpdateOrder(getListOrdersObj(listID));
     });
 };
 
