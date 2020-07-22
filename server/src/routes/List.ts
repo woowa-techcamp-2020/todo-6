@@ -13,7 +13,10 @@ const listRouter = Router();
 listRouter.use('/:listID/cards', CardRouter);
 
 listRouter.post('', listController.add);
+
+listRouter.put('/:listID/order', listController.updateOrder);
 listRouter.put('/:listID', listController.update);
+
 listRouter.delete('/:listID', listController.delete);
 
 

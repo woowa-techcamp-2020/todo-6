@@ -9,6 +9,7 @@ export interface IList {
     userID?: number,
     listID?: number,
     listName?: string,
+    orders?: string
     cards?: [ICard?]
 }
 export interface IInitData{
