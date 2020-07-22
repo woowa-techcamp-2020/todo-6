@@ -3,6 +3,7 @@ export const elements = {
     hoverCard: null,
     hoverParentCard: null,
     card: null,
+    list: null,
 };
 
 export const assignElements = () => {

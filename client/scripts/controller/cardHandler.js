@@ -45,9 +45,11 @@ class CardHandler extends Handler {
         let cardId;
         let listId;
         if (event.target.className === 'card-del-btn') {
+            alert('카드를 삭제하시겠습니까?');
             const curCard = event.target.closest('.card');
             cardId = curCard.getAttribute('data-cardid');
             listId = curCard.getAttribute('data-listid');
+            // console.log(cardId, listId);
             deleteCard(listId, cardId).then(() => {
                 curCard.parentNode.removeChild(curCard);
                 putUpdateOrder(getListOrdersObj(listId));

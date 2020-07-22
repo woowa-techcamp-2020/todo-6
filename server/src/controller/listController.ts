@@ -19,7 +19,7 @@ const listDao:IListDao = new ListDao();
 
 const listController:IListController = {
     add: async (req: Request, res: Response) => {
-        logger.info('POST: apis/users/:userID/lists');
+        logger.info('POST: api/users/:userID/lists');
         const { listName, userID } = req.body;
         const list:IList = {
             userID,
@@ -31,7 +31,7 @@ const listController:IListController = {
         return res.status(CREATED).json({ ...list });
     },
     update: async (req:Request, res: Response) => {
-        logger.info('PUT: apis/users/:userID/lists/:listID');
+        logger.info('PUT: api/users/:userID/lists/:listID');
         const params = req.params as ParamsDictionary;
         const { listID, listName } = req.body;
         console.log(req.body);
@@ -45,7 +45,7 @@ const listController:IListController = {
     },
 
     updateOrder: async (req:Request, res: Response) => {
-        logger.info('PUT: apis/users/:userID/lists/:listID/order');
+        logger.info('PUT: api/users/:userID/lists/:listID/order');
         const { listID, orders } = req.body;
         const list:IList = {
             listID,
@@ -56,7 +56,7 @@ const listController:IListController = {
     },
 
     delete: async (req:Request, res: Response) => {
-        logger.info('DELETE: apis/users/:userID/lists/:listID');
+        logger.info('DELETE: api/users/:userID/lists/:listID');
         const { listID } = req.params as ParamsDictionary;
         await listDao.delete(parseInt(listID));
         return res.status(NO_CONTENT).end();

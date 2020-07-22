@@ -24,7 +24,7 @@ export const initList = (data) => {
             div({ className: 'list-title', ondblclick: showListModalHandler }, userData.listName)),
         div({ className: 'list-header-right-wrap' },
             button({ className: 'add-card-btn', onclick: createCardBtnHandler }, '✎'),
-            button({ className: 'list-details-btn' }, '⋯'))),
+            button({ className: 'list-delete-btn', onclick: listHandler.clickDeleteList }, '✘'))),
     div({ className: 'list-body-section' },
         div(
             { className: 'cards-wrap', dataset: { wrapid: userData.listID } }, initCard(userData),

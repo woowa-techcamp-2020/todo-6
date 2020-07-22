@@ -42,3 +42,20 @@ export const putUpdateCard = (updatedCardObj) => fetch(`/api/users/:userID/lists
     })
     .then((response) => response.json())
     .catch((error) => console.error('Error:', error));
+
+// list apis
+export const putUpdateList = (updatedCardObj) => fetch(`/api/users/:userID/lists/${updatedCardObj.listID}`,
+    {
+        method: 'PUT',
+        body: JSON.stringify(updatedCardObj),
+        headers: { 'Content-Type': 'application/json' },
+    })
+    .then((response) => response.json())
+    .catch((error) => console.error('Error:', error));
+
+export const deleteList = (listID) => fetch(`/api/users/1/lists/${listID}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+})
+    .then((response) => console.log(response.status))
+    .catch((error) => console.error('Error:', error));
