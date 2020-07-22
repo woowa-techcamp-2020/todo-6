@@ -29,7 +29,7 @@ const cardController:ICardController = {
         return res.status(CREATED).json({ ...card });
     },
     update: async (req:Request, res: Response) => {
-        logger.info('PUT: apis/users/:userID/lists/:listID/cards/:cardID');
+        logger.info('PUT: api/users/:userID/lists/:listID/cards/:cardID');
         const params = req.params as ParamsDictionary;
         console.log(params);
         const { listID, cardText, cardID } = req.body;
@@ -43,7 +43,7 @@ const cardController:ICardController = {
         return res.status(CREATED).json({ ...card });
     },
     delete: async (req:Request, res: Response) => {
-        logger.info('DELETE: apis/users/:userID/lists/:listID/cards/:cardID');
+        logger.info('DELETE: api/users/:userID/lists/:listID/cards/:cardID');
         const { cardID } = req.params as ParamsDictionary;
         await cardDao.delete(parseInt(cardID));
         return res.status(NO_CONTENT).end();

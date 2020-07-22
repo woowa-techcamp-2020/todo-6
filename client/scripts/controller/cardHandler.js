@@ -1,6 +1,7 @@
 import { elements } from '../utils/createdElements';
 import { isSameCardId } from '../utils/handleElement';
 import Handler from './handler';
+import { deleteCard, putUpdateCard } from '../apis';
 
 const isNearTop = (top, bottom, eventY) => Math.abs(top - eventY) < Math.abs(bottom - eventY);
 
@@ -38,6 +39,28 @@ class CardHandler extends Handler {
                 }
             }
         }
+    }
+
+    clickCardDelBtn(event) {
+        let cardId;
+        let listId;
+        if (event.target.className === 'card-del-btn') {
+            const curCard = event.target.closest('.card');
+            cardId = curCard.getAttribute('data-cardid');
+            listId = curCard.getAttribute('data-listid');
+            deleteCard(listId, cardId).then(() => {
+                curCard.parentNode.removeChild(curCard);
+            });
+        }
+    }
+
+    // update api 날리고 받은 res로 돔작
+    clickCardSaveBtn(updatedCardObj) {
+        // put api요청 후
+        putUpdateCard(updatedCardObj).then((res) => {
+            const cardNode = document.querySelector(`[data-cardid='${updatedCardObj.cardID}']`);
+            cardNode.querySelector('.card-title').textContent = res.cardText;
+        });
     }
 }
 

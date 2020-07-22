@@ -13,6 +13,6 @@ export const showCardModal = (cardContents) => {
             button({ className: 'card-modal-save-btn' })),
     );
 
-    const bodySection = document.querySelector('.body-section');
-    bodySection.appendChild(cardModal);
+    const mainPage = document.querySelector('.main-page');
+    mainPage.appendChild(cardModal);
 };
