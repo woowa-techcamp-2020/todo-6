@@ -2,6 +2,7 @@ import { elementToDraggable } from './dragHandler';
 import { setElementPos, setElementSize } from '../utils/handleElement';
 import { elements } from '../utils/createdElements';
 import Handler from './handler';
+import { deleteList } from '../apis';
 
 class ListHandler extends Handler {
     onMouseDown(event) {
@@ -38,8 +39,17 @@ class ListHandler extends Handler {
     }
 
     clickDeleteList(e) {
-        alert('카드를 삭제하시겠습니까 ?');
+        const list = e.target.closest('.list');
+        const listWrap = list.parentNode;
+        deleteList(list.getAttribute('data-listid')).then(() => {
+            alert('리스트를 삭제하시겠습니까 ?');
+            listWrap.removeChild(list);
+        });
     }
+
+    // clickCreateListBtn(e) {
+    //     console.log('d');
+    // }
 }
 
 export default ListHandler;
