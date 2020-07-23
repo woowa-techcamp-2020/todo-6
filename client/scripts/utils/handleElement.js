@@ -199,27 +199,28 @@ export const getEventText = (event) => {
     return text;
 };
 
+export const getSqlTime = () => new Date().toISOString().slice(0, 19).replace('T', ' ');
+
 export const addEventToMenu = (event) => {
-    console.log(event);
     postEvent(event)
         .then((res) => {
             const eventWrap = document.querySelector('.user-record-wrap');
+            const newEvent = event;
+            newEvent.created = res.created;
             if (eventWrap.hasChildNodes()) {
-                eventWrap.insertBefore(userEvent(event), eventWrap.firstElementChild);
+                eventWrap.insertBefore(userEvent(newEvent), eventWrap.firstElementChild);
             } else {
-                eventWrap.appendChild(userEvent(event));
+                eventWrap.appendChild(userEvent(newEvent));
             }
         });
 };
 
-export const updateCardCount = (list, type) => {
+export const updateCardCount = (list) => {
+    console.log(list);
     const cardCount = list.querySelector('.cards-count');
     const cardWrap = list.querySelector('.cards-wrap');
-    if (type) {
-        cardCount.textContent = cardWrap.childElementCount;
-    } else {
-        cardCount.textContent = cardWrap.childElementCount - 1;
-    }
+    console.log(cardWrap.querySelectorAll('.card').length);
+    cardCount.textContent = cardWrap.querySelectorAll('.card').length;
 };
 
 export const getCardText = (card) => card.querySelector('.card-title').textContent;

@@ -39,10 +39,13 @@ export const eventQuery: {
 } = {
     add: (event) => 'insert into '
         + `log (${Object.keys(event)}, created) `
-        + `values (${`${valueToString(Object.values(event))},'${getSqlTime()}'`})`,
-    getAll: () => 'select * from log '
+        + `values (${`${valueToString(Object.values(event))},'${getSqlTime()}'`});`
+        + 'select * from log where logID=LAST_INSERT_ID();',
+    getAll: () => 'select '
+        + 'log.created, logID, log.eventTypeID, card, list, beforeList, typeName, name, id from log '
         + ' left join eventType on log.eventTypeID = eventType.eventTypeID'
-        + ' left join user on log.userID = user.userID',
+        + ' left join user on log.userID = user.userID'
+        + ' ORDER BY log.created DESC',
 };
 
 export const listQuery: {

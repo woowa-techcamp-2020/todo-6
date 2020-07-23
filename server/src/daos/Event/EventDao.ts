@@ -13,15 +13,16 @@ import { eventQuery } from '../query';
 export interface IEventDao {
     // getAll: () => Promise<IUser[]>;
     getAll: () => Promise<IEvent []>;
-    add: (event: IEvent) => Promise<number>;
+    add: (event: IEvent) => Promise<any>;
 }
 
 class EventDao implements IEventDao {
     public async add(event: IEvent): Promise<any> {
-        console.log(event);
         const [resultHeader] = await pool.query(eventQuery.add(event));
-        const res = packetToJson(resultHeader) as IResultHeader;
-        return res.insertId;
+        const res = packetToJson(resultHeader) as any;
+        const dataIdx = 1;
+        const firstIdx = 0;
+        return res[dataIdx][firstIdx];
     }
 
     public async getAll(): Promise<IEvent []> {

@@ -1,5 +1,6 @@
-import { elementToDraggable } from './dragHandler';
+import ElementToDraggable from './dragHandler';
 import {
+    addEventToMenu, eventType, eventTypeID,
     getListOrdersObj, setElementPos, setElementSize,
 } from '../utils/handleElement';
 import { elements } from '../utils/states';
@@ -26,8 +27,8 @@ class ListHandler extends Handler {
             setElementSize(hovcerCard, cardSizeAndPos.width, cardSizeAndPos.height);
 
             elements.body.appendChild(hovcerCard);
-
-            elementToDraggable(hovcerCard, event.clientX, event.clientY);
+            new ElementToDraggable(hovcerCard, event.clientX, event.clientY);
+            // elementToDraggable(hovcerCard, event.clientX, event.clientY);
         }
     }
 
