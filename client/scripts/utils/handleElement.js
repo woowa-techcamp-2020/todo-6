@@ -215,14 +215,12 @@ export const addEventToMenu = (event) => {
         });
 };
 
-export const updateCardCount = (list, type) => {
+export const updateCardCount = (list) => {
+    console.log(list);
     const cardCount = list.querySelector('.cards-count');
     const cardWrap = list.querySelector('.cards-wrap');
-    if (type) {
-        cardCount.textContent = cardWrap.childElementCount;
-    } else {
-        cardCount.textContent = cardWrap.childElementCount - 1;
-    }
+    console.log(cardWrap.querySelectorAll('.card').length);
+    cardCount.textContent = cardWrap.querySelectorAll('.card').length;
 };
 
 export const getCardText = (card) => card.querySelector('.card-title').textContent;

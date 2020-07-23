@@ -50,6 +50,10 @@ module.exports = {
             template: './index.html', // entry
             filename: '../../views/index.html', // output(main.js 기준)
         }),
+        new HtmlWebpackPlugin({
+            template: './login.html', // entry
+            filename: '../../views/login.html', // output(main.js 기준)
+        }),
         new CleanWebpackPlugin(),
     ],
 };
