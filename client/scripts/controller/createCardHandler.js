@@ -36,15 +36,14 @@ export const cardAddBtnClickHandler = (e) => {
         e.target.setAttribute('disabled', 'true');
         putUpdateOrder(getListOrdersObj(listID));
 
-        const event = {
+        addEventToMenu({
             userID: 1,
             id: 'auddn6676',
             eventTypeID: eventTypeID.addCard,
             card: cardText,
             list: list.querySelector('.list-title').textContent,
             typeName: eventType.addCard,
-        };
-        addEventToMenu(event);
+        });
     });
 };
 
