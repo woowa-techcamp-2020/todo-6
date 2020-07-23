@@ -7,6 +7,7 @@ import './controller/menuEvents';
 import { initPage, putUpdateList } from './apis';
 import { assignElements, elements } from './utils/createdElements';
 import CardHandler from './controller/cardHandler';
+import { initEvents } from './initEvents';
 
 // card nodes
 const cardModalSection = document.getElementById('card-modal-section');
@@ -62,4 +63,5 @@ addList.addEventListener('click', () => {
 });
 
 initPage();
+initEvents();
 assignElements();

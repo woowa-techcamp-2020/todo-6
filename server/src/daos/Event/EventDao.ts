@@ -18,6 +18,7 @@ export interface IEventDao {
 
 class EventDao implements IEventDao {
     public async add(event: IEvent): Promise<any> {
+        console.log(event);
         const [resultHeader] = await pool.query(eventQuery.add(event));
         const res = packetToJson(resultHeader) as IResultHeader;
         return res.insertId;

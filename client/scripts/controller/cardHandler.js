@@ -1,5 +1,12 @@
 import { elements } from '../utils/createdElements';
-import { getListOrdersObj, isSameCardId } from '../utils/handleElement';
+import {
+    addEventToMenu,
+    eventType,
+    eventTypeID,
+    getCardText,
+    getListOrdersObj, getListText,
+    isSameCardId,
+} from '../utils/handleElement';
 import Handler from './handler';
 import { deleteCard, putUpdateCard, putUpdateOrder } from '../apis';
 
@@ -50,10 +57,23 @@ class CardHandler extends Handler {
             cardId = curCard.getAttribute('data-cardid');
             listId = curCard.getAttribute('data-listid');
             // console.log(cardId, listId);
-            deleteCard(listId, cardId).then(() => {
-                curCard.parentNode.removeChild(curCard);
-                putUpdateOrder(getListOrdersObj(listId));
-            });
+
+            deleteCard(listId, cardId)
+                .then(() => {
+                    const eventObj = {
+                        userID: 1,
+                        id: 'auddn6676',
+                        eventTypeID: eventTypeID.removeCard,
+                        card: getCardText(curCard),
+                        list: getListText(curCard.closest('.list')),
+                        typeName: eventType.removeCard,
+                    };
+                    addEventToMenu(eventObj);
+                })
+                .then(() => {
+                    curCard.parentNode.removeChild(curCard);
+                    putUpdateOrder(getListOrdersObj(listId));
+                });
         }
     }
 

@@ -1,4 +1,6 @@
-import { getListOrdersObj, setElementPos } from '../utils/handleElement';
+import {
+    addEventToMenu, eventType, eventTypeID, getListOrdersObj, setElementPos,
+} from '../utils/handleElement';
 import { elements } from '../utils/createdElements';
 import { putUpdateOrder } from '../apis';
 

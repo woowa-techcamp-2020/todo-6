@@ -40,7 +40,9 @@ export const eventQuery: {
     add: (event) => 'insert into '
         + `log (${Object.keys(event)}, created) `
         + `values (${`${valueToString(Object.values(event))},'${getSqlTime()}'`})`,
-    getAll: () => 'select * from log',
+    getAll: () => 'select * from log '
+        + ' left join eventType on log.eventTypeID = eventType.eventTypeID'
+        + ' left join user on log.userID = user.userID',
 };
 
 export const listQuery: {
