@@ -212,14 +212,14 @@ export const addEventToMenu = (event) => {
         });
 };
 
-/**
- *
- * @param{HTMLElement[]} lists
- */
-export const updateCardsOrder = (...lists) => {
-    lists.forEach((list) => {
-        putUpdateOrder(getListOrdersObj(list.dataset.listid));
-    });
+export const updateCardCount = (list, type) => {
+    const cardCount = list.querySelector('.cards-count');
+    const cardWrap = list.querySelector('.cards-wrap');
+    if (type) {
+        cardCount.textContent = cardWrap.childElementCount;
+    } else {
+        cardCount.textContent = cardWrap.childElementCount - 1;
+    }
 };
 
 export const getCardText = (card) => card.querySelector('.card-title').textContent;
