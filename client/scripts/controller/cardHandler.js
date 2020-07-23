@@ -57,11 +57,10 @@ class CardHandler extends Handler {
             cardId = curCard.getAttribute('data-cardid');
             listId = curCard.getAttribute('data-listid');
             // console.log(cardId, listId);
+            const list = curCard.closest('.list');
 
             deleteCard(listId, cardId)
                 .then(() => {
-                    const list = curCard.closest('.list');
-                    updateCardCount(list);
                     const eventObj = {
                         userID: 1,
                         id: 'auddn6676',
@@ -75,6 +74,7 @@ class CardHandler extends Handler {
                 .then(() => {
                     curCard.parentNode.removeChild(curCard);
                     putUpdateOrder(getListOrdersObj(listId));
+                    updateCardCount(list);
                 });
         }
     }
