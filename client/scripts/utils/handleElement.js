@@ -199,15 +199,18 @@ export const getEventText = (event) => {
     return text;
 };
 
+export const getSqlTime = () => new Date().toISOString().slice(0, 19).replace('T', ' ');
+
 export const addEventToMenu = (event) => {
-    console.log(event);
     postEvent(event)
         .then((res) => {
             const eventWrap = document.querySelector('.user-record-wrap');
+            const newEvent = event;
+            newEvent.created = res.created;
             if (eventWrap.hasChildNodes()) {
-                eventWrap.insertBefore(userEvent(event), eventWrap.firstElementChild);
+                eventWrap.insertBefore(userEvent(newEvent), eventWrap.firstElementChild);
             } else {
-                eventWrap.appendChild(userEvent(event));
+                eventWrap.appendChild(userEvent(newEvent));
             }
         });
 };
