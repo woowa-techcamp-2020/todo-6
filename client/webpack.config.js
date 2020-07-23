@@ -51,6 +51,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './index.html', // entry
             filename: '../../views/index.html', // output(main.js 기준)
+            chunks: ['main'],
         }),
         new HtmlWebpackPlugin({
             template: './login.html', // entry
