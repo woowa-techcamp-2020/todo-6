@@ -27,9 +27,17 @@ const userController:IUserController = {
     get: async (req: Request, res: Response) => {
         logger.info('Request: apis/users/:id');
         const { userID } = req.params as ParamsDictionary;
+        if(isNaN(Number(userID))) {
+            const userData = await userDao.getUser(userID);
+            const dataIndex = 0;
+            return res.status(OK).json({ ...userData[dataIndex] });
+        }
         const userData = await userDao.get(parseInt(userID));
         return res.status(OK).json({ userData });
     },
+
+
+
 };
 
 

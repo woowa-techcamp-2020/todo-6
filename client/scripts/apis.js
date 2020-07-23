@@ -8,6 +8,8 @@ export const initPage = () => fetch('/api/users/1')
         });
     });
 
+export const getUser = (id) => fetch(`/api/users/${id}`)
+    .then((res) => res.json());
 export const getEvents = () => fetch('/api/users/1/events')
     .then((response) => response.json())
     .catch((error) => console.error('Error:', error));
