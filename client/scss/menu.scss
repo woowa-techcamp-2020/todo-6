@@ -2,7 +2,7 @@
   animation-name: move;
   animation-duration: 1.5s;
   @keyframes move {
-    from { right: -600px;
+    from { right: -800px;
     }
   }
   display: none;
@@ -11,7 +11,7 @@
   right: 0;
   top: 0;
   height: 100%;
-  width: 500px;
+  width: 700px;
   border: 1px solid gray;
   border-radius: 5px;
   background-color: white;
@@ -24,11 +24,13 @@
     .menu-header {
       display: flex;
       flex-direction: column;
-      background-color: #2AC1BC;
+      background-color: #2ecfcc;
 
       .menu-header-upper {
         display: flex;
+        height: 48px;
         flex-direction: row;
+        line-height: 2;
         align-items: baseline;
         justify-content: space-between;
         padding: 10px;
@@ -40,6 +42,24 @@
 
         .menu-close-btn {
           font-size: 20px;
+        }
+      }
+
+      .menu-summary {
+        padding: 10px;
+        background-color: white;
+
+
+        .menu-summary-title {
+          font-weight: 600;
+        font-size:20px;
+          margin-bottom: 15px;
+        }
+        .menu-summary-sub-title {
+          color: gray;
+          font-size:18px;
+          line-height: 1.3;
+
         }
       }
 

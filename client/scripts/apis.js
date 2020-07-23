@@ -72,3 +72,12 @@ export const deleteList = (listID) => fetch(`/api/users/1/lists/${listID}`, {
 })
     .then((response) => console.log(response.status))
     .catch((error) => console.error('Error:', error));
+
+export const postAddList = (newCard) => fetch('/api/users/1/lists', {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(newCard), // data can be `string` or {object}!
+    headers: { 'Content-Type': 'application/json' },
+})
+    .then((response) => response.json())
+// .then((json) => json)
+    .catch((error) => console.error('Error:', error));
