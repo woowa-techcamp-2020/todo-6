@@ -7,6 +7,8 @@ module.exports = {
     devtool: 'cheap-eval-source-map',
     entry: {
         main: './scripts/app.js',
+        login: './scripts/login.js',
+
     },
     output: {
         path: path.resolve('../server/src/public/scripts'),
@@ -53,6 +55,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './login.html', // entry
             filename: '../../views/login.html', // output(main.js 기준)
+            chunks: ['login'],
         }),
         new CleanWebpackPlugin(),
     ],
