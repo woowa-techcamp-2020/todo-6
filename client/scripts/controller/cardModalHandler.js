@@ -1,4 +1,4 @@
-import { elements } from '../utils/createdElements';
+import { elements } from '../utils/states';
 
 const cardModalInput = document.querySelector('.card-modal-input');
 

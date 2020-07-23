@@ -1,14 +1,11 @@
 import { elementToDraggable } from './dragHandler';
-import { getListOrdersObj, setElementPos, setElementSize } from '../utils/handleElement';
-import { elements } from '../utils/createdElements';
+import {
+    getListOrdersObj, setElementPos, setElementSize, updateCardsOrder,
+} from '../utils/handleElement';
+import { elements } from '../utils/states';
 import Handler from './handler';
 import { deleteList, putUpdateCard, putUpdateOrder } from '../apis';
-
-const updateCardsOrder = (...lists) => {
-    lists.forEach((list) => {
-        putUpdateOrder(getListOrdersObj(list.dataset.listid));
-    });
-};
+import changedList from '../utils/changedList';
 
 class ListHandler extends Handler {
     onMouseDown(event) {
@@ -21,7 +18,6 @@ class ListHandler extends Handler {
         if (target?.dataset?.type === 'card') {
             const hovcerCard = target.cloneNode(true);
             hovcerCard.classList.add('hover-card');
-            console.log(hovcerCard.classList);
             elements.hoverParentCard = target;
             elements.hoverCard = hovcerCard;
             setHoverStyle(hovcerCard);
@@ -42,13 +38,7 @@ class ListHandler extends Handler {
             if (!list.isEqualNode(listWithHover)) {
                 const cardWrap = list.querySelector('.cards-wrap');
                 cardWrap.appendChild(elements.hoverParentCard);
-                updateCardsOrder(list, listWithHover);
-                const newCard = {
-                    listID: list.dataset.listid,
-                    cardID: elements.hoverParentCard.dataset.cardid,
-                };
-                console.log(newCard);
-                putUpdateCard(newCard);
+                changedList.addChangedListsToState(list, listWithHover);
             }
         }
     }

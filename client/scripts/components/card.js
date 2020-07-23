@@ -8,11 +8,11 @@ export const cardHandler = new CardHandler();
 const sortCards = (cards, orders) => {
     const sortedCards = [];
     const cardsObject = {};
-    cards.forEach((card) => {
+    cards?.forEach((card) => {
         const key = card.cardID;
         cardsObject[key] = card;
     });
-    orders.forEach((order) => {
+    orders?.forEach((order) => {
         sortedCards.push(cardsObject[order]);
     });
     return sortedCards;

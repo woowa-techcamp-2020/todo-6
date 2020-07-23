@@ -1,8 +1,9 @@
 import {
     addEventToMenu, eventType, eventTypeID, getListOrdersObj, setElementPos,
 } from '../utils/handleElement';
-import { elements } from '../utils/createdElements';
-import { putUpdateOrder } from '../apis';
+import { elements } from '../utils/states';
+import { putUpdateCard, putUpdateOrder } from '../apis';
+import changedList from '../utils/changedList';
 
 export function elementToDraggable(element, x, y) {
     let differX = 0; let differY = 0; let curX = 0; let
@@ -40,10 +41,18 @@ export function elementToDraggable(element, x, y) {
         element.remove();
 
         try {
-            const listID = elements.hoverParentCard.dataset.listid;
-            putUpdateOrder(getListOrdersObj(listID));
+            const { hoverParentCard } = elements;
+
+            const list = hoverParentCard.closest('.list');
+            const listID = list.dataset.listid;
+            hoverParentCard.dataset.listid = listID;
+            changedList.addChangedListsToState(list);
+            changedList.updateCardsOrder();
+            putUpdateCard({
+                listID,
+                cardID: hoverParentCard.dataset.cardid,
+            });
         } catch (e) {
-            console.log(e);
         }
         removeHoverInfoInElements();
     }
