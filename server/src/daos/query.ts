@@ -42,7 +42,8 @@ export const eventQuery: {
         + `values (${`${valueToString(Object.values(event))},'${getSqlTime()}'`})`,
     getAll: () => 'select * from log '
         + ' left join eventType on log.eventTypeID = eventType.eventTypeID'
-        + ' left join user on log.userID = user.userID',
+        + ' left join user on log.userID = user.userID'
+        + ' ORDER BY log.created DESC',
 };
 
 export const listQuery: {
