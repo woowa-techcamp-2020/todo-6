@@ -1,5 +1,5 @@
 import { putUpdateOrder } from '../apis';
-import { getListOrdersObj } from './handleElement';
+import { getListOrdersObj, updateCardCount } from './handleElement';
 
 class ChangedList {
     constructor() {
@@ -16,6 +16,7 @@ class ChangedList {
         const stateList = Object.values(this.state);
         stateList.forEach((list) => {
             putUpdateOrder(getListOrdersObj(list.dataset.listid));
+            updateCardCount(list, 'drag');
         });
         this.state = {};
     }

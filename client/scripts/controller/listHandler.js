@@ -1,6 +1,6 @@
 import { elementToDraggable } from './dragHandler';
 import {
-    getListOrdersObj, setElementPos, setElementSize, updateCardsOrder,
+    getListOrdersObj, setElementPos, setElementSize,
 } from '../utils/handleElement';
 import { elements } from '../utils/states';
 import Handler from './handler';

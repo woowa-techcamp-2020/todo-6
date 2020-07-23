@@ -5,7 +5,7 @@ import {
     eventTypeID,
     getCardText,
     getListOrdersObj, getListText,
-    isSameCardId,
+    isSameCardId, updateCardCount,
 } from '../utils/handleElement';
 import Handler from './handler';
 import { deleteCard, putUpdateCard, putUpdateOrder } from '../apis';
@@ -60,12 +60,14 @@ class CardHandler extends Handler {
 
             deleteCard(listId, cardId)
                 .then(() => {
+                    const list = curCard.closest('.list');
+                    updateCardCount(list);
                     const eventObj = {
                         userID: 1,
                         id: 'auddn6676',
                         eventTypeID: eventTypeID.removeCard,
                         card: getCardText(curCard),
-                        list: getListText(curCard.closest('.list')),
+                        list: getListText(list),
                         typeName: eventType.removeCard,
                     };
                     addEventToMenu(eventObj);

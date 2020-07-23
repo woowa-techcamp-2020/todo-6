@@ -2,7 +2,7 @@ import { postAddCard, putUpdateOrder } from '../apis';
 import { newCardArea } from '../components/newCardArea';
 import { newCard } from '../components/card';
 import {
-    addEventToMenu, eventType, eventTypeID, getListOrdersObj,
+    addEventToMenu, eventType, eventTypeID, getListOrdersObj, updateCardCount,
 } from '../utils/handleElement';
 // 카드 인풋레이어에 입력시 Add 버튼 활성화
 export const writeTextArea = (e) => {
@@ -31,6 +31,7 @@ export const cardAddBtnClickHandler = (e) => {
         } else {
             cardsWrap.insertBefore(card, cardsWrap.firstChild.nextSibling);
         }
+        updateCardCount(list);
         cardsWrap.firstChild.firstChild.value = '';
         e.target.setAttribute('disabled', 'true');
         putUpdateOrder(getListOrdersObj(listID));
