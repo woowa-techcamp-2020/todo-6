@@ -4,10 +4,11 @@ import '../scss/cardModal.scss';
 import '../scss/listModal.scss';
 import '../scss/menu.scss';
 import './controller/menuEvents';
-import { initPage, putUpdateList } from './apis';
+import { initPage, putUpdateList, postAddList } from './apis';
 import { assignElements, elements } from './utils/states';
 import CardHandler from './controller/cardHandler';
 import { initEvents } from './initEvents';
+import { newList } from './components/newList';
 
 // card nodes
 const cardModalSection = document.getElementById('card-modal-section');
@@ -22,6 +23,7 @@ const listModalCloseBtn = document.querySelector('.list-modal-close-btn');
 const listModalUpdateBtn = document.querySelector('.list-modal-update-btn');
 const listModalInput = document.querySelector('.list-modal-input');
 const listDeleteBtn = document.querySelector('.list-delete-btn');
+const listsWrap = document.querySelector('.lists-wrap');
 
 // card events
 cardModalCloseBtn.addEventListener('click', () => {
@@ -59,7 +61,11 @@ listModalUpdateBtn.addEventListener('click', () => {
 
 const addList = document.querySelector('.add-list-btn');
 addList.addEventListener('click', () => {
-
+    const listName = prompt('새 리스트의 이름을 입력해 주세요');
+    postAddList({ userID: 1, listName }).then((res) => {
+        // console.log(newList(res));
+        listsWrap.insertBefore(newList(res), addList);
+    });
 });
 
 initPage();

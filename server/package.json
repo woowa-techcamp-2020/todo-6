@@ -27,7 +27,6 @@
     "@shared": "dist/shared",
     "@server": "dist/Server",
     "@dist": "dist/type"
-
   },
   "dependencies": {
     "command-line-args": "^5.1.1",
