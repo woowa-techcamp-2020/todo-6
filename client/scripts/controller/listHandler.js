@@ -46,11 +46,12 @@ class ListHandler extends Handler {
     clickDeleteList(e) {
         const list = e.target.closest('.list');
         const listWrap = list.parentNode;
-        deleteList(list.getAttribute('data-listid')).then(() => {
-            alert('리스트를 삭제하시겠습니까 ?');
-            listWrap.removeChild(list);
-            console.log('클릭');
-        });
+        const listName = confirm('리스트를 삭제하시겠습니까?');
+        if(listName) {
+            deleteList(list.getAttribute('data-listid')).then(() => {
+                // alert('리스트를 삭제하시겠습니까 ?');
+                listWrap.removeChild(list);
+            })}
     }
 
     // clickCreateListBtn(e) {

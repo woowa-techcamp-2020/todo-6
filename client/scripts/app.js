@@ -9,6 +9,7 @@ import { assignElements, elements } from './utils/states';
 import CardHandler from './controller/cardHandler';
 import { initEvents } from './initEvents';
 import { newList } from './components/newList';
+// import { showAddListModal } from '../scripts/controller/listModalHandler';
 
 // card nodes
 const cardModalSection = document.getElementById('card-modal-section');
@@ -19,11 +20,16 @@ const cardModalInput = document.querySelector('.card-modal-input');
 
 // list nodes
 const listModalSection = document.getElementById('list-modal-section');
+const listModalAddSection = document.getElementById('list-modal-add-section');
 const listModalCloseBtn = document.querySelector('.list-modal-close-btn');
+const listAddModalCloseBtn = document.querySelector('.list-add-modal-close-btn');
 const listModalUpdateBtn = document.querySelector('.list-modal-update-btn');
+const listModalSaveBtn = document.querySelector('.list-modal-save-btn');
 const listModalInput = document.querySelector('.list-modal-input');
-const listDeleteBtn = document.querySelector('.list-delete-btn');
+const listModalAddInput = document.querySelector('.list-modal-add-input');
 const listsWrap = document.querySelector('.lists-wrap');
+const addList = document.querySelector('.add-list-btn');
+// const listModalSaveBtn = document.querySelector('.list-modal-update-btn');
 
 // card events
 cardModalCloseBtn.addEventListener('click', () => {
@@ -47,26 +53,37 @@ listModalCloseBtn.addEventListener('click', () => {
     listModalSection.style.display = 'none';
 });
 
+listAddModalCloseBtn.addEventListener('click', () => {
+    listModalAddSection.style.display = 'none';
+});
+
 listModalUpdateBtn.addEventListener('click', () => {
     const listID = elements.list.getAttribute('data-listid');
     const listName = listModalInput.value;
     // console.log(listName);
     putUpdateList({ listID, listName })
         .then(() => {
-            elements.list.querySelector('.list-title').value = listName;
+            elements.list.querySelector('.list-title').textContent = listName;
             listModalSection.style.display = 'none';
-            // 업뎃이 화면에 바로 반영이 아직 안된다.
         });
 });
 
-const addList = document.querySelector('.add-list-btn');
 addList.addEventListener('click', () => {
-    const listName = prompt('새 리스트의 이름을 입력해 주세요');
-    postAddList({ userID: 1, listName }).then((res) => {
+    // const listModalAddSection = document.getElementById('list-modal-add-section');
+    listModalAddSection.style.display = 'block';
+    // const listName = prompt('새 리스트의 이름을 입력해 주세요');
+});
+
+listModalSaveBtn.addEventListener('click', () => {
+    console.log(listModalAddInput.value)
+    postAddList({ userID: 1, listName:listModalAddInput.value }).then((res) => {
         // console.log(newList(res));
         listsWrap.insertBefore(newList(res), addList);
+        listModalAddInput.value = '';
+        listModalAddSection.style.display = 'none';
+
     });
-});
+})
 
 initPage();
 initEvents();

@@ -52,30 +52,32 @@ class CardHandler extends Handler {
         let cardId;
         let listId;
         if (event.target.className === 'card-del-btn') {
-            alert('카드를 삭제하시겠습니까?');
-            const curCard = event.target.closest('.card');
-            cardId = curCard.getAttribute('data-cardid');
-            listId = curCard.getAttribute('data-listid');
-            // console.log(cardId, listId);
+            const deleteAlert = confirm('카드를 삭제하시겠습니까?');
+            if (deleteAlert) {
+                const curCard = event.target.closest('.card');
+                cardId = curCard.getAttribute('data-cardid');
+                listId = curCard.getAttribute('data-listid');
+                // console.log(cardId, listId);
 
-            deleteCard(listId, cardId)
-                .then(() => {
-                    const list = curCard.closest('.list');
-                    updateCardCount(list);
-                    const eventObj = {
-                        userID: 1,
-                        id: 'auddn6676',
-                        eventTypeID: eventTypeID.removeCard,
-                        card: getCardText(curCard),
-                        list: getListText(list),
-                        typeName: eventType.removeCard,
-                    };
-                    addEventToMenu(eventObj);
-                })
-                .then(() => {
-                    curCard.parentNode.removeChild(curCard);
-                    putUpdateOrder(getListOrdersObj(listId));
-                });
+                deleteCard(listId, cardId)
+                  .then(() => {
+                      const list = curCard.closest('.list');
+                      updateCardCount(list);
+                      const eventObj = {
+                          userID: 1,
+                          id: 'auddn6676',
+                          eventTypeID: eventTypeID.removeCard,
+                          card: getCardText(curCard),
+                          list: getListText(list),
+                          typeName: eventType.removeCard,
+                      };
+                      addEventToMenu(eventObj);
+                  })
+                  .then(() => {
+                      curCard.parentNode.removeChild(curCard);
+                      putUpdateOrder(getListOrdersObj(listId));
+                  });
+            }
         }
     }
 

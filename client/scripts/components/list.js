@@ -34,3 +34,22 @@ export const initList = (data) => {
     const addList = document.querySelector('.add-list-btn');
     listsWrap.insertBefore(list, addList);
 };
+
+// export const addList = div({
+//       className: 'list',
+//       dataset: { listid: userData.listID, type: 'list' },
+//       onmousedown: listHandler.onMouseDown,
+//       onmouseover: listHandler.onMouseOver,
+//       onclick: cardHandler.clickCardDelBtn,
+//   },
+//   div({ className: 'list-header-section' },
+//     div({ className: 'list-header-left-wrap' },
+//       div({ className: 'cards-count' }, userData.cards.length),
+//       div({ className: 'list-title', ondblclick: showListModalHandler }, userData.listName)),
+//     div({ className: 'list-header-right-wrap' },
+//       button({ className: 'add-card-btn', onclick: createCardBtnHandler }, '✎'),
+//       button({ className: 'list-delete-btn', onclick: listHandler.clickDeleteList }, '✘'))),
+//   div({ className: 'list-body-section' },
+//     div(
+//       { className: 'cards-wrap', dataset: { wrapid: userData.listID } }, initCard(userData),
+//     )));
