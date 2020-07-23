@@ -34,5 +34,3 @@ export const initList = (data) => {
     const addList = document.querySelector('.add-list-btn');
     listsWrap.insertBefore(list, addList);
 };
-
-export default initList;

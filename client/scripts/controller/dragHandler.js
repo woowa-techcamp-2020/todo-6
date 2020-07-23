@@ -1,7 +1,7 @@
 import {
     addEventToMenu, eventType, eventTypeID, getListOrdersObj, setElementPos,
 } from '../utils/handleElement';
-import { elements } from '../utils/createdElements';
+import { elements } from '../utils/states';
 import { putUpdateOrder } from '../apis';
 
 export function elementToDraggable(element, x, y) {

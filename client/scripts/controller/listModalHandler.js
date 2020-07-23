@@ -1,4 +1,4 @@
-import { elements } from '../utils/createdElements';
+import { elements } from '../utils/states';
 
 export const showListModalHandler = (e) => {
     elements.list = e.target.closest('.list');

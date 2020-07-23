@@ -1,6 +1,6 @@
 import { elementToDraggable } from './dragHandler';
 import { getListOrdersObj, setElementPos, setElementSize } from '../utils/handleElement';
-import { elements } from '../utils/createdElements';
+import { elements } from '../utils/states';
 import Handler from './handler';
 import { deleteList, putUpdateCard, putUpdateOrder } from '../apis';
 
@@ -59,6 +59,7 @@ class ListHandler extends Handler {
         deleteList(list.getAttribute('data-listid')).then(() => {
             alert('리스트를 삭제하시겠습니까 ?');
             listWrap.removeChild(list);
+            console.log('클릭');
         });
     }
 
