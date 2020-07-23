@@ -25,10 +25,11 @@ div({ className: 'list-body-section' },
         { className: 'cards-wrap', dataset: { wrapid: userData.listID } }, initCard(userData),
     )));
 
-export const newListModal = () => div(
-    { className: 'new-list-modal-section' }, div(
-        { className: 'new-list-modal-layer' }, div(
+// export const newListModal = () => div(
+//     { className: 'new-list-modal-section' }, div(
+//         { className: 'new-list-modal-layer' }, div(
+//
+//         ),
+//     ),
+// );
 
-        ),
-    ),
-);
