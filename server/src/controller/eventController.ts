@@ -27,8 +27,9 @@ const eventController:IEventController = {
             ...(list === undefined ? null : { list }),
             ...(beforeList === undefined ? null : { beforeList }),
         };
-        event.logID = await eventDao.add(event);
-        return res.status(CREATED).json({ ...event });
+        const resEvent = await eventDao.add(event) as IEvent;
+        console.log(resEvent);
+        return res.status(CREATED).json({ ...resEvent });
     },
     getAll: async (req: Request, res: Response) => {
         logger.info('GET: apis/users/:userID/events');
