@@ -1,6 +1,6 @@
 import { div } from './element';
 import { userEvent } from '../components/userEvent';
-import { postEvent } from '../apis';
+import { postEvent, putUpdateOrder } from '../apis';
 
 /**
  * reference: https://medium.com/hackernoon/how-i-converted-my-react-app-to-vanillajs-and-whether-or-not-it-was-a-terrible-idea-4b14b1b2faff
@@ -210,6 +210,16 @@ export const addEventToMenu = (event) => {
                 eventWrap.appendChild(userEvent(event));
             }
         });
+};
+
+/**
+ *
+ * @param{HTMLElement[]} lists
+ */
+export const updateCardsOrder = (...lists) => {
+    lists.forEach((list) => {
+        putUpdateOrder(getListOrdersObj(list.dataset.listid));
+    });
 };
 
 export const getCardText = (card) => card.querySelector('.card-title').textContent;

@@ -5,7 +5,7 @@ import '../scss/listModal.scss';
 import '../scss/menu.scss';
 import './controller/menuEvents';
 import { initPage, putUpdateList } from './apis';
-import { assignElements, elements } from './utils/createdElements';
+import { assignElements, elements } from './utils/states';
 import CardHandler from './controller/cardHandler';
 import { initEvents } from './initEvents';
 
