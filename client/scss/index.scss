@@ -1,6 +1,7 @@
 .main-page {
   .header-section {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
@@ -8,24 +9,40 @@
     font-size: 20px;
     background-color: #2ecfcc;
     color: white;
+.main-page-header-left-section {
+  display: flex;
+  flex-direction: column;
+  .todo-logo-title {
+    font-weight: 600;
+    font-size: 30px;
+  }
+  .todo-logo-subtitle {
+    font-size: 15px;
+  }
+}
 
-    .todo-logo {
-      font-weight: 600;
-      font-size: 30px;
-    }
-
-    .baemin-img {
-
-    }
-
-    .menu-btn {
-      font-weight: 600;
-      font-size: 30px;
-      &:hover {
-        color: gray;
-        cursor: pointer;
+    .main-page-header-right-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .icon-wrap {
+        display: flex;
+        flex-direction: row;
+        margin-right: 10px;
+        justify-content: space-between;
+        width: 160px;
+      }
+      .menu-btn {
+        font-weight: 600;
+        font-size: 30px;
+        &:hover {
+          color: gray;
+          cursor: pointer;
+        }
       }
     }
+
+
   }
 
   .body-section {

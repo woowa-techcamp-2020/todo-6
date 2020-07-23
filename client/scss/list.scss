@@ -16,7 +16,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 15px 15px 0px 15px;
-    height: 25px;
+    height: 45px;
 
     .list-header-left-wrap {
       display: flex;
@@ -25,8 +25,12 @@
 
       .cards-count {
         margin: 10px;
+        color:white;
         font-weight: 600;
         font-size: 15px;
+        background-color: black;
+        padding: 5px 9px;
+        border-radius: 50px;
 
       }
 

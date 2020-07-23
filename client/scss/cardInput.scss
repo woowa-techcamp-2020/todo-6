@@ -16,16 +16,18 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 5px;
+    height: 30px;
 
     .add-btn {
       flex-grow: 1;
       margin-right: 5px;
-      background-color: #68b568;
+      background-color: #78dbeb;
       color: white;
       border-radius: 3px;
       padding: 5px;
+      font-size: 15px;
       &:hover {
-        color: gray;
+        background-color: #57a1e1;
         cursor: pointer;
       }
       &:disabled{
@@ -40,6 +42,8 @@
       color: black;
       border-radius: 3px;
       padding: 5px;
+      font-size: 15px;
+
       &:hover {
         color: gray;
         cursor: pointer;

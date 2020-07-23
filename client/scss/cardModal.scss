@@ -17,7 +17,7 @@
     height: 350px;
     margin: 10% auto;
     //padding: 20px;
-    border: 1px solid gray;
+    //border: 1px solid gray;
     border-radius: 5px;
 
     .card-modal-header-section {
@@ -29,7 +29,8 @@
       justify-content: space-between;
       padding: 15px;
       line-height: 2;
-      background-color: lightgray;
+      background-color: #2ecfcc;
+      border-radius: 10px 10px 0px 0px;
 
       .card-modal-header-title {
         font-weight: 600;
@@ -39,7 +40,8 @@
       .card-modal-close-btn {
         font-size: 20px;
         &:hover {
-          color:grey;
+          color: gray;
+          cursor: pointer;
         }
       }
     }
@@ -50,6 +52,8 @@
       flex-direction: column;
       height: 90%;
       padding: 15px;
+      border-radius: 0px 0px 10px 10px;
+
       .card-modal-body-title {
         font-weight: 600;
         margin-bottom: 10px;
@@ -69,14 +73,14 @@
       .card-modal-save-btn {
         width: 100px;
         padding: 7px;
-        border: 1px solid #17b523;
         border-radius: 5px;
         font-weight: 600;
-        background-color: #17b523;
         color: white;
         font-size: 15px;
+        background-color: #cacaca;
+
         &:hover {
-          color: #dfdfdf;
+          background-color: gray;
           cursor: pointer;
         }
 
