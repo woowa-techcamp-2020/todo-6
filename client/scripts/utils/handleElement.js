@@ -1,10 +1,18 @@
+import { div } from './element';
+import { userEvent } from '../components/userEvent';
+import { postEvent } from '../apis';
+
 /**
  * reference: https://medium.com/hackernoon/how-i-converted-my-react-app-to-vanillajs-and-whether-or-not-it-was-a-terrible-idea-4b14b1b2faff
  */
-
+export const htmlTagRegex = /<\/?[a-z][\s\S]*>/i;
 export function appendText(element, text) {
-    const textNode = document.createTextNode(text);
-    element.appendChild(textNode);
+    if (htmlTagRegex.test(text)) {
+        element.innerHTML = text;
+    } else {
+        const textNode = document.createTextNode(text);
+        element.appendChild(textNode);
+    }
 }
 
 export function appendArray(element, children) {
@@ -110,7 +118,6 @@ export const getListOrdersObj = (listID) => {
     const orders = [];
     const wrap = document.querySelector(`[data-wrapid='${listID}']`);
     const cards = wrap.querySelectorAll('.card');
-    console.log(cards);
     cards.forEach((card) => {
         orders.push(card.dataset.cardid);
     });
@@ -119,6 +126,95 @@ export const getListOrdersObj = (listID) => {
         orders: `[${orders}]`,
     };
 };
+
+/**
+ '1','move_list'
+ '2','move_card'
+ '3','update_list'
+ '4','update_card'
+ '5','remove_list'
+ '6','remove_card'
+ '7','add_list'
+ '8','add_card'
+ */
+export const eventTypeID = {
+    moveList: 1,
+    moveCard: 2,
+    updateList: 3,
+    updateCard: 4,
+    removeList: 5,
+    removeCard: 6,
+    addList: 7,
+    addCard: 8,
+};
+
+export const eventType = {
+    moveList: 'move_list',
+    moveCard: 'move_card',
+    updateList: 'update_list',
+    updateCard: 'update_card',
+    removeList: 'remove_list',
+    removeCard: 'remove_card',
+    addList: 'add_list',
+    addCard: 'add_card',
+};
+
+// 1. moved the column 리스트 이름
+// 2. moved 카드 이름 from 이전 리스트 to 현재 리스트
+// 3. updated 리스트 이름
+// 4. updated 카드이름
+// 5. added 리스트 이름
+// 6. added 카드 이름 to 리스트 이름
+// 7. removed 리스트 이름
+// 8. removed 카드 이름 from 리스트 이름
+export const getEventText = (event) => {
+    let text = `<span>@${event.id}</span> `;
+    switch (event.typeName) {
+    case eventType.moveList:
+        break;
+    case eventType.moveCard:
+        text += `moved <span>${event.card}</span> from ${event.beforeList} to ${event.list}`;
+        break;
+    case eventType.updateList:
+        text += `updated ${event.list}`;
+        break;
+    case eventType.updateCard:
+        text += `updated <span>${event.card}</span>`;
+        break;
+    case eventType.addList:
+        text += `added ${event.list}`;
+        break;
+    case eventType.addCard:
+        text += `added <span>${event.card}</span> to ${event.list}`;
+        break;
+    case eventType.removeList:
+        text += `removed ${event.list}`;
+        break;
+    case eventType.removeCard:
+        text += `removed <span>${event.card}</span> from ${event.list}`;
+        break;
+    default:
+        break;
+    }
+    return text;
+};
+
+export const addEventToMenu = (event) => {
+    console.log(event);
+    postEvent(event)
+        .then((res) => {
+            const eventWrap = document.querySelector('.user-record-wrap');
+            if (eventWrap.hasChildNodes()) {
+                eventWrap.insertBefore(userEvent(event), eventWrap.firstElementChild);
+            } else {
+                eventWrap.appendChild(userEvent(event));
+            }
+        });
+};
+
+export const getCardText = (card) => card.querySelector('.card-title').textContent;
+
+export const getListText = (list) => list.querySelector('.list-title').textContent;
 
 /**
  *

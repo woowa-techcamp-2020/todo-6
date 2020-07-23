@@ -8,6 +8,19 @@ export const initPage = () => fetch('/api/users/1')
         });
     });
 
+export const getEvents = () => fetch('/api/users/1/events')
+    .then((response) => response.json())
+    .catch((error) => console.error('Error:', error));
+
+export const postEvent = (event) => fetch('/api/users/1/events', {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(event), // data can be `string` or {object}!
+    headers: { 'Content-Type': 'application/json' },
+})
+    .then((response) => response.json())
+    // .then((json) => json)
+    .catch((error) => console.error('Error:', error));
+
 export const putUpdateOrder = (list) => fetch(`/api/users/:userID/lists/${list.listID}/orders`,
     {
         method: 'PUT',

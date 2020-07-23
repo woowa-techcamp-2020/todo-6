@@ -1,4 +1,6 @@
-import { getListOrdersObj, setElementPos } from '../utils/handleElement';
+import {
+    addEventToMenu, eventType, eventTypeID, getListOrdersObj, setElementPos,
+} from '../utils/handleElement';
 import { elements } from '../utils/createdElements';
 import { putUpdateOrder } from '../apis';
 
@@ -10,6 +12,8 @@ export function elementToDraggable(element, x, y) {
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
+
+    elements.hoverParentCard.classList.add('under-hover-card');
 
     function elementDrag(event) {
         event.preventDefault();
@@ -27,6 +31,7 @@ export function elementToDraggable(element, x, y) {
     function removeHoverInfoInElements() {
         elements.hoverCard = null;
         elements.constructor = null;
+        elements.hoverParentCard.classList.remove('under-hover-card');
     }
 
     function closeDragElement() {

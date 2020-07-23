@@ -8,6 +8,7 @@ import logger from '@shared/Logger';
 import listRouter from './List';
 import envOptions from '../LoadEnv';
 import userController from '../controller/userController';
+import eventRouter from './Event';
 
 // Init shared
 const userRouter = Router();
@@ -20,6 +21,7 @@ if(envOptions.db === 'mock') {
     userDao = new UserDao();
 }
 
+userRouter.use('/:userId/events', eventRouter);
 userRouter.use('/:userId/lists', listRouter);
 /** ****************************************************************************
  *                    Get - "GET /api/users/:id"
