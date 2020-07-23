@@ -61,24 +61,23 @@ class CardHandler extends Handler {
                 const list = curCard.closest('.list');
 
                 deleteCard(listId, cardId)
-                  .then(() => {                    
-                      const eventObj = {
-                          userID: 1,
-                          id: 'auddn6676',
-                          eventTypeID: eventTypeID.removeCard,
-                          card: getCardText(curCard),
-                          list: getListText(list),
-                          typeName: eventType.removeCard,
-                      };
-                      addEventToMenu(eventObj);
-                  })
-                  .then(() => {
-                      curCard.parentNode.removeChild(curCard);
-                      putUpdateOrder(getListOrdersObj(listId));
-                      updateCardCount(list);
-                  });
+                    .then(() => {
+                        const eventObj = {
+                            userID: 1,
+                            id: 'auddn6676',
+                            eventTypeID: eventTypeID.removeCard,
+                            card: getCardText(curCard),
+                            list: getListText(list),
+                            typeName: eventType.removeCard,
+                        };
+                        addEventToMenu(eventObj);
+                    })
+                    .then(() => {
+                        curCard.parentNode.removeChild(curCard);
+                        putUpdateOrder(getListOrdersObj(listId));
+                        updateCardCount(list);
+                    });
             }
-
         }
     }
 
