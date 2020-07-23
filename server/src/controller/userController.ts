@@ -1,4 +1,3 @@
-import { IUser } from '@entities/User';
 import { Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 import { OK } from 'http-status-codes';

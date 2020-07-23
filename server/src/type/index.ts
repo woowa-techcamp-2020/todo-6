@@ -6,6 +6,13 @@ export interface ICard {
     updated?: Date
 }
 
+export interface IUser {
+    userID?: number;
+    name?: string;
+    id?: string;
+    password?: string;
+}
+
 export interface IList {
     userID?: number,
     listID?: number,
@@ -26,6 +33,10 @@ export interface IEvent {
     created?: Date,
 }
 export interface IInitData{
+    info?: {
+        usreID?: number,
+        id?: string
+    },
     data: [IList?]
 }
 

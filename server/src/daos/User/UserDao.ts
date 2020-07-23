@@ -1,6 +1,7 @@
-import User, { IUser } from '@entities/User';
 import { packetToJson } from '@daos/util';
-import { IInitData, IList, ICard } from '@type';
+import {
+    IInitData, IList, ICard, IUser, 
+} from '@type';
 import pool from '../db';
 import { userQuery } from '../query';
 
@@ -10,6 +11,7 @@ export interface IUserDao {
     add: (user: IUser) => Promise<void>;
     update: (user: IUser) => Promise<void>;
     delete: (id: number) => Promise<void>;
+    getUser: (id: string | string) => Promise<any []>;
 }
 
 interface IData {
@@ -22,6 +24,23 @@ interface IData {
 }
 
 class UserDao implements IUserDao {
+    /**
+     *
+     */
+    public async getUser(id: string | number): Promise<any []> {
+        let res;
+        if(typeof id === 'number') {
+            const [rowPacket] = await pool.query(userQuery.getUserID(id));
+            res = packetToJson(rowPacket) as any[];
+        }else{
+            const [rowPacket] = await pool.query(userQuery.getUser(id));
+            res = packetToJson(rowPacket) as any[];
+        }
+
+        return res as any [];
+    }
+
+
     private addDataToLists = (lists: {[key:number]: IList}, {
         listID, listName, cardID, cardText, created, orders,
     }: IData) => {
@@ -71,14 +90,17 @@ class UserDao implements IUserDao {
         });
 
 
+
         return initData;
     }
 
     public async get(id: number): Promise<IInitData> {
         const [rowPacket] = await pool.query(userQuery.getUserData(id));
         const res = packetToJson(rowPacket) as any[];
-
-        return this.toInitDataFormat(res);
+        const user = this.getUser(id);
+        console.log(user);
+        const initData:IInitData = this.toInitDataFormat(res);
+        return initData;
     }
 
     /**

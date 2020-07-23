@@ -1,8 +1,10 @@
-import { IUser } from '@entities/User';
 import { getRandomInt } from '@shared/functions';
-import { IInitData } from '@type';
-import { MockDaoMock } from '../MockDb/MockDao.mock';
+import { IInitData, IUser } from '@type';
+import pool from '@daos/db';
+import { userQuery } from '@daos/query';
+import { packetToJson } from '@daos/util';
 import { IUserDao } from './UserDao';
+import { MockDaoMock } from '../MockDb/MockDao.mock';
 
 
 class UserDao extends MockDaoMock implements IUserDao {
@@ -25,6 +27,13 @@ class UserDao extends MockDaoMock implements IUserDao {
         }
     }
 
+    public async getUser(id: string): Promise<any []> {
+        const [rowPacket] = await pool.query(userQuery.getUser(id));
+        const res = packetToJson(rowPacket) as any[];
+        console.log(res);
+
+        return [] as any [];
+    }
 
     public async add(user: any): Promise<void> {
         try {

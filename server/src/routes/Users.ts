@@ -52,6 +52,7 @@ userRouter.post('', async (req: Request, res: Response) => {
     // }
 
     await userDao.add(cardText);
+
     return res.status(CREATED).end();
 });
 
