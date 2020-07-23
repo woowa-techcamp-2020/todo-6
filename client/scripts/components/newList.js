@@ -2,9 +2,10 @@ import { button, div } from '../utils/element';
 import { showListModalHandler } from '../controller/listModalHandler';
 import { createCardBtnHandler } from '../controller/createCardHandler';
 import { initCard } from './card';
-import listHandler from '../controller/listHandler';
+import ListHandler from '../controller/listHandler';
 import cardHandler from '../controller/cardHandler';
 
+const listHandler = new ListHandler();
 export const newList = (userData) => div({
     className: 'list',
     dataset: { listid: userData.listID, type: 'list' },
@@ -23,3 +24,11 @@ div({ className: 'list-body-section' },
     div(
         { className: 'cards-wrap', dataset: { wrapid: userData.listID } }, initCard(userData),
     )));
+
+export const newListModal = () => div(
+    { className: 'new-list-modal-section' }, div(
+        { className: 'new-list-modal-layer' }, div(
+
+        ),
+    ),
+);
