@@ -1,4 +1,6 @@
-import { ICard, IEvent, IList } from '@type';
+import {
+    ICard, IEvent, IList, IUser, 
+} from '@type';
 import { getSqlTime, valueToString } from './util';
 
 const query: {
@@ -23,7 +25,11 @@ const idCheck = (name: string, id:number | undefined): string => {
 
 
 export const userQuery: {
-    getUserData: (id:number) => string
+    getUserData: (id:number) => string,
+    getUser: (id:string) => string,
+    getUserID: (id:number) => string,
+    add: (event: IUser) => string,
+
 } = {
     getUserData: (id) => 'select '
         + 'list.listID, listName, user.userID, card.created, card.updated, cardID, cardText, orders '
@@ -31,6 +37,11 @@ export const userQuery: {
             + 'left join user on list.userID = user.userID '
             + 'left join card on card.listID = list.listID '
             + `where user.userID = '${id}'`,
+    getUser: (id) => `select * from user where user.id = '${id}'`,
+    getUserID: (id) => `select * from user where user.userID = '${id}'`,
+    add: (user) => 'insert into '
+        + `user (${Object.keys(user)}, created) `
+        + `values (${`${valueToString(Object.values(user))},'${getSqlTime()}'`});`,
 };
 
 export const eventQuery: {

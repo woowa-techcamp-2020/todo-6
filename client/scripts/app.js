@@ -9,6 +9,7 @@ import { assignElements, elements } from './utils/states';
 import CardHandler from './controller/cardHandler';
 import { initEvents } from './initEvents';
 import { newList } from './components/newList';
+import { getUserID } from './utils/handleCookie';
 import {
     addEventToMenu, eventType, eventTypeID, getCardText, getListText,
 } from './utils/handleElement';
@@ -97,7 +98,8 @@ addList.addEventListener('click', () => {
 
 listModalSaveBtn.addEventListener('click', () => {
     console.log(listModalAddInput.value);
-    postAddList({ userID: 1, listName: listModalAddInput.value }).then((res) => {
+    postAddList({ userID: getUserID(), listName: listModalAddInput.value }).then((res) => {
+
         // console.log(newList(res));
         const list = newList(res);
         listsWrap.insertBefore(list, addList);

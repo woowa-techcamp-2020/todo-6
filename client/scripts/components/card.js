@@ -2,6 +2,7 @@ import { div } from '../utils/element';
 import '../../scss/card.scss';
 import { showCardModalHandler } from '../controller/cardModalHandler';
 import CardHandler from '../controller/cardHandler';
+import { getCookie } from '../utils/handleCookie';
 
 export const cardHandler = new CardHandler();
 
@@ -24,7 +25,9 @@ export const initCard = (userData) => {
     const cardArray = sortedCards.map((card) => div(
         {
             className: 'card',
-            dataset: { listid: listID, cardid: card.cardID, type: 'card' },
+            dataset: {
+                listid: listID, cardid: card.cardID, type: 'card', userid: card.userID,
+            },
             onmousemove: cardHandler.onMouseMove,
         },
         div({ className: 'card-header-section', onmouseover: cardHandler.blockPropagation },
@@ -40,7 +43,9 @@ export const initCard = (userData) => {
 export const newCard = (res) => div(
     {
         className: 'card',
-        dataset: { listid: res.listID, cardid: res.cardID, type: 'card' },
+        dataset: {
+            listid: res.listID, cardid: res.cardID, type: 'card', userid: getCookie('userID'),
+        },
         onmousemove: cardHandler.onMouseMove,
     },
     div({ className: 'card-header-section', onmouseover: cardHandler.blockPropagation },

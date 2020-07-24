@@ -27,7 +27,6 @@ class EventDao implements IEventDao {
 
     public async getAll(): Promise<IEvent []> {
         const [rowData] = await pool.query(eventQuery.getAll());
-        console.log(packetToJson(rowData));
         return packetToJson(rowData) as IEvent [];
     }
 }
