@@ -9,6 +9,9 @@ sessions
 /tmp
 /out-tsc
 
+#remove view
+/server/src/views/*
+
 # Runtime data
 pids
 *.pid

@@ -35,6 +35,7 @@ export const initCard = (userData) => {
                 div({ className: 'card-icon' }, '📄'),
                 div({ className: 'card-title', ondblclick: showCardModalHandler }, `${card.cardText}`)),
             div({ className: 'card-del-btn' }, '✘')),
+      // div({className:'card-body-section'}, '@blair-0404')
     ));
     return cardArray;
 };
