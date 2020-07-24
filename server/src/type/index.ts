@@ -1,5 +1,6 @@
 export interface ICard {
     cardID?: number,
+    userID?: number
     cardText?: string,
     listID?: number,
     created?: Date,

@@ -8,7 +8,10 @@ import {
     isSameCardId, updateCardCount,
 } from '../utils/handleElement';
 import Handler from './handler';
-import { deleteCard, putUpdateCard, putUpdateOrder } from '../apis';
+import {
+    deleteCard, getUser, putUpdateCard, putUpdateOrder,
+} from '../apis';
+import { getID, getUserID } from '../utils/handleCookie';
 
 const isNearTop = (top, bottom, eventY) => Math.abs(top - eventY) < Math.abs(bottom - eventY);
 
@@ -33,7 +36,8 @@ class CardHandler extends Handler {
         const fixCard = event.currentTarget;
 
         const cardSizeAndPos = fixCard.getBoundingClientRect();
-        const limitTop = cardSizeAndPos.top + 15;
+        const padding = 15;
+        const limitTop = cardSizeAndPos.top + padding;
         const limitBottom = cardSizeAndPos.bottom;
         if (elements.hoverCard && !isSameCardId(fixCard, hoverCard)) {
             const eventY = event.clientY;
@@ -61,24 +65,23 @@ class CardHandler extends Handler {
                 const list = curCard.closest('.list');
 
                 deleteCard(listId, cardId)
-                  .then(() => {                    
-                      const eventObj = {
-                          userID: 1,
-                          id: 'auddn6676',
-                          eventTypeID: eventTypeID.removeCard,
-                          card: getCardText(curCard),
-                          list: getListText(list),
-                          typeName: eventType.removeCard,
-                      };
-                      addEventToMenu(eventObj);
-                  })
-                  .then(() => {
-                      curCard.parentNode.removeChild(curCard);
-                      putUpdateOrder(getListOrdersObj(listId));
-                      updateCardCount(list);
-                  });
+                    .then(() => {
+                        const eventObj = {
+                            userID: getUserID(),
+                            id: getID(),
+                            eventTypeID: eventTypeID.removeCard,
+                            card: getCardText(curCard),
+                            list: getListText(list),
+                            typeName: eventType.removeCard,
+                        };
+                        addEventToMenu(eventObj);
+                    })
+                    .then(() => {
+                        curCard.parentNode.removeChild(curCard);
+                        putUpdateOrder(getListOrdersObj(listId));
+                        updateCardCount(list);
+                    });
             }
-
         }
     }
 

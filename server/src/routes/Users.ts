@@ -1,7 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { BAD_REQUEST, CREATED, OK } from 'http-status-codes';
 import { ParamsDictionary } from 'express-serve-static-core';
-import UserDaoTest from '@daos/User/UserDao.mock';
 import UserDao from '@daos/User/UserDao';
 import { paramMissingError } from '@shared/constants';
 import logger from '@shared/Logger';
@@ -13,13 +12,9 @@ import eventRouter from './Event';
 // Init shared
 const userRouter = Router();
 
-let userDao:UserDao | UserDaoTest;
+const userDao:UserDao = new UserDao();
 
-if(envOptions.db === 'mock') {
-    userDao = new UserDaoTest();
-}else{
-    userDao = new UserDao();
-}
+
 
 userRouter.use('/:userId/events', eventRouter);
 userRouter.use('/:userId/lists', listRouter);
@@ -43,18 +38,7 @@ userRouter.get('/all', async (req: Request, res: Response) => {
  *                       Add One - "POST /api/users"
  ***************************************************************************** */
 
-userRouter.post('', async (req: Request, res: Response) => {
-    const cardText = req.body;
-    // if (!user) {
-    //     return res.status(BAD_REQUEST).json({
-    //         error: paramMissingError,
-    //     });
-    // }
-
-    await userDao.add(cardText);
-
-    return res.status(CREATED).end();
-});
+userRouter.post('', userController.add);
 
 
 /** ****************************************************************************

@@ -9,6 +9,7 @@ import { assignElements, elements } from './utils/states';
 import CardHandler from './controller/cardHandler';
 import { initEvents } from './initEvents';
 import { newList } from './components/newList';
+import { getUserID } from './utils/handleCookie';
 // import { showAddListModal } from '../scripts/controller/listModalHandler';
 
 // card nodes
@@ -75,15 +76,14 @@ addList.addEventListener('click', () => {
 });
 
 listModalSaveBtn.addEventListener('click', () => {
-    console.log(listModalAddInput.value)
-    postAddList({ userID: 1, listName:listModalAddInput.value }).then((res) => {
+    console.log(listModalAddInput.value);
+    postAddList({ userID: getUserID(), listName: listModalAddInput.value }).then((res) => {
         // console.log(newList(res));
         listsWrap.insertBefore(newList(res), addList);
         listModalAddInput.value = '';
         listModalAddSection.style.display = 'none';
-
     });
-})
+});
 
 initPage();
 initEvents();

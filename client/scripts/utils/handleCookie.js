@@ -13,3 +13,6 @@ export function getCookie(cname) {
     }
     return '';
 }
+
+export const getUserID = () => parseInt(getCookie('userID'));
+export const getID = () => getCookie('id');

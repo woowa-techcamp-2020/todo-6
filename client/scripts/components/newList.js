@@ -4,11 +4,12 @@ import { createCardBtnHandler } from '../controller/createCardHandler';
 import { initCard } from './card';
 import ListHandler from '../controller/listHandler';
 import cardHandler from '../controller/cardHandler';
+import { getCookie } from '../utils/handleCookie';
 
 const listHandler = new ListHandler();
 export const newList = (userData) => div({
     className: 'list',
-    dataset: { listid: userData.listID, type: 'list' },
+    dataset: { listid: userData.listID, type: 'list', userid: getCookie('userID') },
     onmousedown: listHandler.onMouseDown,
     onmouseover: listHandler.onMouseOver,
     onclick: cardHandler.clickCardDelBtn,
@@ -32,4 +33,3 @@ div({ className: 'list-body-section' },
 //         ),
 //     ),
 // );
-
