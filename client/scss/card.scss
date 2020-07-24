@@ -1,9 +1,9 @@
 .card {
   background-color: white;
-  height: 150px;
+  height: 120px;
   border-radius: 5px;
   margin-bottom: 15px;
-  box-shadow: 5px 5px 5px 0px rgba(171,171,171,1);
+  box-shadow: 5px 5px 5px 0px rgba(171, 171, 171, 1);
 
   .card-header-section {
     display: flex;
@@ -15,14 +15,17 @@
       display: flex;
       flex-direction: row;
       align-items: baseline;
+
       .card-icon {
         margin-right: 10px;
 
       }
+
       .card-title {
         font-size: 20px;
 
       }
+
       &:hover {
         color: gray;
       }
@@ -34,6 +37,12 @@
         cursor: pointer;
       }
     }
+  }
+
+  .card-body-section {
+    padding: 40px 15px 15px 42px;
+    color: #57a1e1;
+    font-size: 15px;
   }
 }
 

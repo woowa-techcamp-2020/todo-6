@@ -11,10 +11,13 @@
     color: white;
 .main-page-header-left-section {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: baseline;
+
   .todo-logo-title {
     font-weight: 600;
     font-size: 30px;
+    margin-right: 5px;
   }
   .todo-logo-subtitle {
     font-size: 15px;

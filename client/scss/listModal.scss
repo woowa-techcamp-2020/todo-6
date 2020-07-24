@@ -84,19 +84,33 @@
         }
       }
 
-      .list-modal-save-btn {
-        width: 150px;
-        padding: 7px;
-        border-radius: 5px;
-        font-weight: 600;
-        background-color: #cacaca;
-        color: white;
-        font-size: 15px;
-        &:hover {
-          background-color: gray;
-          cursor: pointer;
+      .list-modal-option-wrap {
+        .list-modal-save-btn {
+          width: 150px;
+          padding: 7px;
+          border-radius: 5px;
+          font-weight: 600;
+          background-color: #cacaca;
+          color: white;
+          font-size: 15px;
+          margin-right: 10px;
+          &:hover {
+            background-color: gray;
+            cursor: pointer;
+          }
+        }
+
+        .admin {
+          height: 29px;
+          border-radius: 3px;
+          border: 1px solid darkgray;
+          background-color: white;
+          color: #525050;
+          font-weight: 600;
+          padding: 6px;
         }
       }
+
     }
   }
 }
