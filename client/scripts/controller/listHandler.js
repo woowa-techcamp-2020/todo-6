@@ -16,13 +16,14 @@ class ListHandler extends Handler {
         };
 
         const { target } = event;
-        if (target?.dataset?.type === 'card') {
-            const hovcerCard = target.cloneNode(true);
+        const card = target.closest('.card');
+        if (card && card.dataset?.type === 'card') {
+            const hovcerCard = card.cloneNode(true);
             hovcerCard.classList.add('hover-card');
-            elements.hoverParentCard = target;
+            elements.hoverParentCard = card;
             elements.hoverCard = hovcerCard;
             setHoverStyle(hovcerCard);
-            const cardSizeAndPos = target.getBoundingClientRect();
+            const cardSizeAndPos = card.getBoundingClientRect();
             setElementPos(hovcerCard, cardSizeAndPos.top, cardSizeAndPos.left);
             setElementSize(hovcerCard, cardSizeAndPos.width, cardSizeAndPos.height);
 

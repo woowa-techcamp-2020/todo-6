@@ -2,7 +2,7 @@ import { div } from '../utils/element';
 import '../../scss/card.scss';
 import { showCardModalHandler } from '../controller/cardModalHandler';
 import CardHandler from '../controller/cardHandler';
-import { getCookie } from '../utils/handleCookie';
+import { getCookie, getID } from '../utils/handleCookie';
 
 export const cardHandler = new CardHandler();
 
@@ -35,7 +35,7 @@ export const initCard = (userData) => {
                 div({ className: 'card-icon' }, '📄'),
                 div({ className: 'card-title', ondblclick: showCardModalHandler }, `${card.cardText}`)),
             div({ className: 'card-del-btn' }, '✘')),
-      // div({className:'card-body-section'}, '@blair-0404')
+        div({ className: 'card-body-section' }, `@${getID()}`),
     ));
     return cardArray;
 };
@@ -54,4 +54,6 @@ export const newCard = (res) => div(
             div({ className: 'card-icon' }, '📄'),
             div({ className: 'card-title', ondblclick: showCardModalHandler }, `${res.cardText}`)),
         div({ className: 'card-del-btn' }, '✘')),
+    div({ className: 'card-body-section' }, `@${getID()}`),
+
 );
