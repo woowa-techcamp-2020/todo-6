@@ -9,6 +9,9 @@ import { assignElements, elements } from './utils/states';
 import CardHandler from './controller/cardHandler';
 import { initEvents } from './initEvents';
 import { newList } from './components/newList';
+import {
+    addEventToMenu, eventType, eventTypeID, getCardText, getListText,
+} from './utils/handleElement';
 // import { showAddListModal } from '../scripts/controller/listModalHandler';
 
 // card nodes
@@ -44,6 +47,17 @@ cardModalSaveBtn.addEventListener('click', () => {
     const updatedCardObj = { listID, cardID, cardText };
 
     cardHandler.clickCardSaveBtn(updatedCardObj);
+
+    const list = card.closest('.list');
+    addEventToMenu({
+        userID: 1,
+        id: 'auddn6676',
+        eventTypeID: eventTypeID.updateCard,
+        list: getListText(list),
+        card: cardText,
+        typeName: eventType.updateCard,
+    });
+
     cardModalSection.style.display = 'none';
     elements.card = null;
 });
@@ -65,6 +79,13 @@ listModalUpdateBtn.addEventListener('click', () => {
         .then(() => {
             elements.list.querySelector('.list-title').textContent = listName;
             listModalSection.style.display = 'none';
+            addEventToMenu({
+                userID: 1,
+                id: 'auddn6676',
+                eventTypeID: eventTypeID.updateList,
+                list: getListText(elements.list),
+                typeName: eventType.updateList,
+            });
         });
 });
 
@@ -75,15 +96,22 @@ addList.addEventListener('click', () => {
 });
 
 listModalSaveBtn.addEventListener('click', () => {
-    console.log(listModalAddInput.value)
-    postAddList({ userID: 1, listName:listModalAddInput.value }).then((res) => {
+    console.log(listModalAddInput.value);
+    postAddList({ userID: 1, listName: listModalAddInput.value }).then((res) => {
         // console.log(newList(res));
-        listsWrap.insertBefore(newList(res), addList);
+        const list = newList(res);
+        listsWrap.insertBefore(list, addList);
         listModalAddInput.value = '';
         listModalAddSection.style.display = 'none';
-
+        addEventToMenu({
+            userID: 1,
+            id: 'auddn6676',
+            eventTypeID: eventTypeID.addList,
+            list: getListText(list),
+            typeName: eventType.addList,
+        });
     });
-})
+});
 
 initPage();
 initEvents();

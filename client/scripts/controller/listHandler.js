@@ -1,7 +1,7 @@
 import ElementToDraggable from './dragHandler';
 import {
     addEventToMenu, eventType, eventTypeID,
-    getListOrdersObj, setElementPos, setElementSize,
+    getListOrdersObj, getListText, setElementPos, setElementSize,
 } from '../utils/handleElement';
 import { elements } from '../utils/states';
 import Handler from './handler';
@@ -48,11 +48,19 @@ class ListHandler extends Handler {
         const list = e.target.closest('.list');
         const listWrap = list.parentNode;
         const listName = confirm('리스트를 삭제하시겠습니까?');
-        if(listName) {
+        if (listName) {
             deleteList(list.getAttribute('data-listid')).then(() => {
                 // alert('리스트를 삭제하시겠습니까 ?');
                 listWrap.removeChild(list);
-            })}
+                addEventToMenu({
+                    userID: 1,
+                    id: 'auddn6676',
+                    eventTypeID: eventTypeID.removeList,
+                    list: getListText(list),
+                    typeName: eventType.removeList,
+                });
+            });
+        }
     }
 
     // clickCreateListBtn(e) {
