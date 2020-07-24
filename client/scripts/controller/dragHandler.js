@@ -4,6 +4,7 @@ import {
 import { elements } from '../utils/states';
 import { putUpdateCard, putUpdateOrder } from '../apis';
 import changedList from '../utils/changedList';
+import { getID, getUserID } from '../utils/handleCookie';
 
 export default class ElementToDraggable {
     constructor(hoverCard, x, y) {
@@ -48,8 +49,8 @@ export default class ElementToDraggable {
             const befreListTitle = getListText(beforeList);
 
             addEventToMenu({
-                userID: 1,
-                id: 'auddn6676',
+                userID: getUserID(),
+                id: getID(),
                 eventTypeID: eventTypeID.moveCard,
                 card: cardText,
                 list: listTitle,

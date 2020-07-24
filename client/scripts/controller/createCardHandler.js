@@ -4,6 +4,7 @@ import { newCard } from '../components/card';
 import {
     addEventToMenu, eventType, eventTypeID, getListOrdersObj, updateCardCount,
 } from '../utils/handleElement';
+import { getID, getUserID } from '../utils/handleCookie';
 // 카드 인풋레이어에 입력시 Add 버튼 활성화
 export const writeTextArea = (e) => {
     const inputCardContents = e.target.value;
@@ -37,8 +38,8 @@ export const cardAddBtnClickHandler = (e) => {
         putUpdateOrder(getListOrdersObj(listID));
 
         addEventToMenu({
-            userID: 1,
-            id: 'auddn6676',
+            userID: getUserID(),
+            id: getID(),
             eventTypeID: eventTypeID.addCard,
             card: cardText,
             list: list.querySelector('.list-title').textContent,

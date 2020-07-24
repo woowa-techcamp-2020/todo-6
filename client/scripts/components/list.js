@@ -13,7 +13,7 @@ export const initList = (data) => {
     const cardHandler = new CardHandler();
     const list = div({
         className: 'list',
-        dataset: { listid: userData.listID, type: 'list' },
+        dataset: { listid: userData.listID, type: 'list', userid: userData.userID },
         onmousedown: listHandler.onMouseDown,
         onmouseover: listHandler.onMouseOver,
         onclick: cardHandler.clickCardDelBtn,

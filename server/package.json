@@ -29,18 +29,26 @@
     "@dist": "dist/type"
   },
   "dependencies": {
+    "@types/express-session": "^1.17.0",
+    "@types/session-file-store": "^1.2.1",
+    "body-parser": "^1.19.0",
     "command-line-args": "^5.1.1",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
+    "express-session": "^1.17.1",
     "helmet": "^3.23.3",
     "html-webpack-plugin": "^4.3.0",
     "http-status-codes": "^1.4.0",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "sequelize": "^6.3.3",
+    "session-file-store": "^1.4.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {

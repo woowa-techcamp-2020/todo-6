@@ -179,7 +179,7 @@ export const getEventText = (event) => {
         text += `updated ${event.list}`;
         break;
     case eventType.updateCard:
-        text += `updated <span>${event.card}</span>`;
+        text += `updated <span>${event.card}</span> from ${event.list}`;
         break;
     case eventType.addList:
         text += `added ${event.list}`;
