@@ -216,10 +216,8 @@ export const addEventToMenu = (event) => {
 };
 
 export const updateCardCount = (list) => {
-    console.log(list);
     const cardCount = list.querySelector('.cards-count');
     const cardWrap = list.querySelector('.cards-wrap');
-    console.log(cardWrap.querySelectorAll('.card').length);
     cardCount.textContent = cardWrap.querySelectorAll('.card').length;
 };
 

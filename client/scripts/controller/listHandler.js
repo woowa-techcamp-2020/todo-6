@@ -16,7 +16,14 @@ class ListHandler extends Handler {
         };
 
         const { target } = event;
+        const delBtnClassName = 'card-del-btn';
+        const titleClassName = 'card-title';
+
+        if (target.className === delBtnClassName || target.className === titleClassName) return;
+
         const card = target.closest('.card');
+        console.log(target);
+
         if (card && card.dataset?.type === 'card') {
             const hovcerCard = card.cloneNode(true);
             hovcerCard.classList.add('hover-card');
