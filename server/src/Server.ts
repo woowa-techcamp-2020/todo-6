@@ -107,7 +107,9 @@ app.post('/login',
 
 app.get('/logout', (req: any, res: Response) => {
     req.logout();
-    res.redirect('/');
+    req.session.save(() => {
+        res.redirect('/login');
+    });
 });
 
 

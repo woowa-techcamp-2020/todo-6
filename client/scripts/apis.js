@@ -9,6 +9,8 @@ export const initPage = () => fetch(`/api/users/${getUserID()}`)
         });
     });
 
+export const logout = () => fetch('/logout');
+
 export const postUser = (user) => fetch('/api/users', {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(user), // data can be `string` or {object}!

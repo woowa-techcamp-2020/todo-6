@@ -1,5 +1,5 @@
 const menuSection = document.getElementById('menu-section');
-const menuBtn = document.querySelector('.menu-btn');
+const menuBtn = document.querySelector('#menu-btn');
 const menuCloseBtn = document.querySelector('.menu-close-btn');
 
 menuBtn.addEventListener('click', () => {
@@ -8,4 +8,4 @@ menuBtn.addEventListener('click', () => {
 
 menuCloseBtn.addEventListener('click', () => {
     menuSection.style.display = 'none';
-})
+});
