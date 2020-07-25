@@ -231,9 +231,45 @@ export const getCardText = (card) => card.querySelector('.card-title').textConte
 
 export const getListText = (list) => list.querySelector('.list-title').textContent;
 
+export const getType = (element) => element.dataset.type;
+
+export const isListType = (element) => element.dataset.type === 'list';
+
+export const isCardType = (element) => element.dataset.type === 'card';
+
+/**
+ *
+ * @param{HTMLElement} beUpElement
+ * @param{HTMLElement} beDownElement
+ * @param{string} type type is about moved element
+ */
+export const moveElement = (beUpElement, beDownElement, type = 'card') => {
+    try {
+        const cardsWrap = beUpElement.closest(`.${type}s-wrap`);
+        cardsWrap.insertBefore(beUpElement, beDownElement);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const getAllListsOrderObj = () => {
+    const orders = [];
+    const wrap = document.querySelector('.lists-wrap');
+    const lists = wrap.querySelectorAll('.list');
+    lists.forEach((list) => {
+        orders.push(list.dataset.listid);
+    });
+    return {
+        userID: getUserID(),
+        orders: `[${orders}]`,
+    };
+};
+
 /**
  *
  * @param{HTMLElement} left
  * @param{HTMLElement} right
  */
 export const isSameCardId = (left, right) => left?.dataset?.cardid === right?.dataset?.cardid;
+
+export const isSameListId = (left, right) => left?.dataset?.listid === right?.dataset?.listid;

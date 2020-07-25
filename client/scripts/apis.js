@@ -4,8 +4,16 @@ import { getUserID } from './utils/handleCookie';
 export const initPage = () => fetch(`/api/users/${getUserID()}`)
     .then((res) => res.json())
     .then((res) => {
-        res.userData.data.forEach((data) => {
-            initList(data);
+        const { orders } = res.userData.info;
+        const lists = {};
+        res.userData.data.forEach((list) => {
+            lists[list.listID] = initList(list);
+        });
+
+        const listsWrap = document.querySelector('.lists-wrap');
+        const addList = document.querySelector('.add-list-btn');
+        orders.forEach((listID) => {
+            listsWrap.insertBefore(lists[listID], addList);
         });
     });
 
@@ -22,6 +30,16 @@ export const postUser = (user) => fetch('/api/users', {
 
 export const getUser = (id) => fetch(`/api/users/${id}`)
     .then((res) => res.json());
+
+export const updateUserOrder = (user) => fetch(`/api/users/${user.userID}/orders`,
+    {
+        method: 'PUT',
+        body: JSON.stringify(user),
+        headers: { 'Content-Type': 'application/json' },
+    })
+    .then((response) => response.json())
+    .catch((error) => console.error('Error:', error));
+
 export const getEvents = () => fetch('/api/users/1/events')
     .then((response) => response.json())
     .catch((error) => console.error('Error:', error));

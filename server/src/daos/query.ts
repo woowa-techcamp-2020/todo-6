@@ -29,11 +29,12 @@ export const userQuery: {
     getUser: (id:string) => string,
     getUserID: (id:number) => string,
     add: (event: IUser) => string,
+    updateOrder: (user: IUser) => string,
 
 } = {
     getUserData: (id) => 'select '
         + 'list.listID, user.id, listName, user.userID, card.created, '
-        + 'card.updated, cardID, cardText, orders, list.isPrivate '
+        + 'card.updated, cardID, cardText, list.orders, list.isPrivate '
         + 'from list '
             + 'left join user on list.userID = user.userID '
             + 'left join card on card.listID = list.listID;',
@@ -42,6 +43,9 @@ export const userQuery: {
     add: (user) => 'insert into '
         + `user (${Object.keys(user)}, created) `
         + `values (${`${valueToString(Object.values(user))},'${getSqlTime()}'`});`,
+    updateOrder: (user: IUser) => 'update user '
+        + `set orders = '${user.orders}' `
+        + `where userID=${user.userID}`,
 };
 
 export const eventQuery: {

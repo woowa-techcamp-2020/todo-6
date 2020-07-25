@@ -45,17 +45,7 @@ userRouter.post('', userController.add);
  *                       Update - "PUT /api/users/update"
  ***************************************************************************** */
 
-userRouter.put('/update', async (req: Request, res: Response) => {
-    const { user } = req.body;
-    if (!user) {
-        return res.status(BAD_REQUEST).json({
-            error: paramMissingError,
-        });
-    }
-    user.id = Number(user.id);
-    await userDao.update(user);
-    return res.status(OK).end();
-});
+userRouter.put('/:userId/orders', userController.updateOrder);
 
 
 

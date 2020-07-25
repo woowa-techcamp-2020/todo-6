@@ -1,15 +1,15 @@
-import { packetToJson } from '@daos/util';
+import { getUpdatedInResonse, packetToJson } from '@daos/util';
 import {
     IInitData, IList, IUser, IResultHeader,
 } from '@type';
 import pool from '../db';
-import { cardQuery, userQuery } from '../query';
+import { cardQuery, listQuery, userQuery } from '../query';
 
 export interface IUserDao {
     get: (id: number) => Promise<IInitData>;
     getAll: () => Promise<IUser[]>;
     add: (user: IUser) => Promise<number>;
-    update: (user: IUser) => Promise<void>;
+    updateOrder: (user: IUser) => Promise<void>;
     delete: (id: number) => Promise<void>;
     getUser: (id: string | string) => Promise<any []>;
 }
@@ -106,10 +106,10 @@ class UserDao implements IUserDao {
     public async get(id: number): Promise<IInitData> {
         const [rowPacket] = await pool.query(userQuery.getUserData(id));
         const res = packetToJson(rowPacket) as any[];
-        const user = this.getUser(id);
-        console.log(user);
+        const userRes = await this.getUser(id);
+        const user = userRes[0];
         const initData:IInitData = this.toInitDataFormat(res);
-        return initData;
+        return { ...initData, info: user };
     }
 
     /**
@@ -131,15 +131,11 @@ class UserDao implements IUserDao {
         return res.insertId;
     }
 
-    /**
-     *
-     * @param user
-     */
-    public async update(user: IUser): Promise<void> {
-        // TODO
-        return {} as any;
+    public async updateOrder(user: IUser): Promise<any> {
+        const [resultHeader] = await pool.query(userQuery.updateOrder(user));
+        const res = packetToJson(resultHeader) as any [];
+        return res;
     }
-
 
     /**
      *

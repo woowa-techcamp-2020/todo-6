@@ -10,8 +10,8 @@ const listHandler = new ListHandler();
 export const newList = (userData) => div({
     className: 'list',
     dataset: { listid: userData.listID, type: 'list', userid: getCookie('userID') },
-    onmousedown: listHandler.onMouseDown,
-    onmouseover: listHandler.onMouseOver,
+    onmousedown: (event) => listHandler.onMouseDown(event),
+    onmouseover: (event) => listHandler.onMouseOver(event),
     onclick: cardHandler.clickCardDelBtn,
 },
 div({ className: 'list-header-section' },

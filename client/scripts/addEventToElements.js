@@ -1,10 +1,12 @@
-import { putUpdateList, postAddList, logout } from './apis';
+import {
+    putUpdateList, postAddList, logout, updateUserOrder,
+} from './apis';
 import { elements } from './utils/states';
 import CardHandler from './controller/cardHandler';
 import { newList } from './components/newList';
 import { getID, getUserID } from './utils/handleCookie';
 import {
-    addEventToMenu, eventType, eventTypeID, getListText,
+    addEventToMenu, eventType, eventTypeID, getAllListsOrderObj, getListText,
 } from './utils/handleElement';
 // import { showAddListModal } from '../scripts/controller/listModalHandler';
 
@@ -105,6 +107,7 @@ function addEventToElements() {
             listsWrap.insertBefore(list, addList);
             listModalAddInput.value = '';
             listModalAddSection.style.display = 'none';
+            updateUserOrder(getAllListsOrderObj());
             addEventToMenu({
                 eventTypeID: eventTypeID.addList,
                 list: getListText(list),

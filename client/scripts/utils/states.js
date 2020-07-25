@@ -1,7 +1,7 @@
 export const elements = {
     body: null,
-    hoverCard: null,
-    hoverParentCard: null,
+    hoverElement: null,
+    hoverParentElement: null,
     card: null,
     list: null,
 };

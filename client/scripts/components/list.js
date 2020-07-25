@@ -14,7 +14,6 @@ const isMyList = ({ isPrivate, userID }) => {
 };
 
 export const initList = (data) => {
-    console.log(data);
     const listData = data;
     const listHandler = new ListHandler();
     const cardHandler = new CardHandler();
@@ -24,8 +23,8 @@ export const initList = (data) => {
     const list = div({
         className: 'list',
         dataset: { listid: listData.listID, type: 'list', userid: listData.userID },
-        onmousedown: listHandler.onMouseDown,
-        onmouseover: listHandler.onMouseOver,
+        onmousedown: (event) => listHandler.onMouseDown(event),
+        onmouseover: (event) => listHandler.onMouseOver(event),
         onclick: cardHandler.clickCardDelBtn,
     },
     div({ className: 'list-header-section' },
@@ -40,9 +39,11 @@ export const initList = (data) => {
             { className: 'cards-wrap', dataset: { wrapid: listData.listID } }, initCard(listData),
         )));
 
-    const listsWrap = document.querySelector('.lists-wrap');
-    const addList = document.querySelector('.add-list-btn');
-    listsWrap.insertBefore(list, addList);
+    return list;
+
+    // const listsWrap = document.querySelector('.lists-wrap');
+    // const addList = document.querySelector('.add-list-btn');
+    // listsWrap.insertBefore(list, addList);
 };
 
 // export const addList = div({

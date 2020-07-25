@@ -13,6 +13,7 @@ export interface IUser {
     name?: string;
     id?: string;
     password?: string;
+    orders?: string;
 }
 
 export interface IList {
@@ -36,10 +37,7 @@ export interface IEvent {
     created?: Date,
 }
 export interface IInitData{
-    info?: {
-        usreID?: number,
-        id?: string
-    },
+    info?: IUser,
     data: [IList?]
 }
 

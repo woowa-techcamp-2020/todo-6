@@ -1,8 +1,16 @@
 import {
-    addEventToMenu, eventType, eventTypeID, getCardText, getListOrdersObj, getListText, setElementPos,
+    addEventToMenu,
+    eventType,
+    eventTypeID,
+    getAllListsOrderObj,
+    getCardText,
+    getListOrdersObj,
+    getListText,
+    isCardType,
+    setElementPos,
 } from '../utils/handleElement';
 import { elements } from '../utils/states';
-import { putUpdateCard, putUpdateOrder } from '../apis';
+import { putUpdateCard, putUpdateOrder, updateUserOrder } from '../apis';
 import changedList from '../utils/changedList';
 import { getID, getUserID } from '../utils/handleCookie';
 
@@ -19,7 +27,7 @@ export default class ElementToDraggable {
         document.onmouseup = this.closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = this.elementDrag;
-        elements.hoverParentCard.classList.add('under-hover-card');
+        elements.hoverParentElement.classList.add('under-hover-card');
     }
 
     elementDrag = (event) => {
@@ -36,9 +44,9 @@ export default class ElementToDraggable {
     }
 
     removeHoverInfoInElements() {
-        elements.hoverCard = null;
+        elements.hoverElement = null;
         elements.constructor = null;
-        elements.hoverParentCard.classList.remove('under-hover-card');
+        elements.hoverParentElement.classList.remove('under-hover-card');
     }
 
     updateEvnet(list, hoverParentCard) {
@@ -62,24 +70,32 @@ export default class ElementToDraggable {
         document.onmouseup = null;
         document.onmousemove = null;
         this.hoverCard.remove();
+        const { hoverParentElement } = elements;
 
-        try {
-            const { hoverParentCard } = elements;
-
-            const list = hoverParentCard.closest('.list');
-            const listID = list.dataset.listid;
-            this.listID = listID;
-            hoverParentCard.dataset.listid = this.listID;
-            changedList.addChangedListsToState(list);
-            changedList.updateCardsOrder();
-            putUpdateCard({
-                listID,
-                cardID: hoverParentCard.dataset.cardid,
-            });
-            this.updateEvnet(list, hoverParentCard);
-        } catch (e) {
-            console.log(e);
+        if (isCardType(hoverParentElement)) {
+            try {
+                const list = hoverParentElement.closest('.list');
+                const listID = list.dataset.listid;
+                this.listID = listID;
+                hoverParentElement.dataset.listid = this.listID;
+                changedList.addChangedListsToState(list);
+                changedList.updateCardsOrder();
+                putUpdateCard({
+                    listID,
+                    cardID: hoverParentElement.dataset.cardid,
+                });
+                this.updateEvnet(list, hoverParentElement);
+            } catch (e) {
+                console.log(e);
+            }
+        } else {
+            try {
+                updateUserOrder(getAllListsOrderObj());
+            } catch (e) {
+                console.log(e);
+            }
         }
+
         this.removeHoverInfoInElements();
     }
 }

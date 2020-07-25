@@ -3,14 +3,15 @@ import { ParamsDictionary } from 'express-serve-static-core';
 import { CREATED, OK, BAD_REQUEST } from 'http-status-codes';
 import UserDao from '@daos/User/UserDao';
 import logger from '@shared/Logger';
-import { ICard, IUser } from '@type';
+import { ICard, IList, IUser } from '@type';
 import envOptions from '../LoadEnv';
 
 export interface IUserController {
     get: (req: Request, res: Response) => Promise<Response<any>>;
     // getAll: () => Promise<IUser[]>;
     add: (req: Request, res: Response) => Promise<Response<any>>;
-    // update: (user: IUser) => Promise<void>;
+    updateOrder: (req: Request, res: Response) => Promise<any>;
+
     // delete: (id: number) => Promise<void>;
 }
 
@@ -44,6 +45,19 @@ const userController:IUserController = {
         return res.status(CREATED).json({ ...user });
     },
 
+    updateOrder: async (req:Request, res: Response) => {
+        logger.info('PUT: api/users/:userID/orders');
+        const params = req.params as ParamsDictionary;
+        const { userID, orders } = req.body;
+        console.log(req.body);
+        const user:IUser = {
+            userID,
+            orders,
+        };
+
+        await userDao.updateOrder(user);
+        return res.status(OK);
+    },
 
 
 };

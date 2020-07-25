@@ -5,7 +5,7 @@ import {
     eventTypeID,
     getCardText,
     getListOrdersObj, getListText,
-    isSameCardId, updateCardCount,
+    isSameCardId, updateCardCount, moveElement,
 } from '../utils/handleElement';
 import Handler from './handler';
 import {
@@ -15,38 +15,25 @@ import { getID, getUserID } from '../utils/handleCookie';
 
 const isNearTop = (top, bottom, eventY) => Math.abs(top - eventY) < Math.abs(bottom - eventY);
 
-/**
- *
- * @param{HTMLElement} left
- * @param{HTMLElement} right
- */
-const moveElement = (beUpElement, beDownElement) => {
-    try {
-        const cardsWrap = beUpElement.closest('.cards-wrap');
-        cardsWrap.insertBefore(beUpElement, beDownElement);
-    } catch (err) {
-    }
-};
-
 const isLastElement = (element) => element.nextSibling === null;
 
 class CardHandler extends Handler {
     onMouseMove(event) {
-        const { hoverCard } = elements;
+        const { hoverElement } = elements;
         const fixCard = event.currentTarget;
 
         const cardSizeAndPos = fixCard.getBoundingClientRect();
         const padding = 15;
         const limitTop = cardSizeAndPos.top + padding;
         const limitBottom = cardSizeAndPos.bottom;
-        if (elements.hoverCard && !isSameCardId(fixCard, hoverCard)) {
+        if (elements.hoverElement && !isSameCardId(fixCard, hoverElement)) {
             const eventY = event.clientY;
-            const { hoverParentCard } = elements;
+            const { hoverParentElement } = elements;
             if (limitTop < eventY && eventY < limitBottom) {
-                if (isNearTop(limitTop, limitBottom, eventY) && !isLastElement(hoverParentCard)) {
-                    moveElement(fixCard, hoverParentCard);
+                if (isNearTop(limitTop, limitBottom, eventY) && !isLastElement(hoverParentElement)) {
+                    moveElement(fixCard, hoverParentElement);
                 } else {
-                    moveElement(hoverParentCard, fixCard);
+                    moveElement(hoverParentElement, fixCard);
                 }
             }
         }
