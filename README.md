@@ -1,7 +1,7 @@
 # todo-6-ToDo-Project
 ## todo-6조 양명우, 김영지
 ## 구현기술 소개
-![]()
+![TodoProject](https://github.com/woowa-techcamp-2020/todo-6/blob/develop/Todo-6.gif)
 
 ## 👊기획서 & 요구사항
 * [기획서](https://docs.google.com/presentation/d/1AF2MNzwGHh97_6DpIhgM1NHHGggtCBYelHHtwxuQkgA/edit#slide=id.p)
