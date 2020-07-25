@@ -67,9 +67,6 @@ class CardHandler extends Handler {
                 deleteCard(listId, cardId)
                     .then(() => {
                         const eventObj = {
-                            userID: getUserID(),
-                            id: getID(),
-
                             eventTypeID: eventTypeID.removeCard,
                             card: getCardText(curCard),
                             list: getListText(list),

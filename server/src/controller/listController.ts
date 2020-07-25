@@ -20,10 +20,11 @@ const listDao:IListDao = new ListDao();
 const listController:IListController = {
     add: async (req: Request, res: Response) => {
         logger.info('POST: api/users/:userID/lists');
-        const { listName, userID } = req.body;
+        const { listName, userID, isPrivate } = req.body;
         const list:IList = {
             userID,
             listName,
+            isPrivate,
         };
 
         list.listID = await listDao.add(list);

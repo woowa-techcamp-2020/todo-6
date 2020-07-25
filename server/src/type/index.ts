@@ -5,6 +5,7 @@ export interface ICard {
     listID?: number,
     created?: Date,
     updated?: Date
+    id?: string
 }
 
 export interface IUser {
@@ -16,6 +17,7 @@ export interface IUser {
 
 export interface IList {
     userID?: number,
+    isPrivate?: number,
     listID?: number,
     listName?: string,
     orders?: string

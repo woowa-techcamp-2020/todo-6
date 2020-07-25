@@ -1,6 +1,6 @@
 import { packetToJson } from '@daos/util';
 import {
-    IInitData, IList, ICard, IUser, IResultHeader,
+    IInitData, IList, IUser, IResultHeader,
 } from '@type';
 import pool from '../db';
 import { cardQuery, userQuery } from '../query';
@@ -15,12 +15,14 @@ export interface IUserDao {
 }
 
 interface IData {
+    id: string
     listID:number,
     listName:string,
     cardID:number,
     cardText:string,
     orders: string,
     userID: number,
+    isPrivate: number,
     created:Date
 }
 
@@ -43,7 +45,7 @@ class UserDao implements IUserDao {
 
 
     private addDataToLists = (lists: {[key:number]: IList}, {
-        listID, listName, cardID, cardText, created, orders, userID,
+        listID, listName, cardID, cardText, created, orders, userID, isPrivate, id,
     }: IData) => {
         if(lists[listID]) {
             lists[listID]?.cards?.push({
@@ -51,12 +53,14 @@ class UserDao implements IUserDao {
                 cardText,
                 created,
                 userID,
+                id,
             });
         }else {
             lists[listID] = {
                 listID,
                 listName,
                 orders,
+                isPrivate,
                 userID,
                 cards: [],
             };
@@ -67,6 +71,7 @@ class UserDao implements IUserDao {
                     cardText,
                     created,
                     userID,
+                    id,
                 });
             }
         }

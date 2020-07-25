@@ -1,6 +1,7 @@
 import { div } from './element';
 import { userEvent } from '../components/userEvent';
 import { postEvent, putUpdateOrder } from '../apis';
+import { getID, getUserID } from './handleCookie';
 
 /**
  * reference: https://medium.com/hackernoon/how-i-converted-my-react-app-to-vanillajs-and-whether-or-not-it-was-a-terrible-idea-4b14b1b2faff
@@ -202,7 +203,12 @@ export const getEventText = (event) => {
 export const getSqlTime = () => new Date().toISOString().slice(0, 19).replace('T', ' ');
 
 export const addEventToMenu = (event) => {
-    postEvent(event)
+    const userInfo = {
+        userID: getUserID(),
+        id: getID(),
+    };
+    const containUserInfoEvent = { ...event, ...userInfo };
+    postEvent(containUserInfoEvent)
         .then((res) => {
             const eventWrap = document.querySelector('.user-record-wrap');
             const newEvent = event;

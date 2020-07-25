@@ -7,6 +7,7 @@ import { elements } from '../utils/states';
 import Handler from './handler';
 import { deleteList, putUpdateCard, putUpdateOrder } from '../apis';
 import changedList from '../utils/changedList';
+import { getID, getUserID } from '../utils/handleCookie';
 
 class ListHandler extends Handler {
     onMouseDown(event) {
@@ -61,8 +62,6 @@ class ListHandler extends Handler {
                 // alert('리스트를 삭제하시겠습니까 ?');
                 listWrap.removeChild(list);
                 addEventToMenu({
-                    userID: 1,
-                    id: 'auddn6676',
                     eventTypeID: eventTypeID.removeList,
                     list: getListText(list),
                     typeName: eventType.removeList,

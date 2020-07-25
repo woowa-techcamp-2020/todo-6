@@ -49,8 +49,6 @@ export default class ElementToDraggable {
             const befreListTitle = getListText(beforeList);
 
             addEventToMenu({
-                userID: getUserID(),
-                id: getID(),
                 eventTypeID: eventTypeID.moveCard,
                 card: cardText,
                 list: listTitle,

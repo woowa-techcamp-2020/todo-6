@@ -32,11 +32,11 @@ export const userQuery: {
 
 } = {
     getUserData: (id) => 'select '
-        + 'list.listID, listName, user.userID, card.created, card.updated, cardID, cardText, orders '
+        + 'list.listID, user.id, listName, user.userID, card.created, '
+        + 'card.updated, cardID, cardText, orders, list.isPrivate '
         + 'from list '
             + 'left join user on list.userID = user.userID '
-            + 'left join card on card.listID = list.listID '
-            + `where user.userID = '${id}'`,
+            + 'left join card on card.listID = list.listID;',
     getUser: (id) => `select * from user where user.id = '${id}'`,
     getUserID: (id) => `select * from user where user.userID = '${id}'`,
     add: (user) => 'insert into '

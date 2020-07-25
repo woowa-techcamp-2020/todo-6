@@ -28,7 +28,7 @@ function addEventToElements() {
     const listsWrap = document.querySelector('.lists-wrap');
     const addList = document.querySelector('.add-list-btn');
     // const listModalSaveBtn = document.querySelector('.list-modal-update-btn');
-
+    const listState = document.querySelector('.admin');
     const logoutBtn = document.querySelector('#logout-btn');
 
     // card events
@@ -47,8 +47,6 @@ function addEventToElements() {
 
         const list = card.closest('.list');
         addEventToMenu({
-            userID: getUserID(),
-            id: getID(),
             eventTypeID: eventTypeID.updateCard,
             list: getListText(list),
             card: cardText,
@@ -77,8 +75,6 @@ function addEventToElements() {
                 elements.list.querySelector('.list-title').textContent = listName;
                 listModalSection.style.display = 'none';
                 addEventToMenu({
-                    userID: 1,
-                    id: 'auddn6676',
                     eventTypeID: eventTypeID.updateList,
                     list: getListText(elements.list),
                     typeName: eventType.updateList,
@@ -93,16 +89,23 @@ function addEventToElements() {
     });
 
     listModalSaveBtn.addEventListener('click', () => {
-        console.log(listModalAddInput.value);
-        postAddList({ userID: getUserID(), listName: listModalAddInput.value }).then((res) => {
+        const defaultState = 'none';
+        const privateState = 'private';
+        if (listState.value === defaultState) {
+            alert('권한을 설정해주세요!');
+            return;
+        }
+        postAddList({
+            userID: getUserID(),
+            listName: listModalAddInput.value,
+            isPrivate: listState.value === privateState,
+        }).then((res) => {
             // console.log(newList(res));
             const list = newList(res);
             listsWrap.insertBefore(list, addList);
             listModalAddInput.value = '';
             listModalAddSection.style.display = 'none';
             addEventToMenu({
-                userID: 1,
-                id: 'auddn6676',
                 eventTypeID: eventTypeID.addList,
                 list: getListText(list),
                 typeName: eventType.addList,

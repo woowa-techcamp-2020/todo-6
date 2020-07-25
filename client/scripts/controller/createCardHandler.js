@@ -38,8 +38,6 @@ export const cardAddBtnClickHandler = (e) => {
         putUpdateOrder(getListOrdersObj(listID));
 
         addEventToMenu({
-            userID: getUserID(),
-            id: getID(),
             eventTypeID: eventTypeID.addCard,
             card: cardText,
             list: list.querySelector('.list-title').textContent,
