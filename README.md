@@ -1,6 +1,11 @@
-# todo-6-ToDo-Project
-## todo-6조 양명우, 김영지
-## 구현기술 소개
+# ToDo-Project-6 양명우, 김영지
+
+## 실행방법
+1. cd client/ 경로이동 -> npm i 설치 -> npm run build 
+2. cd server/ 경로리동 -> num i 설치 -> npm run start:db
+3. http://localhost:3000/ 접속(실행)
+
+## 구현영상 소개
 ![TodoProject](https://github.com/woowa-techcamp-2020/todo-6/blob/develop/Todo-6.gif)
 
 ## 👊기획서 & 요구사항
