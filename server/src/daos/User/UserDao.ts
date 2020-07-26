@@ -2,6 +2,7 @@ import { getUpdatedInResonse, packetToJson } from '@daos/util';
 import {
     IInitData, IList, IUser, IResultHeader,
 } from '@type';
+import ListDao from '@daos/List/listDao';
 import pool from '../db';
 import { cardQuery, listQuery, userQuery } from '../query';
 
@@ -15,7 +16,8 @@ export interface IUserDao {
 }
 
 interface IData {
-    id: string
+    id: string,
+    order: number
     listID:number,
     listName:string,
     cardID:number,
@@ -27,9 +29,15 @@ interface IData {
 }
 
 class UserDao implements IUserDao {
-    /**
-     *
-     */
+    listDao: ListDao;
+
+    lists: {[key:number]: IList}
+
+    constructor() {
+        this.lists = {};
+        this.listDao = new ListDao();
+    }
+
     public async getUser(id: string | number): Promise<any []> {
         let res;
         if(typeof id === 'number') {
@@ -45,35 +53,16 @@ class UserDao implements IUserDao {
 
 
     private addDataToLists = (lists: {[key:number]: IList}, {
-        listID, listName, cardID, cardText, created, orders, userID, isPrivate, id,
+        listID, cardID, cardText, created, userID, id,
     }: IData) => {
-        if(lists[listID]) {
-            lists[listID]?.cards?.push({
+        if(cardID) {
+            this.lists[listID].cards?.push({
                 cardID,
                 cardText,
                 created,
                 userID,
                 id,
             });
-        }else {
-            lists[listID] = {
-                listID,
-                listName,
-                orders,
-                isPrivate,
-                userID,
-                cards: [],
-            };
-
-            if(cardID) {
-                lists[listID].cards?.push({
-                    cardID,
-                    cardText,
-                    created,
-                    userID,
-                    id,
-                });
-            }
         }
     }
 
@@ -94,8 +83,8 @@ class UserDao implements IUserDao {
             this.addDataToLists(lists, data);
         });
 
-        Object.keys(lists).forEach((listID) => {
-            initData.data.push(lists[parseInt(listID)]);
+        Object.keys(this.lists).forEach((listID) => {
+            initData.data.push(this.lists[parseInt(listID)]);
         });
 
 
@@ -103,12 +92,26 @@ class UserDao implements IUserDao {
         return initData;
     }
 
+
+    private initListObj(listsData: IList []) {
+        listsData.forEach((list) => {
+            this.lists[list.listID as number] = {
+                ...list,
+                cards: [],
+            };
+        });
+    }
+
     public async get(id: number): Promise<IInitData> {
         const [rowPacket] = await pool.query(userQuery.getUserData(id));
         const res = packetToJson(rowPacket) as any[];
+        const lists = await this.listDao.getAll();
+        this.initListObj(lists);
         const userRes = await this.getUser(id);
         const user = userRes[0];
         const initData:IInitData = this.toInitDataFormat(res);
+        console.log(initData);
+        initData.data.sort((a, b) => (a?.order as number) - (b?.order as number));
         return { ...initData, info: user };
     }
 

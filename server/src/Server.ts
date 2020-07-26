@@ -79,17 +79,13 @@ passport.use(new LocalStrategy(
         userDao.getUser(username).then((res: any []) => {
             const user = res[0] as IUser;
             if(user) {
-                console.log(1);
                 if(password === user.password) {
-                    console.log(2);
                     return done(null, user);
                 }
-                console.log(3);
                 return done(null, false, {
                     message: 'Incorrect password.',
                 });
             }
-            console.log(4);
             return done(null, false, {
                 message: 'Incorrect username.',
             });

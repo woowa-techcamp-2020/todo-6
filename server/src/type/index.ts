@@ -16,11 +16,18 @@ export interface IUser {
     orders?: string;
 }
 
+export interface IOrderData {
+    newOrder?: number,
+    oldOrder?: number,
+    listID?: number,
+}
+
 export interface IList {
     userID?: number,
     isPrivate?: number,
     listID?: number,
     listName?: string,
+    order?: number
     orders?: string
     cards?: [ICard?]
     created?: Date,

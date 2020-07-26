@@ -14,6 +14,7 @@ listRouter.use('/:listID/cards', CardRouter);
 
 listRouter.post('', listController.add);
 
+listRouter.put('/order', listController.updateListOrder);
 listRouter.put('/:listID/orders', listController.updateOrder);
 listRouter.put('/:listID', listController.update);
 

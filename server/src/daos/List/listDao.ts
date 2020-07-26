@@ -3,10 +3,10 @@ import {
     packetToJson,
 } from '@daos/util';
 import {
-    IInitData, IList, ICard, IResultHeader, 
+    IInitData, IList, ICard, IResultHeader, IOrderData,
 } from '@type';
 import pool from '../db';
-import { cardQuery, listQuery } from '../query';
+import { cardQuery, listQuery, userQuery } from '../query';
 
 
 
@@ -18,6 +18,8 @@ export interface IListDao {
     delete: (listID: number) => Promise<void>;
     // getOrder: (listID: number) => Promise<void>;
     updateOrder: (list: IList) => Promise<void>;
+    getAll: () => Promise<any>;
+    updateListOrder: (orderData:IOrderData) => Promise<any>;
 }
 
 class ListDao implements IListDao {
@@ -39,6 +41,16 @@ class ListDao implements IListDao {
 
     public async updateOrder(list: IList): Promise<any> {
         await pool.query(listQuery.updateOrder(list));
+    }
+
+    public async updateListOrder(orderData:IOrderData): Promise<any> {
+        console.log(listQuery.updateListOrder(orderData));
+        await pool.query(listQuery.updateListOrder(orderData));
+    }
+
+    public async getAll(): Promise<any> {
+        const [rowPacket] = await pool.query(listQuery.getAll());
+        return (packetToJson(rowPacket) as any []);
     }
 }
 

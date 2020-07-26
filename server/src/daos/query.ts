@@ -1,5 +1,5 @@
 import {
-    ICard, IEvent, IList, IUser, 
+    ICard, IEvent, IList, IOrderData, IUser,
 } from '@type';
 import { getSqlTime, valueToString } from './util';
 
@@ -33,11 +33,11 @@ export const userQuery: {
 
 } = {
     getUserData: (id) => 'select '
-        + 'list.listID, user.id, listName, user.userID, card.created, '
+        + 'list.listID, user.id, listName, user.userID, card.created, list.order,'
         + 'card.updated, cardID, cardText, list.orders, list.isPrivate '
-        + 'from list '
-            + 'left join user on list.userID = user.userID '
-            + 'left join card on card.listID = list.listID;',
+        + 'from card '
+            + 'left join list on card.listID = list.listID '
+            + 'left join user on card.userID = user.userID;',
     getUser: (id) => `select * from user where user.id = '${id}'`,
     getUserID: (id) => `select * from user where user.userID = '${id}'`,
     add: (user) => 'insert into '
@@ -67,7 +67,9 @@ export const listQuery: {
     update: (list: IList) => string
     add: (list: IList) => string,
     delete: (listID: number) => string,
-    updateOrder: (list: IList) => string
+    updateOrder: (list: IList) => string,
+    getAll: () => string,
+    updateListOrder: (orderData:IOrderData) => string,
 } = {
     update: (list) => `${'update list '
         + `set  listName="${list.listName}", updated="${getSqlTime()}"`
@@ -80,7 +82,9 @@ export const listQuery: {
     updateOrder: (list: IList) => 'update list '
         + `set orders = '${list.orders}' `
         + `where listID=${list.listID}`,
-
+    updateListOrder: (orderData) => `set @temp=SimpleCompare(${orderData.newOrder},${orderData.oldOrder},${orderData.listID});\n`,
+    getAll: () => 'select * from list '
+        + 'ORDER BY list.order asc;',
 };
 
 
@@ -94,7 +98,6 @@ export const cardQuery: {
         + `where (cardID=${card.cardID});`}${
         query.getUpdated('card', card.cardID as number)}`,
     add: (card) => 'insert into '
-
         + `card(${Object.keys(card)}, created, updated) `
         + `values (${`${valueToString(Object.values(card))},'${getSqlTime()}','${getSqlTime()}'`})`,
     delete: (cardID) => `delete from card where cardID = ${cardID};`,

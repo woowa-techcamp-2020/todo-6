@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 import HttpStatus, { CREATED, OK, NO_CONTENT } from 'http-status-codes';
 import logger from '@shared/Logger';
-import { IList } from '@type';
+import { IList, IOrderData } from '@type';
 import ListDao, { IListDao } from '../daos/List/listDao';
 
 export interface IListController {
@@ -12,7 +12,7 @@ export interface IListController {
     update: (req: Request, res: Response) => Promise<any>;
     delete: (req: Request, res: Response) => Promise<void>;
     updateOrder: (req: Request, res: Response) => Promise<any>;
-
+    updateListOrder: (req:Request, res: Response) => Promise<any>
 }
 
 const listDao:IListDao = new ListDao();
@@ -54,6 +54,15 @@ const listController:IListController = {
         };
         await listDao.updateOrder(list);
         return res.status(OK).json({ ...list });
+    },
+
+
+    updateListOrder: async (req:Request, res: Response) => {
+        logger.info('PUT: api/users/:userID/lists/:listID/order');
+        const orderData:IOrderData = { ...req.body };
+        console.log(orderData);
+        await listDao.updateListOrder(orderData);
+        return res.status(OK);
     },
 
     delete: async (req:Request, res: Response) => {
