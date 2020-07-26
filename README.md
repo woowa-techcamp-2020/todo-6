@@ -5,6 +5,9 @@
 2. cd server/ 경로리동 -> num i 설치 -> npm run start:db
 3. http://localhost:3000/ 접속(실행)
 
+## 배포 서버
+http://15.165.167.135:3000
+
 ## 구현영상 소개
 ![TodoProject](https://github.com/woowa-techcamp-2020/todo-6/blob/develop/Todo-6.gif)
 
