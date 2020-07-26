@@ -2,6 +2,7 @@ import { div } from './element';
 import { userEvent } from '../components/userEvent';
 import { postEvent, putUpdateOrder } from '../apis';
 import { getID, getUserID } from './handleCookie';
+import { elements } from './states';
 
 /**
  * reference: https://medium.com/hackernoon/how-i-converted-my-react-app-to-vanillajs-and-whether-or-not-it-was-a-terrible-idea-4b14b1b2faff
@@ -252,17 +253,14 @@ export const moveElement = (beUpElement, beDownElement, type = 'card') => {
     }
 };
 
-export const getAllListsOrderObj = () => {
-    const orders = [];
-    const wrap = document.querySelector('.lists-wrap');
-    const lists = wrap.querySelectorAll('.list');
-    lists.forEach((list) => {
-        orders.push(list.dataset.listid);
-    });
-    return {
-        userID: getUserID(),
-        orders: `[${orders}]`,
-    };
+/**
+ *
+ * @param list
+ * @returns {number}
+ */
+export const getListOrder = (list) => {
+    const lists = document.querySelectorAll('.list');
+    return Array.prototype.indexOf.call(lists, list);
 };
 
 /**

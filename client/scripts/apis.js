@@ -1,19 +1,16 @@
-import { initList } from './components/list';
+import { list } from './components/list';
 import { getUserID } from './utils/handleCookie';
+import { getListOrder } from './utils/handleElement';
+import { elements } from './utils/states';
 
 export const initPage = () => fetch(`/api/users/${getUserID()}`)
     .then((res) => res.json())
     .then((res) => {
-        const { orders } = res.userData.info;
-        const lists = {};
-        res.userData.data.forEach((list) => {
-            lists[list.listID] = initList(list);
-        });
-
         const listsWrap = document.querySelector('.lists-wrap');
         const addList = document.querySelector('.add-list-btn');
-        orders.forEach((listID) => {
-            listsWrap.insertBefore(lists[listID], addList);
+
+        res.userData.data.forEach((listData) => {
+            listsWrap.insertBefore(list(listData), addList);
         });
     });
 
@@ -31,14 +28,22 @@ export const postUser = (user) => fetch('/api/users', {
 export const getUser = (id) => fetch(`/api/users/${id}`)
     .then((res) => res.json());
 
-export const updateUserOrder = (user) => fetch(`/api/users/${user.userID}/orders`,
-    {
-        method: 'PUT',
-        body: JSON.stringify(user),
-        headers: { 'Content-Type': 'application/json' },
-    })
-    .then((response) => response.json())
-    .catch((error) => console.error('Error:', error));
+export const updateListOrder = () => {
+    const newOrder = getListOrder(elements.hoverParentElement) + 1;
+    const oldOrder = elements.listOrder + 1;
+    if (newOrder !== oldOrder) {
+        return fetch(`/api/users/${getUserID()}/lists/order`,
+            {
+                method: 'PUT',
+                body: JSON.stringify({
+                    newOrder,
+                    oldOrder,
+                    listID: elements.hoverParentElement.dataset.listid,
+                }),
+                headers: { 'Content-Type': 'application/json' },
+            });
+    }
+};
 
 export const getEvents = () => fetch('/api/users/1/events')
     .then((response) => response.json())

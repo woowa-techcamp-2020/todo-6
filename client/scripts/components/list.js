@@ -13,12 +13,12 @@ const isMyList = ({ isPrivate, userID }) => {
     return true;
 };
 
-export const initList = (data) => {
+export const list = (data) => {
     const listData = data;
     const listHandler = new ListHandler();
     const cardHandler = new CardHandler();
 
-    if (!isMyList(listData)) return;
+    if (!isMyList(listData)) return null;
 
     const list = div({
         className: 'list',

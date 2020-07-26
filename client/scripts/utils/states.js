@@ -4,6 +4,7 @@ export const elements = {
     hoverParentElement: null,
     card: null,
     list: null,
+    listOrder: 0,
 };
 
 export const assignElements = () => {

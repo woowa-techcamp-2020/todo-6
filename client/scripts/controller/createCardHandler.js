@@ -22,7 +22,7 @@ export const cardAddBtnClickHandler = (e) => {
     const listID = list.getAttribute('data-listid');
     const inputCardContentsEl = e.target.parentNode.previousSibling;
     const cardText = inputCardContentsEl.value;
-    const newCardInfo = { listID, cardText: inputCardContentsEl.value };
+    const newCardInfo = { listID, cardText: inputCardContentsEl.value, userID: getUserID() };
 
     postAddCard(newCardInfo).then((res) => {
         const card = newCard(res);

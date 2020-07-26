@@ -2,15 +2,15 @@ import {
     addEventToMenu,
     eventType,
     eventTypeID,
-    getAllListsOrderObj,
+    getUpdatedOrder,
     getCardText,
     getListOrdersObj,
     getListText,
     isCardType,
-    setElementPos,
+    setElementPos, getListOrder,
 } from '../utils/handleElement';
 import { elements } from '../utils/states';
-import { putUpdateCard, putUpdateOrder, updateUserOrder } from '../apis';
+import { putUpdateCard, putUpdateOrder, updateListOrder } from '../apis';
 import changedList from '../utils/changedList';
 import { getID, getUserID } from '../utils/handleCookie';
 
@@ -28,6 +28,7 @@ export default class ElementToDraggable {
         // call a function whenever the cursor moves:
         document.onmousemove = this.elementDrag;
         elements.hoverParentElement.classList.add('under-hover-card');
+        elements.listOrder = getListOrder(elements.hoverParentElement);
     }
 
     elementDrag = (event) => {
@@ -46,6 +47,7 @@ export default class ElementToDraggable {
     removeHoverInfoInElements() {
         elements.hoverElement = null;
         elements.constructor = null;
+        elements.listOrder = 0;
         elements.hoverParentElement.classList.remove('under-hover-card');
     }
 
@@ -90,7 +92,7 @@ export default class ElementToDraggable {
             }
         } else {
             try {
-                updateUserOrder(getAllListsOrderObj());
+                updateListOrder();
             } catch (e) {
                 console.log(e);
             }

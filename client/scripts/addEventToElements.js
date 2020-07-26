@@ -1,12 +1,12 @@
 import {
-    putUpdateList, postAddList, logout, updateUserOrder,
+    putUpdateList, postAddList, logout,
 } from './apis';
 import { elements } from './utils/states';
 import CardHandler from './controller/cardHandler';
 import { newList } from './components/newList';
 import { getID, getUserID } from './utils/handleCookie';
 import {
-    addEventToMenu, eventType, eventTypeID, getAllListsOrderObj, getListText,
+    addEventToMenu, eventType, eventTypeID, getListText,
 } from './utils/handleElement';
 // import { showAddListModal } from '../scripts/controller/listModalHandler';
 
@@ -101,13 +101,13 @@ function addEventToElements() {
             userID: getUserID(),
             listName: listModalAddInput.value,
             isPrivate: listState.value === privateState,
+            order: document.querySelectorAll('.list').length,
         }).then((res) => {
             // console.log(newList(res));
             const list = newList(res);
             listsWrap.insertBefore(list, addList);
             listModalAddInput.value = '';
             listModalAddSection.style.display = 'none';
-            updateUserOrder(getAllListsOrderObj());
             addEventToMenu({
                 eventTypeID: eventTypeID.addList,
                 list: getListText(list),

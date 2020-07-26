@@ -1,11 +1,11 @@
 import ElementToDraggable from './dragHandler';
 import {
     addEventToMenu, eventType, eventTypeID,
-    getListText, isCardType, isListType, isSameListId, setElementPos, setElementSize, moveElement, getAllListsOrderObj,
+    getListText, isCardType, isListType, isSameListId, setElementPos, setElementSize, moveElement, getUpdatedOrder,
 } from '../utils/handleElement';
 import { elements } from '../utils/states';
 import Handler from './handler';
-import { deleteList, updateUserOrder } from '../apis';
+import { deleteList } from '../apis';
 import changedList from '../utils/changedList';
 
 class ListHandler extends Handler {
@@ -106,7 +106,6 @@ class ListHandler extends Handler {
             deleteList(list.getAttribute('data-listid')).then(() => {
                 // alert('리스트를 삭제하시겠습니까 ?');
                 listWrap.removeChild(list);
-                updateUserOrder(getAllListsOrderObj());
                 addEventToMenu({
                     eventTypeID: eventTypeID.removeList,
                     list: getListText(list),
