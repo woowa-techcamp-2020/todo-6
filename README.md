@@ -1,9 +1,16 @@
 # ToDo-Project-6 양명우, 김영지
 
 ## 실행방법
-1. cd client/ 경로이동 -> npm i 설치 -> npm run build 
-2. cd server/ 경로리동 -> num i 설치 -> npm run start:db
+1. cd client/ 경로이동 -> `npm i` 설치 -> `npm run build` 
+2. cd server/ 경로리동 -> `num i` 설치 -> `npm run start:db`
 3. http://localhost:3000/ 접속(실행)
+
+## 빌드방법
+1. cd client/ 경로이동 -> `npm i` 설치 -> `npm run build` 
+2. cd server/ 경로리동 -> `num i` 설치 
+3. typescript를 컴파일 하기 위해 `npm run build` 실행 
+4. 컴파일된 파일 실행 `npm run start`
+5. http://localhost:3000/ 접속(실행)
 
 ## 배포 서버
 http://15.165.167.135:3000
